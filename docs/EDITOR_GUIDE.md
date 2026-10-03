@@ -16,16 +16,12 @@ Roles: **Admin** (everything), **Editor** (website content), **Sales** (the enqu
 | **Inbox → Enquiries**              | Every form sent from the website. Change the status (New → Contacted → Won/Lost) as you follow up. |
 | **Inbox → Newsletter subscribers** | People who joined the newsletter.                                                                  |
 | **Services & products**            | Products, service groups, services and hosting plans.                                              |
-| **Work & people**                  | Case studies, team, testimonials and client logos.                                                 |
+| **Work & people**                  | Case studies, testimonials and client logos.                                                       |
 | **Content**                        | Insights articles, careers, legal pages and all images.                                            |
 | **Pages**                          | Home page and About page text.                                                                     |
 | **Settings → Company details**     | Email, phone, WhatsApp, address, social links, key numbers, announcement bar.                      |
 
 ## Common tasks
-
-**Replace a team member’s photo or details** — Work & people → Team → click the person → change the
-fields → upload a new photo (use portraits with the same background and lighting) → set the focal point
-on the face → untick _Sample content_ → **Save**.
 
 **Add a service** — Services & products → Services → _Create new_ → choose its group → fill the
 fields → **Publish**. It appears in the menus, the Services page and the sitemap automatically.
