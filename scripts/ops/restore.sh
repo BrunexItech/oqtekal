@@ -4,9 +4,10 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 set -a; source .env.production; set +a
+if docker compose version >/dev/null 2>&1; then DC="docker compose"; else DC="docker-compose"; fi
 STAMP="${1:?usage: restore.sh <stamp>}"
 SRC="${BACKUP_DIR:-/var/backups/oqtekal}"
-COMPOSE="docker compose -f docker/compose.prod.yml --env-file .env.production"
+COMPOSE="$DC -f docker/compose.prod.yml --env-file .env.production"
 
 read -r -p "This replaces the live database and media with backup $STAMP. Type 'restore' to continue: " ok
 [ "$ok" = "restore" ] || { echo "Aborted"; exit 1; }

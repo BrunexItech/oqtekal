@@ -5,12 +5,13 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 set -a; source .env.production; set +a
+if docker compose version >/dev/null 2>&1; then DC="docker compose"; else DC="docker-compose"; fi
 
 DEST="${BACKUP_DIR:-/var/backups/oqtekal}"
 STAMP="$(date +%Y-%m-%d_%H%M)"
 mkdir -p "$DEST"
 
-docker compose -f docker/compose.prod.yml --env-file .env.production exec -T db \
+$DC -f docker/compose.prod.yml --env-file .env.production exec -T db \
   pg_dump -U "${POSTGRES_USER:-oqtekal}" -d "${POSTGRES_DB:-oqtekal}" --format=custom > "$DEST/db_$STAMP.dump"
 
 docker run --rm -v oqtekal_media:/media:ro -v "$DEST":/out alpine \

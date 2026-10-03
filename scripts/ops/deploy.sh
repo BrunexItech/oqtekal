@@ -6,8 +6,11 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
-COMPOSE="docker compose -f docker/compose.prod.yml --env-file .env.production"
-HEALTH_URL="http://127.0.0.1:8091/next/health"
+# Works with both the Compose plugin ("docker compose") and the standalone binary ("docker-compose").
+if docker compose version >/dev/null 2>&1; then DC="docker compose"; else DC="docker-compose"; fi
+COMPOSE="$DC -f docker/compose.prod.yml --env-file .env.production"
+WEB_PORT="$(grep -E '^WEB_PORT=' .env.production | cut -d= -f2)"
+HEALTH_URL="http://127.0.0.1:${WEB_PORT:-8091}/next/health"
 
 echo "→ Pulling latest code"
 git fetch --quiet origin main

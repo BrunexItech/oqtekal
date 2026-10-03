@@ -1,6 +1,6 @@
 # Production stack for oqtekal.com on the VPS.
 #   docker compose -f docker/compose.prod.yml --env-file .env.production up -d --build
-# The site listens on 127.0.0.1:8091; host nginx terminates TLS (Cloudflare origin cert).
+# The site listens on 127.0.0.1:${WEB_PORT} (default 8091); host nginx terminates TLS (Cloudflare origin cert).
 name: oqtekal
 
 services:
@@ -36,7 +36,7 @@ services:
       # Database migrations run automatically on start (Payload prodMigrations).
       DATABASE_URL: postgres://${POSTGRES_USER:-oqtekal}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-oqtekal}
     ports:
-      - '127.0.0.1:8091:3000'
+      - '127.0.0.1:${WEB_PORT:-8091}:3000'
     volumes:
       - media:/app/media
     depends_on:
