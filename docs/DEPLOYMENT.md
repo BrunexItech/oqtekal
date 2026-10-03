@@ -1,6 +1,6 @@
 # Deploying oqtekal.com
 
-Runs on the company VPS alongside other sites: **Cloudflare → host nginx → 127.0.0.1:8091 → Docker (web + Postgres)**.
+Runs on the company VPS alongside other sites: **Cloudflare → host nginx → 127.0.0.1:8092 (`WEB_PORT`) → Docker (web + Postgres)**. The server has the standalone `docker-compose` command.
 
 ## First-time setup
 
@@ -10,9 +10,9 @@ Runs on the company VPS alongside other sites: **Cloudflare → host nginx → 1
 2. **Code:** `git clone <repo> /srv/oqtekal && cd /srv/oqtekal`
 3. **Secrets:** `cp .env.production.example .env.production` and fill it in
    (generate secrets with `openssl rand -hex 32`). Never commit this file.
-4. **nginx:** copy `docker/nginx/oqtekal.com.conf` to `/etc/nginx/sites-available/`, symlink into
-   `sites-enabled/`, provide `/etc/nginx/cloudflare-ips.conf` (`set_real_ip_from` lines for
-   Cloudflare’s ranges), then `nginx -t && systemctl reload nginx`.
+4. **nginx:** copy `docker/nginx/oqtekal.com.conf` to `/etc/nginx/sites-available/oqtekal.com`
+   (port must equal `WEB_PORT`), symlink into `sites-enabled/`, then
+   `sudo nginx -t && sudo systemctl restart nginx` (on this VPS a reload does not pick up new sites).
 5. **Start:** `docker compose -f docker/compose.prod.yml --env-file .env.production up -d --build`
    Database migrations run automatically when the web container starts.
 6. **Content:** either restore a backup from staging (`scripts/ops/restore.sh`) or create the first
