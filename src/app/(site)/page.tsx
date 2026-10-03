@@ -11,13 +11,11 @@ import {
 } from '@/design-system'
 import { CtaSection } from '@/features/cta'
 import { getHomePage, Hero, Process, TechStrip } from '@/features/home'
-import { getHostingPlans, PlanCards } from '@/features/hosting'
 import { getPosts, PostCard } from '@/features/insights'
 import { getProducts, ProductMedia, ProductShowcase } from '@/features/products'
 import { buildMetadata } from '@/features/seo'
 import { getPillarsWithServices, ServicesIndex } from '@/features/services'
 import { getSiteSettings } from '@/features/site'
-import { getTeam, TeamGrid } from '@/features/team'
 import { getTestimonials, Testimonials } from '@/features/testimonials'
 import { CaseStudyCard, getCaseStudies } from '@/features/work'
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from '@/lib/site'
@@ -32,21 +30,17 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const [home, settings, products, pillars, work, team, testimonials, plans, posts] =
-    await Promise.all([
-      getHomePage(),
-      getSiteSettings(),
-      getProducts({ featured: true }),
-      getPillarsWithServices(),
-      getCaseStudies({ featured: true, limit: 3 }),
-      getTeam(),
-      getTestimonials(),
-      getHostingPlans(),
-      getPosts({ limit: 3 }),
-    ])
+  const [home, settings, products, pillars, work, testimonials, posts] = await Promise.all([
+    getHomePage(),
+    getSiteSettings(),
+    getProducts({ featured: true }),
+    getPillarsWithServices(),
+    getCaseStudies({ featured: true, limit: 3 }),
+    getTestimonials(),
+    getPosts({ limit: 3 }),
+  ])
 
   const [leadStudy, ...otherStudies] = work
-  const webPlans = plans.filter((p) => p.category === 'web').slice(0, 3)
 
   return (
     <>
@@ -149,47 +143,11 @@ export default async function HomePage() {
         </Section>
       ) : null}
 
-      {/* Team */}
-      {team.length ? (
-        <Section id="team">
-          <Container>
-            <SectionHeader
-              eyebrow={home.teamIntro?.eyebrow}
-              index="05"
-              heading={home.teamIntro?.heading ?? 'The team'}
-              text={home.teamIntro?.text}
-              action={<ArrowLink href="/about">About Oqtekal</ArrowLink>}
-            />
-            <div className="mt-14 md:mt-20">
-              <TeamGrid members={team} />
-            </div>
-          </Container>
-        </Section>
-      ) : null}
-
       {/* Testimonials */}
       {testimonials.length ? (
         <Section spacing="tight" className="border-y border-line">
           <Container className="py-6 md:py-10">
             <Testimonials items={testimonials} />
-          </Container>
-        </Section>
-      ) : null}
-
-      {/* Hosting */}
-      {webPlans.length ? (
-        <Section id="hosting">
-          <Container>
-            <SectionHeader
-              eyebrow={home.hostingIntro?.eyebrow}
-              index="06"
-              heading={home.hostingIntro?.heading ?? 'Hosting'}
-              text={home.hostingIntro?.text}
-              action={<ArrowLink href="/hosting">All plans & VPS</ArrowLink>}
-            />
-            <div className="mt-14 md:mt-16">
-              <PlanCards plans={webPlans} />
-            </div>
           </Container>
         </Section>
       ) : null}
@@ -200,7 +158,7 @@ export default async function HomePage() {
           <Container>
             <SectionHeader
               eyebrow="Insights"
-              index="07"
+              index="05"
               heading="Notes from the engineering floor."
               action={<ArrowLink href="/insights">All articles</ArrowLink>}
             />

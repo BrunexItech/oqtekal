@@ -69,8 +69,6 @@ export const HomePage: GlobalConfig = {
             sectionIntro('servicesIntro', 'Services section'),
             sectionIntro('workIntro', 'Selected work section'),
             sectionIntro('processIntro', 'How we work section'),
-            sectionIntro('teamIntro', 'Team section'),
-            sectionIntro('hostingIntro', 'Hosting section'),
             sectionIntro('ctaIntro', 'Final call to action'),
           ],
         },

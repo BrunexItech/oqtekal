@@ -2,7 +2,7 @@ import { BrandIcon, Container, Mail, Phone } from '@/design-system'
 import { Symbol } from '@/features/brand'
 import { ContactForm, type LeadType } from '@/features/contact'
 import type { Settings } from '@/features/site'
-import { whatsappLink } from '@/lib/site'
+import { formatWhatsapp, whatsappLink } from '@/lib/site'
 
 type Props = {
   settings: Settings
@@ -75,7 +75,7 @@ export const CtaSection = ({
                   <span className="grid size-10 place-items-center rounded-full border border-white/15">
                     <BrandIcon name="whatsapp" className="size-4" />
                   </span>
-                  Chat on WhatsApp
+                  WhatsApp {formatWhatsapp(settings.whatsapp)}
                 </a>
               </li>
             </ul>

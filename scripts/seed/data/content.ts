@@ -1,33 +1,6 @@
 /* Seed content: work, people, hosting, articles, careers, legal and page copy.
  * Everything marked isPlaceholder must be replaced with real, approved information before launch. */
 
-export const team = [
-  {
-    name: 'Bruno Sharif',
-    role: 'Founder & Lead Engineer',
-    focus: 'Turns business processes into dependable systems.',
-    bio: 'Bruno leads engineering at Oqtekal and has built communication platforms, ERP and payment systems used daily by Kenyan businesses. He cares about software that is simple to use and boring to operate.',
-    expertise: ['Systems architecture', 'Payments & M-Pesa', 'Python & TypeScript'],
-    photo: 'team-1.jpg',
-  },
-  {
-    name: 'Amina Odhiambo',
-    role: 'Head of Product & Design',
-    focus: 'Makes complex software feel simple.',
-    bio: 'Amina leads product and design, turning research with real users into interfaces people understand without a manual. She runs discovery workshops and owns the design system behind every Oqtekal product.',
-    expertise: ['Product strategy', 'UX research', 'Design systems'],
-    photo: 'team-2.jpg',
-  },
-  {
-    name: 'Wanjiru Kamau',
-    role: 'Cloud & Infrastructure Lead',
-    focus: 'Keeps every system fast, secure and online.',
-    bio: 'Wanjiru runs Oqtekal’s hosting and infrastructure — servers, deployments, monitoring and backups — and leads our security and support practice.',
-    expertise: ['Cloud & DevOps', 'Security', 'Site reliability'],
-    photo: 'team-3.jpg',
-  },
-]
-
 export const testimonials = [
   {
     quote:
@@ -506,8 +479,8 @@ export const legal = {
 
 export const settings = {
   email: 'hello@oqtekal.com',
-  phone: '+254 700 000 000',
-  whatsapp: '254700000000',
+  phone: '+254 721 928 966',
+  whatsapp: '254715274418',
   address: 'Nairobi, Kenya',
   hours: 'Mon – Fri, 8:00 – 18:00 EAT',
   socials: [
@@ -515,8 +488,7 @@ export const settings = {
     { platform: 'x', url: 'https://x.com/oqtekal' },
     { platform: 'facebook', url: 'https://www.facebook.com/oqtekal' },
     { platform: 'instagram', url: 'https://www.instagram.com/oqtekal' },
-    { platform: 'github', url: 'https://github.com/oqtekal' },
-    { platform: 'whatsapp', url: 'https://wa.me/254700000000' },
+    { platform: 'whatsapp', url: 'https://wa.me/254715274418' },
   ],
   stats: [
     { value: '40+', label: 'Systems delivered' },
@@ -554,16 +526,6 @@ export const home = {
     eyebrow: 'How we work',
     heading: 'A process designed to remove surprises.',
     text: 'Clear scope, visible progress every two weeks and a team that stays after launch.',
-  },
-  teamIntro: {
-    eyebrow: 'The team',
-    heading: 'Small team. Senior people. Direct line.',
-    text: 'You work directly with the engineers who design and build your system — no account managers in between.',
-  },
-  hostingIntro: {
-    eyebrow: 'Hosting',
-    heading: 'Fast, secure hosting with people who pick up the phone.',
-    text: 'NVMe servers, daily backups and free migration — billed in shillings, payable by M-Pesa.',
   },
   ctaIntro: {
     eyebrow: 'Start a project',

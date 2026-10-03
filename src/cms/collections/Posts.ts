@@ -45,12 +45,6 @@ export const Posts: CollectionConfig = {
       admin: { position: 'sidebar' },
     },
     {
-      name: 'author',
-      type: 'relationship',
-      relationTo: 'team-members',
-      admin: { position: 'sidebar' },
-    },
-    {
       name: 'publishedAt',
       type: 'date',
       required: true,

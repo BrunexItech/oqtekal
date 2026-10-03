@@ -355,6 +355,14 @@ export const PaymentsVisual = () => (
   >
     <div className="flex h-full gap-[0.9em]">
       <div className="flex min-w-0 flex-1 flex-col gap-[0.6em]">
+        <div className="flex items-center justify-between">
+          <p className="font-display text-[0.95em] font-semibold">Payments</p>
+          <span className="flex items-center gap-[0.5em] rounded-full border border-line bg-white px-[0.7em] py-[0.25em] text-[0.55em] text-[#4f5561]">
+            Powered by
+            {/* eslint-disable-next-line @next/next/no-img-element -- decorative mock-up */}
+            <img src="/brand/partners/mpesa.png" alt="" className="h-[1.6em] w-auto" />
+          </span>
+        </div>
         <div className="grid grid-cols-3 gap-[0.6em]">
           <Kpi label="Collected today" value="KES 1.48M" delta="1,912 payments" />
           <Kpi label="Success rate" value="98.7%" delta="+0.4%" />
@@ -388,7 +396,8 @@ export const PaymentsVisual = () => (
         <div className="flex aspect-[9/18] w-full flex-col rounded-[1.4em] border-[0.35em] border-ink bg-surface p-[0.7em] shadow-[var(--shadow-card)] dark:border-[#2a3142]">
           <div className="mx-auto mb-[0.8em] h-[0.35em] w-[35%] rounded-full bg-line-strong" />
           <div className="rounded-[0.7em] bg-surface-2 p-[0.7em] text-center">
-            <p className="text-[0.55em] font-semibold text-[#16a34a]">M-PESA</p>
+            {/* eslint-disable-next-line @next/next/no-img-element -- decorative mock-up */}
+            <img src="/brand/partners/mpesa.png" alt="" className="mx-auto h-[1.5em] w-auto" />
             <p className="mt-[0.4em] text-[0.55em] text-muted">Pay KES 7,850 to</p>
             <p className="text-[0.62em] font-semibold">Savanna Foods Ltd</p>
             <p className="mt-[0.2em] text-[0.5em] text-subtle">Order #5512</p>

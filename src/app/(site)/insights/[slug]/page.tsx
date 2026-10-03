@@ -1,6 +1,5 @@
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
 import { Breadcrumbs, Container, Section } from '@/design-system'
@@ -19,7 +18,6 @@ import { articleJsonLd, breadcrumbJsonLd, buildMetadata, JsonLd } from '@/featur
 import { getSiteSettings } from '@/features/site'
 import { asMedia } from '@/lib/media'
 import { absoluteUrl, keepTogether } from '@/lib/site'
-import type { TeamMember } from '@/payload-types'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -41,8 +39,6 @@ export default async function PostPage({ params }: Props) {
   const [post, all, settings] = await Promise.all([getPost(slug), getPosts(), getSiteSettings()])
   if (!post) notFound()
 
-  const author = typeof post.author === 'object' ? (post.author as TeamMember | null) : null
-  const authorPhoto = author && typeof author.photo === 'object' ? asMedia(author.photo) : null
   const minutes = readingTime(post.content)
   const related = all.filter((p) => p.id !== post.id).slice(0, 3)
   const path = `/insights/${post.slug}`
@@ -65,23 +61,7 @@ export default async function PostPage({ params }: Props) {
           </p>
           <h1 className="mt-4 text-display">{keepTogether(post.title)}</h1>
           <p className="mt-6 text-lead text-muted">{post.excerpt}</p>
-          {author ? (
-            <div className="mt-8 flex items-center gap-3">
-              {authorPhoto?.url ? (
-                <Image
-                  src={authorPhoto.url}
-                  alt=""
-                  width={44}
-                  height={44}
-                  className="size-11 rounded-full object-cover grayscale"
-                />
-              ) : null}
-              <div>
-                <p className="font-medium">{author.name}</p>
-                <p className="text-sm text-muted">{author.role}</p>
-              </div>
-            </div>
-          ) : null}
+          <p className="mt-8 text-sm text-muted">By the Oqtekal engineering team</p>
         </div>
         <div className="relative mx-auto mt-12 aspect-[16/8] max-w-5xl overflow-hidden rounded-[var(--radius-panel)]">
           <PostCover post={post} priority sizes="(min-width: 1024px) 1024px, 100vw" />
@@ -120,7 +100,6 @@ export default async function PostPage({ params }: Props) {
             path,
             publishedAt: post.publishedAt,
             updatedAt: post.updatedAt,
-            author: author?.name,
             image: cover?.url ? absoluteUrl(cover.url) : undefined,
           }),
         ]}

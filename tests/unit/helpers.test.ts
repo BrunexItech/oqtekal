@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { slugify } from '@/cms/fields/slug'
 import { readingTime } from '@/features/insights/readingTime'
 import { rateLimit } from '@/lib/rate-limit'
-import { formatKes, lowerFirst, whatsappLink } from '@/lib/site'
+import { formatKes, formatWhatsapp, lowerFirst, whatsappLink } from '@/lib/site'
 
 describe('slugify', () => {
   it.each([
@@ -48,5 +48,12 @@ describe('rateLimit', () => {
   it('blocks after the limit within the window', () => {
     const key = `test-${Math.random()}`
     expect([1, 2, 3].map(() => rateLimit(key, 2, 60_000))).toEqual([true, true, false])
+  })
+})
+
+describe('formatWhatsapp', () => {
+  it('formats Kenyan numbers for display', () => {
+    expect(formatWhatsapp('254715274418')).toBe('+254 715 274 418')
+    expect(formatWhatsapp('+254 715-274-418')).toBe('+254 715 274 418')
   })
 })

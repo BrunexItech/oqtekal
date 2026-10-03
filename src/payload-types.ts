@@ -74,7 +74,6 @@ export interface Config {
     services: Service;
     'hosting-plans': HostingPlan;
     'case-studies': CaseStudy;
-    'team-members': TeamMember;
     testimonials: Testimonial;
     clients: Client;
     posts: Post;
@@ -100,7 +99,6 @@ export interface Config {
     services: ServicesSelect<false> | ServicesSelect<true>;
     'hosting-plans': HostingPlansSelect<false> | HostingPlansSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
-    'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     clients: ClientsSelect<false> | ClientsSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
@@ -643,54 +641,6 @@ export interface Testimonial {
   createdAt: string;
 }
 /**
- * People shown in the Team section. Use portraits with the same background and lighting.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "team-members".
- */
-export interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  /**
-   * Portrait, at least 1000px tall. Set the focal point on the face.
-   */
-  photo?: (number | null) | Media;
-  /**
-   * One line, e.g. "Turns business processes into reliable systems."
-   */
-  focus: string;
-  /**
-   * 2–4 sentences.
-   */
-  bio: string;
-  expertise?:
-    | {
-        label: string;
-        id?: string | null;
-      }[]
-    | null;
-  links?: {
-    /**
-     * Full URL
-     */
-    linkedin?: string | null;
-    x?: string | null;
-    github?: string | null;
-    email?: string | null;
-  };
-  /**
-   * Lower numbers appear first.
-   */
-  order?: number | null;
-  /**
-   * Untick once this item contains real, approved information.
-   */
-  isPlaceholder?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * Logos in the "Trusted by" strip. Only add clients who agreed to be listed.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -764,7 +714,6 @@ export interface Post {
    */
   slug: string;
   category: 'engineering' | 'product' | 'payments' | 'cloud' | 'company';
-  author?: (number | null) | TeamMember;
   publishedAt: string;
   /**
    * Untick once this item contains real, approved information.
@@ -936,10 +885,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'case-studies';
         value: number | CaseStudy;
-      } | null)
-    | ({
-        relationTo: 'team-members';
-        value: number | TeamMember;
       } | null)
     | ({
         relationTo: 'testimonials';
@@ -1267,35 +1212,6 @@ export interface CaseStudiesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "team-members_select".
- */
-export interface TeamMembersSelect<T extends boolean = true> {
-  name?: T;
-  role?: T;
-  photo?: T;
-  focus?: T;
-  bio?: T;
-  expertise?:
-    | T
-    | {
-        label?: T;
-        id?: T;
-      };
-  links?:
-    | T
-    | {
-        linkedin?: T;
-        x?: T;
-        github?: T;
-        email?: T;
-      };
-  order?: T;
-  isPlaceholder?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonials_select".
  */
 export interface TestimonialsSelect<T extends boolean = true> {
@@ -1340,7 +1256,6 @@ export interface PostsSelect<T extends boolean = true> {
       };
   slug?: T;
   category?: T;
-  author?: T;
   publishedAt?: T;
   isPlaceholder?: T;
   updatedAt?: T;
@@ -1546,16 +1461,6 @@ export interface HomePage {
     heading: string;
     text?: string | null;
   };
-  teamIntro: {
-    eyebrow?: string | null;
-    heading: string;
-    text?: string | null;
-  };
-  hostingIntro: {
-    eyebrow?: string | null;
-    heading: string;
-    text?: string | null;
-  };
   ctaIntro: {
     eyebrow?: string | null;
     heading: string;
@@ -1687,20 +1592,6 @@ export interface HomePageSelect<T extends boolean = true> {
         text?: T;
       };
   processIntro?:
-    | T
-    | {
-        eyebrow?: T;
-        heading?: T;
-        text?: T;
-      };
-  teamIntro?:
-    | T
-    | {
-        eyebrow?: T;
-        heading?: T;
-        text?: T;
-      };
-  hostingIntro?:
     | T
     | {
         eyebrow?: T;

@@ -1,21 +1,11 @@
 import type { Metadata } from 'next'
 
-import {
-  ArrowRight,
-  ButtonLink,
-  Check,
-  Container,
-  PageHeader,
-  Reveal,
-  Section,
-  SectionHeader,
-} from '@/design-system'
+import { Check, Container, PageHeader, Reveal, Section, SectionHeader } from '@/design-system'
 import { getAboutPage } from '@/features/about'
 import { Symbol } from '@/features/brand'
 import { CtaSection } from '@/features/cta'
 import { breadcrumbJsonLd, buildMetadata, JsonLd } from '@/features/seo'
 import { getSiteSettings } from '@/features/site'
-import { getTeam, TeamGrid } from '@/features/team'
 
 export async function generateMetadata(): Promise<Metadata> {
   const about = await getAboutPage()
@@ -28,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const [about, team, settings] = await Promise.all([getAboutPage(), getTeam(), getSiteSettings()])
+  const [about, settings] = await Promise.all([getAboutPage(), getSiteSettings()])
   const crumbs = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -112,28 +102,6 @@ export default async function AboutPage() {
           </Container>
         </Section>
       ) : null}
-
-      <Section id="team" className="scroll-mt-20">
-        <Container>
-          <SectionHeader
-            eyebrow="The team"
-            heading="The people you will work with."
-            text="A small, senior team. You talk directly to the engineers who design, build and support your system."
-            action={
-              <ButtonLink
-                href="/careers"
-                variant="secondary"
-                icon={<ArrowRight className="size-4" />}
-              >
-                Join us
-              </ButtonLink>
-            }
-          />
-          <div className="mt-14 md:mt-20">
-            <TeamGrid members={team} />
-          </div>
-        </Container>
-      </Section>
 
       {about.commitments?.length ? (
         <Section tone="inverse">

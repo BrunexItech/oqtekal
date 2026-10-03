@@ -26,7 +26,6 @@ import {
   legal,
   posts,
   settings,
-  team,
   testimonials,
 } from './data/content'
 import { products } from './data/products'
@@ -42,7 +41,6 @@ const WIPE: CollectionSlug[] = [
   'case-studies',
   'testimonials',
   'products',
-  'team-members',
   'hosting-plans',
   'posts',
   'jobs',
@@ -137,27 +135,6 @@ for (const [pi, pillar] of pillars.entries()) {
 }
 log(`Service groups: ${pillars.length}, services: ${Object.keys(serviceIds).length}`)
 
-// --- Team & testimonials ----------------------------------------------------------------------
-const teamIds: number[] = []
-for (const [i, m] of team.entries()) {
-  const photo = await upload(m.photo, `Portrait of ${m.name}`)
-  const doc = await payload.create({
-    collection: 'team-members',
-    data: {
-      name: m.name,
-      role: m.role,
-      focus: m.focus,
-      bio: m.bio,
-      photo,
-      expertise: m.expertise.map((label) => ({ label })),
-      links: { linkedin: 'https://www.linkedin.com/company/oqtekal', email: 'hello@oqtekal.com' },
-      order: (i + 1) * 10,
-      isPlaceholder: true,
-    },
-  })
-  teamIds.push(doc.id)
-}
-
 const testimonialIds: number[] = []
 for (const [i, t] of testimonials.entries()) {
   const doc = await payload.create({
@@ -166,7 +143,7 @@ for (const [i, t] of testimonials.entries()) {
   })
   testimonialIds.push(doc.id)
 }
-log('Team and testimonials')
+log('Testimonials')
 
 // --- Case studies ---------------------------------------------------------------------------
 for (const [i, c] of caseStudies.entries()) {
@@ -221,7 +198,6 @@ for (const [i, post] of posts.entries()) {
       excerpt: post.excerpt,
       category: post.category as 'engineering',
       content: lexical(post.body as Block[]),
-      author: teamIds[i % teamIds.length],
       publishedAt: new Date(Date.now() - (i * 9 + 3) * day).toISOString(),
       isPlaceholder: true,
       _status: 'published',
@@ -261,5 +237,7 @@ await payload.updateGlobal({
 })
 log('Company details, home and about pages')
 
-log('Done ✓')
+log(
+  'Done ✓  Restart the site with a fresh cache: docker-compose ... up -d --force-recreate web (prod) or restart `npm run start` after `rm -rf .next/cache/fetch-cache` (local)',
+)
 process.exit(0)

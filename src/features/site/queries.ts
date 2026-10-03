@@ -15,8 +15,8 @@ export type Settings = SiteSetting & {
 
 const DEFAULTS = {
   email: 'hello@oqtekal.com',
-  phone: '+254 700 000 000',
-  whatsapp: '254700000000',
+  phone: '+254 721 928 966',
+  whatsapp: '254715274418',
   address: 'Nairobi, Kenya',
 }
 

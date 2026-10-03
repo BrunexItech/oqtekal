@@ -103,18 +103,16 @@ export default async function ProductPage({ params }: Props) {
                 ) : null}
               </div>
               {partner?.url ? (
-                <div className="mt-7 flex items-center gap-3 text-sm text-muted">
-                  <span>Integrates with</span>
-                  <span className="rounded-lg bg-white px-2 py-1 ring-1 ring-line">
-                    <Image
-                      src={partner.url}
-                      alt={partner.alt}
-                      width={partner.width ?? 1024}
-                      height={partner.height ?? 546}
-                      className="h-7 w-auto"
-                      sizes="80px"
-                    />
-                  </span>
+                <div className="mt-8 inline-flex items-center gap-4 rounded-2xl border border-line bg-white py-3 pr-5 pl-4">
+                  <span className="text-sm text-[#4f5561]">Integrates with</span>
+                  <Image
+                    src={partner.url}
+                    alt={partner.alt}
+                    width={partner.width ?? 1024}
+                    height={partner.height ?? 374}
+                    className="h-9 w-auto"
+                    sizes="140px"
+                  />
                 </div>
               ) : null}
             </div>

@@ -19,7 +19,6 @@ import {
   Products,
   Services,
   Subscribers,
-  TeamMembers,
   Testimonials,
   Users,
 } from './cms/collections'
@@ -64,7 +63,6 @@ export default buildConfig({
       Services,
       HostingPlans,
       CaseStudies,
-      TeamMembers,
       Testimonials,
       Clients,
       Posts,

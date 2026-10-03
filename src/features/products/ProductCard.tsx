@@ -1,6 +1,8 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { ArrowUpRight, Tag } from '@/design-system'
+import { asMedia } from '@/lib/media'
 import { keepTogether } from '@/lib/site'
 import type { Product } from '@/payload-types'
 
@@ -41,6 +43,25 @@ export const ProductCard = ({ product, priority }: { product: Product; priority?
       </h3>
       <p className="font-medium">{product.tagline}</p>
       <p className="text-muted">{product.summary}</p>
+      <PartnerBadge product={product} />
     </div>
   </Link>
 )
+
+const PartnerBadge = ({ product }: { product: Product }) => {
+  const logo = asMedia(product.partnerLogo)
+  if (!logo?.url) return null
+  return (
+    <span className="mt-auto inline-flex w-fit items-center gap-3 rounded-xl border border-line bg-white px-3 py-2 text-xs text-[#4f5561]">
+      Integrates with
+      <Image
+        src={logo.url}
+        alt={logo.alt}
+        width={logo.width ?? 1024}
+        height={logo.height ?? 374}
+        className="h-6 w-auto"
+        sizes="80px"
+      />
+    </span>
+  )
+}

@@ -31,3 +31,10 @@ export const lowerFirst = (s: string): string =>
 /** Keeps brand names like "M-Pesa" from breaking across lines (non-breaking hyphen). */
 export const keepTogether = (text: string): string =>
   text.replace(/M-Pesa/g, 'M‑Pesa').replace(/M-PESA/g, 'M‑PESA')
+
+/** "254715274418" → "+254 715 274 418" (Kenyan numbers); other numbers are returned with a leading "+". */
+export const formatWhatsapp = (number: string): string => {
+  const d = number.replace(/\D/g, '')
+  const m = d.match(/^254(\d{3})(\d{3})(\d{3})$/)
+  return m ? `+254 ${m[1]} ${m[2]} ${m[3]}` : `+${d}`
+}

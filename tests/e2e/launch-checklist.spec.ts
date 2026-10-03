@@ -6,15 +6,7 @@ import { expect, test } from '@playwright/test'
  */
 test.skip(!process.env.LAUNCH_CHECK, 'Set LAUNCH_CHECK=1 to run the pre-launch content check')
 
-const COLLECTIONS = [
-  'team-members',
-  'testimonials',
-  'case-studies',
-  'posts',
-  'clients',
-  'services',
-  'products',
-]
+const COLLECTIONS = ['testimonials', 'case-studies', 'posts', 'clients', 'services', 'products']
 
 for (const c of COLLECTIONS) {
   test(`no sample content left in ${c}`, async ({ request }) => {

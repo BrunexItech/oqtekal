@@ -4,14 +4,13 @@ import { Container } from '@/design-system'
 import { Logo, Symbol } from '@/features/brand'
 import type { NavData } from '@/features/navigation'
 import { SocialLinks } from '@/features/social'
-import { whatsappLink } from '@/lib/site'
+import { formatWhatsapp, whatsappLink } from '@/lib/site'
 import type { SiteSetting } from '@/payload-types'
 
 import { NewsletterForm } from './NewsletterForm'
 
 const company = [
   { title: 'About', href: '/about' },
-  { title: 'Team', href: '/about#team' },
   { title: 'Work', href: '/work' },
   { title: 'Insights', href: '/insights' },
   { title: 'Careers', href: '/careers' },
@@ -84,7 +83,7 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
                     rel="noopener noreferrer"
                     className="hover:text-white"
                   >
-                    WhatsApp us
+                    WhatsApp {formatWhatsapp(settings.whatsapp)}
                   </a>
                 </li>
                 <li className="whitespace-pre-line text-paper/60">{settings.address}</li>
