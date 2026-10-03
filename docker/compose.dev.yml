@@ -1,0 +1,15 @@
+# Local development database only. Run: docker compose -f docker/compose.dev.yml up -d
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: oqtekal
+      POSTGRES_PASSWORD: oqtekal
+      POSTGRES_DB: oqtekal
+    ports:
+      - '127.0.0.1:5441:5432'
+    volumes:
+      - oqtekal_dev_db:/var/lib/postgresql/data
+volumes:
+  oqtekal_dev_db:

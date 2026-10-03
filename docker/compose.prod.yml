@@ -1,0 +1,53 @@
+# Production stack for oqtekal.com on the VPS.
+#   docker compose -f docker/compose.prod.yml --env-file .env.production up -d --build
+# The site listens on 127.0.0.1:8091; host nginx terminates TLS (Cloudflare origin cert).
+name: oqtekal
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-oqtekal}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-oqtekal}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks: [internal]
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-oqtekal}']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: ..
+      target: runner
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://oqtekal.com}
+        NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:-}
+        NEXT_PUBLIC_UMAMI_SRC: ${NEXT_PUBLIC_UMAMI_SRC:-}
+        NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
+    image: oqtekal-web:latest
+    restart: unless-stopped
+    env_file: ../.env.production
+    environment:
+      # Database migrations run automatically on start (Payload prodMigrations).
+      DATABASE_URL: postgres://${POSTGRES_USER:-oqtekal}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-oqtekal}
+    ports:
+      - '127.0.0.1:8091:3000'
+    volumes:
+      - media:/app/media
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [internal, default]
+
+volumes:
+  db_data:
+  media:
+
+networks:
+  internal:
+    internal: true

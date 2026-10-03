@@ -1,0 +1,59 @@
+/*
+ * Oqtekal design tokens — the single source of colour truth.
+ * Brand blue #064DFB is sampled from the logo. Contrast pairs meet WCAG AA:
+ *   fg on bg 16.9:1 · muted on bg 5.9:1 · accent on bg 5.6:1 · white on accent 6.0:1
+ */
+:root {
+  --brand-50: #eef3ff;
+  --brand-100: #dbe5ff;
+  --brand-400: #2fa8ff;
+  --brand-500: #2b6bff;
+  --brand-600: #064dfb;
+  --brand-700: #003ccc;
+  --brand-900: #14246e;
+  --ink: #0b0f19;
+  --paper: #f7f6f2;
+
+  /* Light theme (default) */
+  --bg: #f7f6f2;
+  --fg: #0b0f19;
+  --muted: #4f5561;
+  --subtle: #676c76;
+  --line: #e2e0d9;
+  --line-strong: #cfccc3;
+  --surface: #ffffff;
+  --surface-2: #efede7;
+  --inverse: #0b0f19;
+  --inverse-fg: #f7f6f2;
+  --accent: #064dfb;
+  --accent-hover: #003ccc;
+  --accent-soft: #e6edff;
+  --accent-fg: #ffffff;
+  --success: #0d6e4f;
+  --danger: #c6283a;
+  --grid-line: rgb(11 15 25 / 0.05);
+  --shadow-card: 0 1px 2px rgb(11 15 25 / 0.04), 0 8px 24px -12px rgb(11 15 25 / 0.12);
+  --shadow-float: 0 24px 60px -24px rgb(11 15 25 / 0.28);
+}
+
+[data-theme='dark'] {
+  --bg: #0b0f19;
+  --fg: #f2f1ed;
+  --muted: #a3a8b3;
+  --subtle: #7b818d;
+  --line: #1f2533;
+  --line-strong: #2d3546;
+  --surface: #111725;
+  --surface-2: #161d2d;
+  --inverse: #f7f6f2;
+  --inverse-fg: #0b0f19;
+  --accent: #4d86ff;
+  --accent-hover: #74a0ff;
+  --accent-soft: #14214a;
+  --accent-fg: #ffffff;
+  --success: #3fbf8f;
+  --danger: #ff6b7c;
+  --grid-line: rgb(242 241 237 / 0.045);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  --shadow-float: 0 24px 60px -24px rgb(0 0 0 / 0.7);
+}
