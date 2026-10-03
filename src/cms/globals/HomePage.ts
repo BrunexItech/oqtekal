@@ -40,7 +40,23 @@ export const HomePage: GlobalConfig = {
               name: 'heading',
               type: 'text',
               required: true,
-              admin: { description: 'The main headline.' },
+              admin: {
+                description:
+                  'The main headline, without its last word — e.g. "We engineer the software that runs".',
+              },
+            },
+            {
+              name: 'rotatingWords',
+              label: 'Rotating last words',
+              type: 'array',
+              minRows: 1,
+              maxRows: 8,
+              labels: { singular: 'Word', plural: 'Words' },
+              admin: {
+                description:
+                  'Cycle at the end of the headline, e.g. businesses, schools, payments.',
+              },
+              fields: [{ name: 'word', type: 'text', required: true }],
             },
             { name: 'text', type: 'textarea', required: true },
             {
@@ -69,7 +85,25 @@ export const HomePage: GlobalConfig = {
             sectionIntro('servicesIntro', 'Services section'),
             sectionIntro('workIntro', 'Selected work section'),
             sectionIntro('processIntro', 'How we work section'),
+            sectionIntro('whyIntro', 'Why Oqtekal section'),
             sectionIntro('ctaIntro', 'Final call to action'),
+          ],
+        },
+        {
+          label: 'Why Oqtekal',
+          fields: [
+            {
+              name: 'reasons',
+              type: 'array',
+              minRows: 2,
+              maxRows: 6,
+              labels: { singular: 'Reason', plural: 'Reasons' },
+              admin: { description: 'Short, provable reasons to choose Oqtekal.' },
+              fields: [
+                { name: 'title', type: 'text', required: true },
+                { name: 'text', type: 'textarea', required: true },
+              ],
+            },
           ],
         },
         {

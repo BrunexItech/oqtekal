@@ -483,13 +483,8 @@ export const settings = {
   whatsapp: '254715274418',
   address: 'Nairobi, Kenya',
   hours: 'Mon – Fri, 8:00 – 18:00 EAT',
-  socials: [
-    { platform: 'linkedin', url: 'https://www.linkedin.com/company/oqtekal' },
-    { platform: 'x', url: 'https://x.com/oqtekal' },
-    { platform: 'facebook', url: 'https://www.facebook.com/oqtekal' },
-    { platform: 'instagram', url: 'https://www.instagram.com/oqtekal' },
-    { platform: 'whatsapp', url: 'https://wa.me/254715274418' },
-  ],
+  // Only real, verified profiles belong here — add LinkedIn, X, etc. in the admin once they exist.
+  socials: [{ platform: 'whatsapp', url: 'https://wa.me/254715274418' }],
   stats: [
     { value: '40+', label: 'Systems delivered' },
     { value: '7', label: 'Service disciplines' },
@@ -502,8 +497,11 @@ export const settings = {
 export const home = {
   hero: {
     eyebrow: 'Software engineering company · Nairobi',
-    heading: 'Engineering what runs business.',
-    text: 'We design, build and run the software organisations depend on — custom systems, mobile apps, M-Pesa payments and hosting — engineered properly and supported for the long term.',
+    heading: 'We engineer the software that runs',
+    rotatingWords: ['businesses.', 'schools.', 'payments.', 'property.', 'Africa.'].map((word) => ({
+      word,
+    })),
+    text: 'Custom systems, mobile apps, M-Pesa payments and cloud hosting — designed, built and run by one accountable team in Nairobi.',
     primaryLabel: 'Start a project',
     secondaryLabel: 'Explore products',
   },
@@ -527,6 +525,29 @@ export const home = {
     heading: 'A process designed to remove surprises.',
     text: 'Clear scope, visible progress every two weeks and a team that stays after launch.',
   },
+  whyIntro: {
+    eyebrow: 'Why Oqtekal',
+    heading: 'One team, from first sketch to the server it runs on.',
+    text: 'Most projects fail between vendors. We design, build, integrate, host and support — so there is always one team accountable.',
+  },
+  reasons: [
+    {
+      title: 'Fixed scope, fixed price',
+      text: 'A written scope and price before work begins. No open-ended bills.',
+    },
+    {
+      title: 'You own everything',
+      text: 'Full source code, your data and your accounts — always in your name.',
+    },
+    {
+      title: 'M-Pesa native',
+      text: 'Payments, reconciliation and payouts designed in from day one, not bolted on.',
+    },
+    {
+      title: 'Engineers on WhatsApp',
+      text: 'Talk directly to the people building your system. Replies within one business day.',
+    },
+  ],
   ctaIntro: {
     eyebrow: 'Start a project',
     heading: 'Have something in mind? Let’s talk it through.',

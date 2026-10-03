@@ -1,20 +1,12 @@
 import type { Metadata } from 'next'
 
-import {
-  ArrowLink,
-  ArrowRight,
-  ButtonLink,
-  Container,
-  Reveal,
-  Section,
-  SectionHeader,
-} from '@/design-system'
+import { ArrowLink, Container, Reveal, Section, SectionHeader } from '@/design-system'
 import { CtaSection } from '@/features/cta'
-import { getHomePage, Hero, Process, TechStrip } from '@/features/home'
+import { Capabilities, getHomePage, Hero, Process, TechStrip, WhyOqtekal } from '@/features/home'
 import { getPosts, PostCard } from '@/features/insights'
 import { getProducts, ProductMedia, ProductShowcase } from '@/features/products'
 import { buildMetadata } from '@/features/seo'
-import { getPillarsWithServices, ServicesIndex } from '@/features/services'
+import { getPillarsWithServices } from '@/features/services'
 import { getSiteSettings } from '@/features/site'
 import { getTestimonials, Testimonials } from '@/features/testimonials'
 import { CaseStudyCard, getCaseStudies } from '@/features/work'
@@ -44,15 +36,29 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero hero={home.hero} stats={settings.stats} />
+      <Hero hero={home.hero} stats={settings.stats} showStats={!settings.statsArePlaceholder} />
       <TechStrip />
+
+      {/* Capabilities */}
+      <Section id="services">
+        <Container>
+          <SectionHeader
+            eyebrow={home.servicesIntro?.eyebrow}
+            heading={home.servicesIntro?.heading ?? 'Services'}
+            text={home.servicesIntro?.text}
+            action={<ArrowLink href="/services">All services</ArrowLink>}
+          />
+          <Reveal className="mt-14 md:mt-16">
+            <Capabilities pillars={pillars} />
+          </Reveal>
+        </Container>
+      </Section>
 
       {/* Products */}
       <Section id="products">
         <Container>
           <SectionHeader
             eyebrow={home.productsIntro?.eyebrow}
-            index="01"
             heading={home.productsIntro?.heading ?? 'Products'}
             text={home.productsIntro?.text}
             action={<ArrowLink href="/products">All products</ArrowLink>}
@@ -73,29 +79,7 @@ export default async function HomePage() {
         </Container>
       </Section>
 
-      {/* Services */}
-      <Section id="services" tone="inverse">
-        <Container>
-          <SectionHeader
-            eyebrow={home.servicesIntro?.eyebrow}
-            index="02"
-            heading={home.servicesIntro?.heading ?? 'Services'}
-            text={home.servicesIntro?.text}
-            action={
-              <ButtonLink
-                href="/services"
-                variant="inverse"
-                icon={<ArrowRight className="size-4" />}
-              >
-                Explore services
-              </ButtonLink>
-            }
-          />
-          <div className="mt-14 md:mt-20">
-            <ServicesIndex pillars={pillars} inverse />
-          </div>
-        </Container>
-      </Section>
+      {home.reasons?.length ? <WhyOqtekal intro={home.whyIntro} reasons={home.reasons} /> : null}
 
       {/* Selected work */}
       {leadStudy ? (
@@ -103,7 +87,6 @@ export default async function HomePage() {
           <Container>
             <SectionHeader
               eyebrow={home.workIntro?.eyebrow}
-              index="03"
               heading={home.workIntro?.heading ?? 'Selected work'}
               text={home.workIntro?.text}
               action={<ArrowLink href="/work">All case studies</ArrowLink>}
@@ -132,7 +115,6 @@ export default async function HomePage() {
           <Container>
             <SectionHeader
               eyebrow={home.processIntro?.eyebrow}
-              index="04"
               heading={home.processIntro?.heading ?? 'How we work'}
               text={home.processIntro?.text}
             />
@@ -158,7 +140,6 @@ export default async function HomePage() {
           <Container>
             <SectionHeader
               eyebrow="Insights"
-              index="05"
               heading="Notes from the engineering floor."
               action={<ArrowLink href="/insights">All articles</ArrowLink>}
             />

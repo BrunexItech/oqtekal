@@ -28,9 +28,9 @@ export const TechStrip = () => (
         {STACK.map((t) => (
           <span
             key={t.name}
-            className="mx-6 flex items-center gap-2.5 text-muted transition-colors hover:text-fg"
+            className="mx-7 flex items-center gap-3 text-fg/80 transition-colors hover:text-fg"
           >
-            <BrandIcon name={t.name} className="size-5" />
+            <BrandIcon name={t.name} colored className="size-6" />
             <span className="text-[0.95rem] font-medium whitespace-nowrap">{t.label}</span>
           </span>
         ))}

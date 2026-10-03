@@ -1434,9 +1434,18 @@ export interface HomePage {
   hero: {
     eyebrow?: string | null;
     /**
-     * The main headline.
+     * The main headline, without its last word — e.g. "We engineer the software that runs".
      */
     heading: string;
+    /**
+     * Cycle at the end of the headline, e.g. businesses, schools, payments.
+     */
+    rotatingWords?:
+      | {
+          word: string;
+          id?: string | null;
+        }[]
+      | null;
     text: string;
     primaryLabel?: string | null;
     secondaryLabel?: string | null;
@@ -1461,11 +1470,26 @@ export interface HomePage {
     heading: string;
     text?: string | null;
   };
+  whyIntro: {
+    eyebrow?: string | null;
+    heading: string;
+    text?: string | null;
+  };
   ctaIntro: {
     eyebrow?: string | null;
     heading: string;
     text?: string | null;
   };
+  /**
+   * Short, provable reasons to choose Oqtekal.
+   */
+  reasons?:
+    | {
+        title: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
   process?:
     | {
         title: string;
@@ -1566,6 +1590,12 @@ export interface HomePageSelect<T extends boolean = true> {
     | {
         eyebrow?: T;
         heading?: T;
+        rotatingWords?:
+          | T
+          | {
+              word?: T;
+              id?: T;
+            };
         text?: T;
         primaryLabel?: T;
         secondaryLabel?: T;
@@ -1598,12 +1628,26 @@ export interface HomePageSelect<T extends boolean = true> {
         heading?: T;
         text?: T;
       };
+  whyIntro?:
+    | T
+    | {
+        eyebrow?: T;
+        heading?: T;
+        text?: T;
+      };
   ctaIntro?:
     | T
     | {
         eyebrow?: T;
         heading?: T;
         text?: T;
+      };
+  reasons?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        id?: T;
       };
   process?:
     | T

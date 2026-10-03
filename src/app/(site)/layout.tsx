@@ -3,11 +3,12 @@ import '@/styles/globals.css'
 import type { Metadata, Viewport } from 'next'
 import { Archivo, Inter, JetBrains_Mono } from 'next/font/google'
 import Script from 'next/script'
-import type { ReactNode } from 'react'
+import { Suspense, type ReactNode } from 'react'
 
 import { Footer } from '@/features/footer'
 import { IntroLoader } from '@/features/intro-loader'
 import { Header, getNavData } from '@/features/navigation'
+import { NavProgress } from '@/features/nav-progress'
 import { PreviewBar } from '@/features/preview'
 import { organizationJsonLd, JsonLd } from '@/features/seo'
 import { AnnouncementBar, getSiteSettings } from '@/features/site'
@@ -77,6 +78,9 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
       </head>
       <body>
         <IntroLoader />
+        <Suspense fallback={null}>
+          <NavProgress />
+        </Suspense>
         {draft ? <PreviewBar /> : null}
         <AnnouncementBar settings={settings} />
         <Header nav={nav} />

@@ -1,4 +1,6 @@
+export { Capabilities } from './Capabilities'
 export { Hero } from './Hero'
 export { Process } from './Process'
 export { getHomePage } from './queries'
 export { TechStrip } from './TechStrip'
+export { WhyOqtekal } from './WhyOqtekal'

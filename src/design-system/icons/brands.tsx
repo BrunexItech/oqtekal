@@ -65,6 +65,19 @@ const glyphs = {
 export type BrandName = keyof typeof glyphs
 
 /** Official brand mark rendered in the current text colour (or its brand colour). */
+/** Relative luminance of a hex colour (0 = black, 1 = white). */
+const luminance = (hex: string): number => {
+  const [r, g, b] = [0, 2, 4].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4
+  }) as [number, number, number]
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b
+}
+
+/**
+ * Official brand mark. `colored` uses the brand's own colour: black marks (Next.js, X…) follow the
+ * text colour so they work on any background, and dark brand colours are lifted in dark mode.
+ */
 export const BrandIcon = ({
   name,
   className,
@@ -77,14 +90,21 @@ export const BrandIcon = ({
   title?: string
 }) => {
   const g = glyphs[name]
+  const lum = luminance(g.hex)
+  const brand = colored && lum > 0.01
   return (
     <svg
       viewBox="0 0 24 24"
       role={title ? 'img' : undefined}
       aria-hidden={title ? undefined : true}
       aria-label={title}
-      className={cn('size-5', className)}
-      fill={colored ? `#${g.hex}` : 'currentColor'}
+      className={cn(
+        'size-5',
+        brand ? 'fill-[var(--brand)]' : 'fill-current',
+        brand && lum < 0.12 && 'dark:fill-[color-mix(in_oklab,var(--brand),white_55%)]',
+        className,
+      )}
+      style={brand ? ({ '--brand': `#${g.hex}` } as React.CSSProperties) : undefined}
     >
       <path d={g.path} />
     </svg>

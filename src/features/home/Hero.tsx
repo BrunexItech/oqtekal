@@ -1,42 +1,47 @@
-import { ArrowRight, ButtonLink, Container, Tag } from '@/design-system'
+import Image from 'next/image'
+
+import { ArrowRight, BrandIcon, ButtonLink, Container } from '@/design-system'
 import type { HomePage, SiteSetting } from '@/payload-types'
 
-import { HeroVisual } from './HeroVisual'
+import { HeroSystem } from './HeroSystem'
+import { RotatingWord } from './RotatingWord'
 
-/** Splits off the final punctuation so it can be accented: "…business." → ["…business", "."] */
-const splitEnd = (text: string): [string, string] => {
-  const m = text.match(/^(.*?)([.!?])$/s)
-  return m ? [m[1] ?? text, m[2] ?? ''] : [text, '']
+type Props = {
+  hero: HomePage['hero']
+  stats: SiteSetting['stats']
+  /** Company numbers are only shown once they are real (unticked "samples" in the admin). */
+  showStats: boolean
 }
 
-export const Hero = ({ hero, stats }: { hero: HomePage['hero']; stats: SiteSetting['stats'] }) => {
-  const [heading, end] = splitEnd(hero.heading)
+export const Hero = ({ hero, stats, showStats }: Props) => {
+  const words = (hero.rotatingWords ?? []).map((w) => w.word).filter(Boolean)
   return (
     <section className="relative isolate overflow-hidden">
-      {/* Background: faint engineering grid, fading out */}
+      {/* Atmosphere: dotted engineering grid + slow brand aurora */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 grid-lines [mask-image:radial-gradient(ellipse_70%_60%_at_70%_35%,black,transparent_75%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(var(--line-strong)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_75%_65%_at_70%_40%,black,transparent_75%)] [background-size:22px_22px] opacity-60"
       />
-      <div
-        aria-hidden
-        className="absolute top-[-10%] -right-[20%] -z-10 size-[60rem] rounded-full bg-[radial-gradient(circle,rgb(6_77_251/0.10),transparent_62%)] dark:bg-[radial-gradient(circle,rgb(77_134_255/0.14),transparent_62%)]"
-      />
+      <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-[-20%] right-[-10%] size-[46rem] animate-[aurora_18s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,rgb(6_77_251/0.18),transparent_60%)] blur-3xl motion-reduce:animate-none" />
+        <div className="absolute top-[30%] right-[25%] size-[30rem] animate-[aurora_22s_ease-in-out_infinite_reverse] rounded-full bg-[radial-gradient(circle,rgb(47_168_255/0.14),transparent_60%)] blur-3xl motion-reduce:animate-none" />
+      </div>
 
-      <Container className="grid items-center gap-10 pt-10 pb-16 md:pt-16 lg:grid-cols-12 lg:gap-6 lg:pt-20 lg:pb-24">
-        <div className="lg:col-span-7">
-          <Tag className="gap-2 py-1.5 pr-3 pl-2 text-[0.8rem]">
-            <span
-              className="size-2 animate-[pulse-dot_2s_infinite] rounded-full bg-success"
-              aria-hidden
-            />
+      <Container className="grid items-center gap-12 pt-10 pb-16 md:pt-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pt-16 lg:pb-24">
+        <div className="animate-[hero-in_1s_cubic-bezier(0.22,1,0.36,1)_both]">
+          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 py-1.5 pr-3.5 pl-2 text-[0.8rem] text-muted backdrop-blur">
+            <span className="grid size-5 place-items-center rounded-full bg-success/15">
+              <span className="size-2 animate-[pulse-dot_2s_infinite] rounded-full bg-success" />
+            </span>
             {hero.eyebrow ?? 'Software engineering company · Nairobi'}
-          </Tag>
-          <h1 className="mt-7 max-w-[13ch] text-display-xl">
-            {heading}
-            <span className="text-accent">{end}</span>
+          </p>
+
+          <h1 className="mt-7 max-w-[15ch] text-display-xl">
+            {hero.heading} {words.length ? <RotatingWord words={words} /> : null}
           </h1>
-          <p className="mt-7 max-w-[38rem] text-lead text-muted">{hero.text}</p>
+
+          <p className="mt-7 max-w-[34rem] text-lead text-muted">{hero.text}</p>
+
           <div className="mt-9 flex flex-col gap-3 xs:flex-row">
             <ButtonLink href="/contact" size="lg" icon={<ArrowRight className="size-4" />}>
               {hero.primaryLabel ?? 'Start a project'}
@@ -45,14 +50,32 @@ export const Hero = ({ hero, stats }: { hero: HomePage['hero']; stats: SiteSetti
               {hero.secondaryLabel ?? 'Explore products'}
             </ButtonLink>
           </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted">
+            <span>Integrates with</span>
+            <span className="flex items-center rounded-lg bg-white px-2 py-1 ring-1 ring-line">
+              <Image
+                src="/brand/partners/mpesa.png"
+                alt="M-Pesa"
+                width={640}
+                height={234}
+                className="h-5 w-auto"
+              />
+            </span>
+            <span className="flex items-center gap-1.5 font-medium text-fg/80">
+              <BrandIcon name="whatsapp" colored className="size-[1.1rem]" /> WhatsApp
+            </span>
+            <span className="flex items-center gap-1.5 font-medium text-fg/80">
+              <BrandIcon name="cloudflare" colored className="size-[1.1rem]" /> Cloudflare
+            </span>
+            <span className="font-medium text-fg/80">KRA eTIMS</span>
+          </div>
         </div>
 
-        <div className="mx-auto -my-6 w-full max-w-[17rem] sm:my-0 sm:max-w-sm lg:col-span-5 lg:max-w-none">
-          <HeroVisual />
-        </div>
+        <HeroSystem className="mx-auto w-full max-w-[40rem] lg:max-w-none" />
       </Container>
 
-      {stats?.length ? (
+      {showStats && stats?.length ? (
         <Container>
           <dl className="grid grid-cols-2 border-t border-line md:grid-cols-4">
             {stats.map((s, i) => (
