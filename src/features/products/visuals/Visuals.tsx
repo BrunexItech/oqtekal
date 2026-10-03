@@ -481,3 +481,172 @@ export const PosVisual = () => (
     </div>
   </Frame>
 )
+
+/* ------------------------------------------------------------------ Hospital & clinic */
+export const HealthVisual = () => (
+  <Frame
+    title="clinic.oqtekal.app/today"
+    nav={['Today', 'Patients', 'Appointments', 'Pharmacy', 'Billing', 'Reports']}
+    accent="#0d9488"
+  >
+    <div className="flex h-full flex-col gap-[0.8em]">
+      <div className="flex items-end justify-between">
+        <div>
+          <p className="text-[0.6em] text-subtle">Westlands branch · Thursday</p>
+          <p className="font-display text-[1.05em] font-semibold">Patient flow</p>
+        </div>
+        <Pill tone="ok">SHA claims synced</Pill>
+      </div>
+      <div className="grid grid-cols-4 gap-[0.6em]">
+        <Kpi label="Patients today" value="86" delta="+12 vs last Thu" />
+        <Kpi label="Avg. wait" value="14 min" delta="−6 min" />
+        <Kpi label="Collected" value="KES 412K" delta="M-Pesa 71%" />
+        <Kpi label="Low stock" value="5 items" delta="Reorder sent" tone="down" />
+      </div>
+      <div className="grid min-h-0 flex-1 grid-cols-[1.3fr_1fr] gap-[0.6em]">
+        <div className="flex flex-col gap-[0.35em] rounded-[0.7em] border border-line bg-surface p-[0.8em]">
+          <p className="mb-[0.2em] text-[0.66em] font-semibold">Queue</p>
+          {[
+            ['09:40', 'J. Mwangi', 'Consultation', 'accent', 'With doctor'],
+            ['09:55', 'A. Hassan', 'Lab results', 'warn', 'Waiting'],
+            ['10:05', 'P. Achieng', 'Pharmacy', 'ok', 'Paid'],
+            ['10:10', 'K. Otieno', 'Triage', 'neutral', 'Checked in'],
+          ].map(([t, n, d, tone, st]) => (
+            <div
+              key={n}
+              className="flex items-center justify-between border-b border-line pb-[0.3em] text-[0.58em] last:border-0"
+            >
+              <span className="font-mono text-subtle">{t}</span>
+              <span className="w-[30%] font-medium">{n}</span>
+              <span className="flex-1 text-muted">{d}</span>
+              <Pill tone={tone as 'ok'}>{st}</Pill>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-col rounded-[0.7em] border border-line bg-surface p-[0.8em]">
+          <p className="text-[0.66em] font-semibold">Visits this week</p>
+          <Bars values={[52, 64, 58, 80, 74, 40, 30]} className="mt-[0.7em] min-h-0 flex-1" />
+        </div>
+      </div>
+    </div>
+  </Frame>
+)
+
+/* ------------------------------------------------------------------ SACCO & microfinance */
+export const SaccoVisual = () => (
+  <Frame
+    title="sacco.oqtekal.app/overview"
+    nav={['Overview', 'Members', 'Savings', 'Loans', 'Dividends', 'Reports']}
+    accent="#16a34a"
+  >
+    <div className="flex h-full flex-col gap-[0.8em]">
+      <div className="flex items-end justify-between">
+        <div>
+          <p className="text-[0.6em] text-subtle">Umoja SACCO · October</p>
+          <p className="font-display text-[1.05em] font-semibold">Society overview</p>
+        </div>
+        <Pill tone="accent">Auto-deductions on</Pill>
+      </div>
+      <div className="grid grid-cols-4 gap-[0.6em]">
+        <Kpi label="Members" value="3,412" delta="+58 this month" />
+        <Kpi label="Savings" value="KES 96.4M" delta="+4.2%" />
+        <Kpi label="Loan book" value="KES 71.8M" delta="PAR 2.1%" />
+        <Kpi label="Arrears" value="KES 1.5M" delta="Reminders sent" tone="down" />
+      </div>
+      <div className="grid min-h-0 flex-1 grid-cols-[1.4fr_1fr] gap-[0.6em]">
+        <div className="flex flex-col rounded-[0.7em] border border-line bg-surface p-[0.8em]">
+          <div className="flex justify-between text-[0.62em]">
+            <span className="font-semibold">Deposits vs loans</span>
+            <span className="text-subtle">12 months</span>
+          </div>
+          <div className="relative mt-[0.5em] min-h-0 flex-1">
+            <Spark
+              values={[40, 44, 47, 52, 55, 58, 63, 66, 70, 74, 79, 84]}
+              className="absolute inset-0"
+            />
+            <Spark
+              values={[30, 33, 35, 41, 43, 46, 50, 52, 57, 60, 63, 66]}
+              className="absolute inset-0"
+              color="var(--subtle)"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col gap-[0.3em] rounded-[0.7em] border border-line bg-surface p-[0.8em]">
+          <p className="mb-[0.2em] text-[0.66em] font-semibold">Loan applications</p>
+          {[
+            ['M. Wanjiku', '120,000', 'Approved', 'ok'],
+            ['S. Kiprono', '45,000', 'Guarantors', 'warn'],
+            ['L. Atieno', '300,000', 'Committee', 'accent'],
+            ['D. Mutua', '20,000', 'Disbursed', 'ok'],
+          ].map(([n, a, st, tone]) => (
+            <div
+              key={n}
+              className="flex items-center justify-between border-b border-line pb-[0.3em] text-[0.58em] last:border-0"
+            >
+              <span className="font-medium">{n}</span>
+              <span className="text-muted">KES {a}</span>
+              <Pill tone={tone as 'ok'}>{st}</Pill>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Frame>
+)
+
+/* ------------------------------------------------------------------ Online store */
+export const StoreVisual = () => (
+  <Frame
+    title="shop.oqtekal.app/orders"
+    nav={['Orders', 'Products', 'Customers', 'Deliveries', 'Payments', 'Storefront']}
+    accent="#f97316"
+  >
+    <div className="flex h-full flex-col gap-[0.8em]">
+      <div className="flex items-end justify-between">
+        <div>
+          <p className="text-[0.6em] text-subtle">Today</p>
+          <p className="font-display text-[1.05em] font-semibold">Orders</p>
+        </div>
+        <Pill tone="ok">Store online</Pill>
+      </div>
+      <div className="grid grid-cols-4 gap-[0.6em]">
+        <Kpi label="Orders" value="148" delta="+22%" />
+        <Kpi label="Revenue" value="KES 386K" delta="M-Pesa 84%" />
+        <Kpi label="Delivered" value="121" delta="Same-day 92%" />
+        <Kpi label="Abandoned carts" value="9" delta="SMS recovery on" tone="down" />
+      </div>
+      <div className="grid min-h-0 flex-1 grid-cols-[1.3fr_1fr] gap-[0.6em]">
+        <div className="flex flex-col gap-[0.35em] rounded-[0.7em] border border-line bg-surface p-[0.8em]">
+          <p className="mb-[0.2em] text-[0.66em] font-semibold">Latest orders</p>
+          {[
+            ['#7731', 'Kilimani', '3,450', 'Out for delivery', 'accent'],
+            ['#7730', 'Thika Rd', '12,900', 'Paid', 'ok'],
+            ['#7729', 'Mombasa', '6,200', 'Packed', 'warn'],
+            ['#7728', 'Karen', '1,850', 'Delivered', 'ok'],
+          ].map(([o, l, a, st, tone]) => (
+            <div
+              key={o}
+              className="flex items-center justify-between border-b border-line pb-[0.3em] text-[0.58em] last:border-0"
+            >
+              <span className="font-mono text-subtle">{o}</span>
+              <span className="w-[22%]">{l}</span>
+              <span className="font-medium">KES {a}</span>
+              <Pill tone={tone as 'ok'}>{st}</Pill>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 content-start gap-[0.45em] rounded-[0.7em] border border-line bg-surface p-[0.8em]">
+          {['Sneakers', 'Backpack', 'Headphones', 'Watch'].map((n, i) => (
+            <div key={n}>
+              <div
+                className="aspect-square rounded-[0.4em]"
+                style={{ background: `hsl(${20 + i * 55} 70% ${i % 2 ? 88 : 80}%)` }}
+              />
+              <p className="mt-[0.25em] truncate text-[0.55em] font-medium">{n}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Frame>
+)

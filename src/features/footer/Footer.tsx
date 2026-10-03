@@ -118,11 +118,6 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
                 Terms
               </Link>
             </li>
-            <li>
-              <Link href="/sitemap.xml" className="hover:text-white">
-                Sitemap
-              </Link>
-            </li>
             <li>Engineered in Nairobi</li>
           </ul>
         </div>

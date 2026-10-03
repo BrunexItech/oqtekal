@@ -14,7 +14,7 @@ import {
 } from '@/design-system'
 import { CtaSection } from '@/features/cta'
 import { breadcrumbJsonLd, buildMetadata, JsonLd } from '@/features/seo'
-import { getPillar, getPillarsWithServices } from '@/features/services'
+import { getPillar, getPillarsWithServices, pillarImage } from '@/features/services'
 import { getSiteSettings } from '@/features/site'
 import { lowerFirst } from '@/lib/site'
 
@@ -52,6 +52,8 @@ export default async function PillarPage({ params }: Props) {
   return (
     <>
       <PageHeader
+        variant="split"
+        image={pillarImage(pillar.slug)}
         crumbs={crumbs}
         eyebrow={`${String(index + 1).padStart(2, '0')} · ${pillar.serviceList.length} services`}
         title={pillar.title}

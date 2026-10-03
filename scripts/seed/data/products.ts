@@ -1,6 +1,16 @@
 /* Seed content: products. */
 
-type Visual = 'comms' | 'school' | 'property' | 'erp' | 'sports' | 'payments' | 'pos'
+type Visual =
+  | 'comms'
+  | 'school'
+  | 'property'
+  | 'erp'
+  | 'sports'
+  | 'payments'
+  | 'pos'
+  | 'health'
+  | 'sacco'
+  | 'store'
 
 export type SeedProduct = {
   name: string
@@ -8,7 +18,8 @@ export type SeedProduct = {
   tagline: string
   summary: string
   category: string
-  availability: 'live' | 'beta' | 'soon'
+  availability: 'live' | 'beta' | 'soon' | 'custom'
+  contextCaption?: string
   visual: Visual
   externalUrl?: string
   problem: string
@@ -25,6 +36,7 @@ export const products: SeedProduct[] = [
   {
     name: 'Tolkyn',
     slug: 'tolkyn',
+    contextCaption: 'Every customer conversation answered — from one shared inbox.',
     tagline: 'Every customer conversation, in one inbox.',
     summary:
       'WhatsApp, SMS, email and phone calls in a single shared inbox, with campaigns, a phone book and CRM built in.',
@@ -86,6 +98,7 @@ export const products: SeedProduct[] = [
   {
     name: 'School Management',
     slug: 'school-management',
+    contextCaption: 'Built for schools across Kenya: fees, exams and parents in one place.',
     tagline: 'Run the whole school from one place.',
     summary:
       'Admissions, fees, exams, timetables and parent communication — with M-Pesa fee payments reconciled automatically.',
@@ -145,6 +158,7 @@ export const products: SeedProduct[] = [
   {
     name: 'Property Management',
     slug: 'property-management',
+    contextCaption: 'From one building to a portfolio — rent collected, tenants informed.',
     tagline: 'Rent collected. Tenants happy. Owners informed.',
     summary:
       'Tenants, units, rent collection, reminders, maintenance and owner reports for landlords and property managers.',
@@ -202,6 +216,7 @@ export const products: SeedProduct[] = [
   {
     name: 'ERP Suite',
     slug: 'erp',
+    contextCaption: 'Stock, money and people — finally in the same system.',
     tagline: 'Finance, people and operations — connected.',
     summary:
       'Accounting, invoicing, inventory, HR and Kenyan payroll, fixed assets and manufacturing in one system.',
@@ -255,6 +270,7 @@ export const products: SeedProduct[] = [
   {
     name: 'Sports Management',
     slug: 'sports-management',
+    contextCaption: 'Leagues, clubs and fans — organised from registration to the final whistle.',
     tagline: 'Leagues, clubs and fans — organised.',
     summary:
       'Registrations, fixtures, results, league tables, player records and ticketing for leagues, federations and clubs.',
@@ -308,6 +324,7 @@ export const products: SeedProduct[] = [
   {
     name: 'M-Pesa Integration',
     slug: 'm-pesa-integration',
+    contextCaption: 'Kenya pays with M-Pesa. Your systems should too.',
     tagline: 'Get paid instantly. Reconcile automatically.',
     summary:
       'STK Push, Paybill, Till, B2C payouts and automatic reconciliation for your website, app or business system.',
@@ -366,6 +383,214 @@ export const products: SeedProduct[] = [
       {
         question: 'Can you integrate with WordPress / WooCommerce?',
         answer: 'Yes, as well as custom-built systems and mobile apps.',
+      },
+    ],
+  },
+  {
+    name: 'Stoka POS',
+    slug: 'stoka-pos',
+    tagline: 'The till, stock book and debt book for every duka.',
+    summary:
+      'A fast, offline-first point of sale with barcode scanning, labels, M-Pesa checkout and a debt book — built for Kenyan shops.',
+    category: 'Retail',
+    availability: 'live',
+    visual: 'pos',
+    contextCaption: 'Shorter queues, accurate stock and no more lost debts.',
+    problem:
+      'Small shops lose money to stock that is never counted, credit that is never written down and long queues at the till. Generic POS systems are too expensive and stop working when the internet drops.',
+    features: [
+      {
+        title: 'Fast checkout',
+        text: 'Scan, total and take M-Pesa or cash in seconds — even offline.',
+      },
+      {
+        title: 'Barcode labels',
+        text: 'Print your own barcode labels for products that do not have one.',
+      },
+      { title: 'Stock control', text: 'Know exactly what is on the shelf, with low-stock alerts.' },
+      {
+        title: 'Debt book',
+        text: 'Record credit sales and send polite SMS reminders to customers.',
+      },
+      {
+        title: 'Daily reports',
+        text: 'Sales, margins and best-sellers on your phone every evening.',
+      },
+      {
+        title: 'Several branches',
+        text: 'Every shop on one account, with transfers between them.',
+      },
+    ],
+    audiences: [
+      { title: 'Dukas & mini-marts', text: 'Simple, fast and affordable.' },
+      { title: 'Supermarkets', text: 'Several tills and branches.' },
+      { title: 'Pharmacies & hardware', text: 'Thousands of items, tracked.' },
+    ],
+    integrations: ['M-Pesa', 'Barcode scanners', 'Label printers', 'SMS'],
+    highlights: [
+      { value: 'Offline', label: 'keeps selling without internet' },
+      { value: 'Seconds', label: 'per checkout' },
+      { value: '0', label: 'forgotten debts' },
+    ],
+    faqs: [
+      {
+        question: 'Does it work without internet?',
+        answer: 'Yes. Sales continue offline and sync when the connection returns.',
+      },
+      {
+        question: 'What hardware do I need?',
+        answer: 'An Android phone or tablet is enough; scanners and printers are optional.',
+      },
+    ],
+  },
+  {
+    name: 'SACCO & Microfinance',
+    slug: 'sacco-microfinance',
+    tagline: 'Members, savings and loans — managed with confidence.',
+    summary:
+      'Member records, savings, loans, guarantors and dividends, with M-Pesa deposits and automatic reminders. Built to order on our finance platform.',
+    category: 'Financial services',
+    availability: 'custom',
+    visual: 'sacco',
+    contextCaption: 'Every shilling saved and lent, accounted for.',
+    problem:
+      'SACCOs and microfinance institutions juggle spreadsheets for savings, paper for guarantors and manual follow-up for arrears — slow for members and risky for the board.',
+    features: [
+      {
+        title: 'Member portal',
+        text: 'Members check savings, loans and statements on their phones.',
+      },
+      {
+        title: 'Loans & guarantors',
+        text: 'Applications, guarantor approval, appraisal and disbursement.',
+      },
+      {
+        title: 'M-Pesa deposits',
+        text: 'Savings and repayments matched to the right member instantly.',
+      },
+      {
+        title: 'Arrears follow-up',
+        text: 'Automatic SMS reminders and portfolio-at-risk tracking.',
+      },
+      { title: 'Dividends & interest', text: 'Calculated accurately at year end.' },
+      { title: 'Board reports', text: 'Regulatory and management reports on demand.' },
+    ],
+    audiences: [
+      { title: 'SACCOs', text: 'Deposit-taking and non-deposit-taking.' },
+      { title: 'Microfinance', text: 'Group and individual lending.' },
+      { title: 'Chamas & investment groups', text: 'Contributions and payouts.' },
+    ],
+    integrations: ['M-Pesa', 'SMS', 'Bank files', 'Accounting'],
+    highlights: [
+      { value: 'Instant', label: 'deposit matching' },
+      { value: 'Live', label: 'portfolio at risk' },
+      { value: '24/7', label: 'member statements' },
+    ],
+    faqs: [
+      {
+        question: 'What does "built to order" mean?',
+        answer:
+          'We assemble it for you from our proven finance, M-Pesa and messaging modules, configured to your by-laws and products.',
+      },
+      {
+        question: 'Can we migrate existing member data?',
+        answer:
+          'Yes. We import and reconcile your member, savings and loan records before go-live.',
+      },
+    ],
+  },
+  {
+    name: 'Hospital & Clinic',
+    slug: 'hospital-clinic',
+    tagline: 'Shorter queues. Accurate billing. Better care.',
+    summary:
+      'Patient registration, appointments, consultations, pharmacy and billing — with M-Pesa and insurance claims. Built to order for your facility.',
+    category: 'Healthcare',
+    availability: 'custom',
+    visual: 'health',
+    contextCaption: 'Patients seen faster, every shilling and prescription accounted for.',
+    problem:
+      'Clinics lose time to paper files, long queues, missed charges and slow insurance claims — while patients wait and revenue leaks.',
+    features: [
+      {
+        title: 'Registration & records',
+        text: 'Patient records, history and documents in one secure place.',
+      },
+      {
+        title: 'Appointments & queue',
+        text: 'Bookings, triage and a live queue for every department.',
+      },
+      { title: 'Pharmacy & stock', text: 'Dispensing, stock levels and expiry tracking.' },
+      {
+        title: 'Billing & claims',
+        text: 'Cash, M-Pesa and insurance billing with claim tracking.',
+      },
+      { title: 'Lab results', text: 'Requests and results routed to the right clinician.' },
+      { title: 'Reports', text: 'Visits, revenue and stock reports for management.' },
+    ],
+    audiences: [
+      { title: 'Clinics & medical centres', text: 'Single or multiple branches.' },
+      { title: 'Hospitals', text: 'Departments and wards.' },
+      { title: 'Pharmacies & labs', text: 'Stand-alone or integrated.' },
+    ],
+    integrations: ['M-Pesa', 'SMS reminders', 'Insurance claims', 'Accounting'],
+    highlights: [
+      { value: 'Shorter', label: 'waiting times' },
+      { value: 'Every', label: 'charge captured' },
+      { value: 'Secure', label: 'patient records' },
+    ],
+    faqs: [
+      {
+        question: 'Is patient data protected?',
+        answer:
+          'Yes — role-based access, audit logs and encryption, aligned with the Data Protection Act.',
+      },
+      {
+        question: 'Can it start small?',
+        answer:
+          'Yes. Many clinics start with registration, billing and pharmacy, then add modules.',
+      },
+    ],
+  },
+  {
+    name: 'E-commerce',
+    slug: 'ecommerce',
+    tagline: 'Sell online. Get paid by M-Pesa. Deliver on time.',
+    summary:
+      'A fast online store with M-Pesa and card checkout, order management, delivery tracking and SMS updates. Built to order on our commerce platform.',
+    category: 'Commerce',
+    availability: 'custom',
+    visual: 'store',
+    contextCaption: 'From checkout to doorstep — every order tracked.',
+    problem:
+      'Selling through WhatsApp and Instagram alone means lost orders, manual payment checks and customers asking "where is my order?" all day.',
+    features: [
+      { title: 'Fast storefront', text: 'Quick on mobile data, easy to browse and search.' },
+      { title: 'M-Pesa & card checkout', text: 'STK Push and cards, confirmed automatically.' },
+      { title: 'Order management', text: 'Every order from paid to packed to delivered.' },
+      { title: 'Delivery tracking', text: 'Riders, zones and SMS updates for customers.' },
+      { title: 'Stock sync', text: 'Shop and online stock kept in step (works with Stoka POS).' },
+      { title: 'Abandoned-cart recovery', text: 'Automatic SMS or WhatsApp nudges.' },
+    ],
+    audiences: [
+      { title: 'Retailers', text: 'Add an online channel to your shop.' },
+      { title: 'Brands', text: 'Sell direct to customers.' },
+      { title: 'Wholesalers', text: 'Ordering portals for resellers.' },
+    ],
+    integrations: ['M-Pesa', 'Cards', 'SMS & WhatsApp', 'Stoka POS'],
+    highlights: [
+      { value: 'Mobile', label: 'first storefront' },
+      { value: 'Auto', label: 'payment confirmation' },
+      { value: 'Live', label: 'delivery tracking' },
+    ],
+    faqs: [
+      {
+        question: 'Can I keep selling on WhatsApp too?',
+        answer: 'Yes — share product links on WhatsApp and orders flow into the same system.',
+      },
+      {
+        question: 'Do you handle deliveries?',
+        answer: 'We integrate with your riders or courier partners and track every delivery.',
       },
     ],
   },

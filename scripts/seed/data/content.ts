@@ -376,7 +376,7 @@ export const posts = [
   {
     title: 'What “fast” really means for a Kenyan website',
     slug: 'fast-websites-kenya',
-    cover: ['post-phone-man.jpg', 'A man smiling while using his smartphone'],
+    cover: ['post-phone-hands.jpg', 'Hands holding a smartphone'],
     category: 'cloud',
     excerpt:
       'Your visitors are mostly on mid-range Android phones and mobile data. Designing for them changes almost every technical decision.',

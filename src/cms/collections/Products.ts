@@ -12,6 +12,9 @@ export const PRODUCT_VISUALS = [
   { label: 'Sports management', value: 'sports' },
   { label: 'Payments / M-Pesa', value: 'payments' },
   { label: 'Point of sale', value: 'pos' },
+  { label: 'Health / clinic', value: 'health' },
+  { label: 'SACCO / microfinance', value: 'sacco' },
+  { label: 'Online store', value: 'store' },
 ] as const
 
 export const Products: CollectionConfig = {
@@ -60,6 +63,7 @@ export const Products: CollectionConfig = {
             { label: 'Live', value: 'live' },
             { label: 'Beta', value: 'beta' },
             { label: 'Coming soon', value: 'soon' },
+            { label: 'Built to order', value: 'custom' },
           ],
         },
       ],
@@ -94,6 +98,25 @@ export const Products: CollectionConfig = {
               admin: {
                 description:
                   'Built-in product illustration used until real screenshots are uploaded below.',
+              },
+            },
+            {
+              name: 'contextImage',
+              label: 'Real-world photo',
+              type: 'upload',
+              relationTo: 'media',
+              admin: {
+                description:
+                  'A wide photo of where the product is used (e.g. a classroom for School). Avoid recognisable faces.',
+              },
+            },
+            {
+              name: 'contextCaption',
+              label: 'Photo caption',
+              type: 'text',
+              admin: {
+                description:
+                  'One line shown over the photo, e.g. "Built for schools across Kenya".',
               },
             },
             {

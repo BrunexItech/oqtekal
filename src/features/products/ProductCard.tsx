@@ -15,6 +15,7 @@ const AVAILABILITY: Record<
   live: { label: 'Live', tone: 'success' },
   beta: { label: 'Beta', tone: 'accent' },
   soon: { label: 'Coming soon', tone: 'neutral' },
+  custom: { label: 'Built to order', tone: 'neutral' },
 }
 
 export const AvailabilityTag = ({ value }: { value: Product['availability'] }) => {

@@ -203,7 +203,7 @@ export interface Product {
    * e.g. "Communications", "Education"
    */
   category: string;
-  availability: 'live' | 'beta' | 'soon';
+  availability: 'live' | 'beta' | 'soon' | 'custom';
   /**
    * Product logo (transparent PNG or SVG). Optional.
    */
@@ -215,7 +215,15 @@ export interface Product {
   /**
    * Built-in product illustration used until real screenshots are uploaded below.
    */
-  visual: 'comms' | 'school' | 'property' | 'erp' | 'sports' | 'payments' | 'pos';
+  visual: 'comms' | 'school' | 'property' | 'erp' | 'sports' | 'payments' | 'pos' | 'health' | 'sacco' | 'store';
+  /**
+   * A wide photo of where the product is used (e.g. a classroom for School). Avoid recognisable faces.
+   */
+  contextImage?: (number | null) | Media;
+  /**
+   * One line shown over the photo, e.g. "Built for schools across Kenya".
+   */
+  contextCaption?: string | null;
   /**
    * Real screenshots. The first one replaces the built-in illustration.
    */
@@ -998,6 +1006,8 @@ export interface ProductsSelect<T extends boolean = true> {
   logo?: T;
   partnerLogo?: T;
   visual?: T;
+  contextImage?: T;
+  contextCaption?: T;
   screenshots?:
     | T
     | {

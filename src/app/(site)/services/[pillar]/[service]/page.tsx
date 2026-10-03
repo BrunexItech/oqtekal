@@ -17,7 +17,7 @@ import {
 import { CtaSection } from '@/features/cta'
 import { ProductCard } from '@/features/products'
 import { breadcrumbJsonLd, buildMetadata, faqJsonLd, JsonLd, serviceJsonLd } from '@/features/seo'
-import { getPillar, getService } from '@/features/services'
+import { getPillar, getService, pillarImage } from '@/features/services'
 import { getSiteSettings } from '@/features/site'
 import { lowerFirst } from '@/lib/site'
 import type { Product } from '@/payload-types'
@@ -60,6 +60,8 @@ export default async function ServicePage({ params }: Props) {
   return (
     <>
       <PageHeader
+        variant="split"
+        image={pillarImage(pillar.slug)}
         crumbs={crumbs}
         eyebrow={pillar.title}
         title={service.headline || service.title}

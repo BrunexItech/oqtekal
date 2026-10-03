@@ -53,6 +53,7 @@ export default async function ProductPage({ params }: Props) {
   ]
   const partner = asMedia(product.partnerLogo)
   const logo = asMedia(product.logo)
+  const context = asMedia(product.contextImage)
   const shots = (product.screenshots ?? [])
     .map((s) => ({ media: asMedia(s.image), caption: s.caption }))
     .filter((s) => s.media)
@@ -158,6 +159,23 @@ export default async function ProductPage({ params }: Props) {
           </p>
         </Container>
       </Section>
+
+      {/* Real-world context */}
+      {context?.url ? (
+        <section className="relative isolate overflow-hidden bg-ink text-paper">
+          <CmsImage media={context} sizes="100vw" className="-z-20" />
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(7_10_18/0.15)_0%,rgb(7_10_18/0.25)_50%,rgb(7_10_18/0.88)_100%)]"
+          />
+          <Container className="flex min-h-[min(70svh,38rem)] flex-col justify-end py-14 md:py-20">
+            <p className="text-label text-brand-400">{product.category}</p>
+            <p className="mt-4 max-w-3xl font-display text-[clamp(1.6rem,1.2rem+1.8vw,3rem)] leading-[1.1] font-semibold tracking-tight">
+              {product.contextCaption ?? product.tagline}
+            </p>
+          </Container>
+        </section>
+      ) : null}
 
       {/* Features */}
       <Section>

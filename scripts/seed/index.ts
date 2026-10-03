@@ -9,6 +9,7 @@
 import 'dotenv/config'
 
 import crypto from 'node:crypto'
+import { existsSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -90,6 +91,9 @@ for (const [i, p] of products.entries()) {
       ...rest,
       integrations: p.integrations.map((name) => ({ name })),
       partnerLogo: partnerLogo === 'mpesa' ? mpesaLogo : undefined,
+      contextImage: existsSync(path.join(ASSETS, 'products', `${p.slug}.jpg`))
+        ? await upload(`products/${p.slug}.jpg`, `${p.name} in use — ${p.category.toLowerCase()}`)
+        : undefined,
       order: (i + 1) * 10,
       featured: true,
       _status: 'published',
