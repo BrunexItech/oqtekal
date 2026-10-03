@@ -60,6 +60,20 @@ export default async function ContactPage({ searchParams }: Props) {
   return (
     <>
       <PageHeader
+        variant="split"
+        image={{
+          src: '/images/nairobi-day.jpg',
+          alt: 'Nairobi city skyline on a clear day',
+          caption: (
+            <p className="flex items-center gap-3 text-sm">
+              <span className="size-2.5 animate-[pulse-dot_2s_infinite] rounded-full bg-success" />
+              <span>
+                <span className="block font-semibold">Engineers online in Nairobi</span>
+                <span className="text-muted">Replies within one business day</span>
+              </span>
+            </p>
+          ),
+        }}
         crumbs={crumbs}
         eyebrow="Contact"
         title="Let’s talk it through."

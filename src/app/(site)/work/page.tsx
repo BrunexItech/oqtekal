@@ -24,6 +24,17 @@ export default async function WorkPage() {
   return (
     <>
       <PageHeader
+        variant="split"
+        image={{
+          src: '/images/analytics.jpg',
+          alt: 'Performance analytics dashboard on a laptop',
+          caption: (
+            <p className="text-sm">
+              <span className="block font-semibold">Results you can measure</span>
+              <span className="text-muted">Faster payments, fewer errors, less admin.</span>
+            </p>
+          ),
+        }}
         crumbs={crumbs}
         eyebrow="Case studies"
         title="Measured by results, not deliverables."

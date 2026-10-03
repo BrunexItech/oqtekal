@@ -36,6 +36,12 @@ export default async function CareersPage() {
   return (
     <>
       <PageHeader
+        variant="cinematic"
+        image={{
+          src: '/images/monitors.jpg',
+          alt: 'A developer workstation with code on two monitors',
+          position: 'center',
+        }}
         crumbs={crumbs}
         eyebrow="Careers"
         title="Build the software organisations run on."

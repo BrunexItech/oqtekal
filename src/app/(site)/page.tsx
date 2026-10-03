@@ -2,7 +2,15 @@ import type { Metadata } from 'next'
 
 import { ArrowLink, Container, Reveal, Section, SectionHeader } from '@/design-system'
 import { CtaSection } from '@/features/cta'
-import { Capabilities, getHomePage, Hero, Process, TechStrip, WhyOqtekal } from '@/features/home'
+import {
+  Capabilities,
+  getHomePage,
+  Hero,
+  NairobiBand,
+  StoryScroll,
+  TechStrip,
+  WhyOqtekal,
+} from '@/features/home'
 import { getPosts, PostCard } from '@/features/insights'
 import { getProducts, ProductMedia, ProductShowcase } from '@/features/products'
 import { buildMetadata } from '@/features/seo'
@@ -53,6 +61,8 @@ export default async function HomePage() {
           </Reveal>
         </Container>
       </Section>
+
+      <NairobiBand />
 
       {/* Products */}
       <Section id="products">
@@ -119,7 +129,7 @@ export default async function HomePage() {
               text={home.processIntro?.text}
             />
             <div className="mt-14 md:mt-20">
-              <Process steps={home.process} />
+              <StoryScroll steps={home.process} />
             </div>
           </Container>
         </Section>

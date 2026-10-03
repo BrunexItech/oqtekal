@@ -196,6 +196,7 @@ for (const [i, post] of posts.entries()) {
       title: post.title,
       slug: post.slug,
       excerpt: post.excerpt,
+      cover: post.cover ? await upload(post.cover[0], post.cover[1]) : undefined,
       category: post.category as 'engineering',
       content: lexical(post.body as Block[]),
       publishedAt: new Date(Date.now() - (i * 9 + 3) * day).toISOString(),

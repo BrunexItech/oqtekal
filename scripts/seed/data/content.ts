@@ -311,6 +311,10 @@ export const posts = [
   {
     title: 'How to integrate M-Pesa STK Push without losing a single payment',
     slug: 'mpesa-stk-push-reliable-integration',
+    cover: [
+      'post-phone-cash.jpg',
+      'A smartphone showing a mobile-money app beside Kenyan shilling notes',
+    ],
     category: 'payments',
     excerpt:
       'Callbacks fail, phones go offline and customers tap “cancel”. Here is how we design M-Pesa integrations that never lose track of money.',
@@ -343,6 +347,7 @@ export const posts = [
   {
     title: 'Five signs your business has outgrown spreadsheets',
     slug: 'outgrown-spreadsheets',
+    cover: ['post-analytics.jpg', 'Business analytics charts on a laptop screen'],
     category: 'product',
     excerpt:
       'Spreadsheets are a brilliant start. Here is how to tell when they have quietly become the most expensive system you own.',
@@ -371,6 +376,7 @@ export const posts = [
   {
     title: 'What “fast” really means for a Kenyan website',
     slug: 'fast-websites-kenya',
+    cover: ['post-phone-man.jpg', 'A man smiling while using his smartphone'],
     category: 'cloud',
     excerpt:
       'Your visitors are mostly on mid-range Android phones and mobile data. Designing for them changes almost every technical decision.',
@@ -394,6 +400,7 @@ export const posts = [
   {
     title: 'Why we build boring software',
     slug: 'why-we-build-boring-software',
+    cover: ['post-code.jpg', 'Source code on a laptop screen'],
     category: 'engineering',
     excerpt:
       'The most valuable systems are the ones nobody has to think about. Our engineering principles, explained.',

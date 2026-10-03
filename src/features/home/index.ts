@@ -1,6 +1,7 @@
 export { Capabilities } from './Capabilities'
 export { Hero } from './Hero'
-export { Process } from './Process'
+export { NairobiBand } from './NairobiBand'
 export { getHomePage } from './queries'
+export { StoryScroll } from './StoryScroll'
 export { TechStrip } from './TechStrip'
 export { WhyOqtekal } from './WhyOqtekal'

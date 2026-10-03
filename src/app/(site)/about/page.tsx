@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 
 import { Check, Container, PageHeader, Reveal, Section, SectionHeader } from '@/design-system'
 import { getAboutPage } from '@/features/about'
-import { Symbol } from '@/features/brand'
 import { CtaSection } from '@/features/cta'
 import { breadcrumbJsonLd, buildMetadata, JsonLd } from '@/features/seo'
 import { getSiteSettings } from '@/features/site'
@@ -27,21 +26,19 @@ export default async function AboutPage() {
   return (
     <>
       <PageHeader
+        variant="cinematic"
+        image={{
+          src: '/images/nairobi-night.jpg',
+          alt: 'Nairobi skyline at night',
+          position: 'center 60%',
+        }}
         crumbs={crumbs}
         eyebrow="About Oqtekal"
         title={about.heading}
         lead={about.intro}
-        aside={
-          <div className="relative mx-auto hidden aspect-square w-full max-w-sm lg:block">
-            <Symbol
-              gradient
-              className="size-full animate-[float_8s_ease-in-out_infinite] motion-reduce:animate-none"
-            />
-          </div>
-        }
       />
 
-      {settings.stats?.length ? (
+      {settings.stats?.length && !settings.statsArePlaceholder ? (
         <Container>
           <dl className="grid grid-cols-2 gap-y-8 border-b border-line py-12 md:grid-cols-4">
             {settings.stats.map((s, i) => (

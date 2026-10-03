@@ -30,6 +30,12 @@ export default async function ProductsPage() {
   return (
     <>
       <PageHeader
+        variant="cinematic"
+        image={{
+          src: '/images/code-colorful.jpg',
+          alt: 'Source code on a laptop screen',
+          position: 'center',
+        }}
         crumbs={crumbs}
         eyebrow={`${products.length} products`}
         title="Proven systems, ready to adapt."

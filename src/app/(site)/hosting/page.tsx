@@ -54,6 +54,12 @@ export default async function HostingPage() {
   return (
     <>
       <PageHeader
+        variant="cinematic"
+        image={{
+          src: '/images/server-rack.jpg',
+          alt: 'Server racks lit in green in a data centre',
+          position: 'center',
+        }}
         crumbs={crumbs}
         eyebrow="Hosting · Domains · Email"
         title="Fast, secure hosting with people who pick up the phone."
