@@ -83,7 +83,8 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
                     rel="noopener noreferrer"
                     className="hover:text-white"
                   >
-                    WhatsApp {formatWhatsapp(settings.whatsapp)}
+                    <span className="sr-only">WhatsApp </span>
+                    {formatWhatsapp(settings.whatsapp)}
                   </a>
                 </li>
                 <li className="whitespace-pre-line text-paper/60">{settings.address}</li>

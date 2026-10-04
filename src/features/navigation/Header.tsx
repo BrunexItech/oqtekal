@@ -102,6 +102,13 @@ export const Header = ({ nav }: { nav: NavData }) => {
       hidden={open !== id}
       onMouseEnter={() => hoverOpen(id)}
       onMouseLeave={hoverClose}
+      // Choosing a link closes the menu at once; the progress bar shows the next page loading.
+      onClick={(e) => {
+        if ((e.target as Element).closest('a')) {
+          clearTimeout(closeTimer.current)
+          setOpen(null)
+        }
+      }}
       className="absolute inset-x-0 top-full hidden lg:block"
     >
       <div className="container-x">

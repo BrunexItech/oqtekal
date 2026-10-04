@@ -37,6 +37,15 @@ test.describe('desktop navigation', () => {
     await page.keyboard.press('Escape')
     await expect(trigger).toHaveAttribute('aria-expanded', 'false')
   })
+
+  test('choosing a service closes the menu immediately and opens the page', async ({ page }) => {
+    await page.goto('/')
+    const trigger = page.getByRole('button', { name: 'Services' })
+    await trigger.click()
+    await page.getByRole('link', { name: 'M-Pesa integration' }).first().click()
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false', { timeout: 1000 })
+    await expect(page).toHaveURL(/\/services\/payments-and-integrations\/m-pesa-integration/)
+  })
 })
 
 test.describe('mobile navigation', () => {
