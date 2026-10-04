@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
+import { ImageLoading } from '@/design-system'
 import { cn } from '@/lib/cn'
 import type { HomePage } from '@/payload-types'
 
@@ -45,7 +46,8 @@ export const StoryScroll = ({ steps }: { steps: Step[] }) => {
     <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
       {/* Pinned photo (desktop) */}
       <div className="hidden lg:block">
-        <div className="sticky top-28 aspect-[4/5] overflow-hidden rounded-[var(--radius-panel)] bg-ink shadow-[var(--shadow-float)]">
+        <div className="sticky top-28 mx-auto aspect-[4/5] max-h-[calc(100svh-9rem)] overflow-hidden rounded-[var(--radius-panel)] bg-ink shadow-[var(--shadow-float)]">
+          <ImageLoading tone="dark" />
           <AnimatePresence initial={false}>
             <motion.div
               key={photo.src}
@@ -102,6 +104,7 @@ export const StoryScroll = ({ steps }: { steps: Step[] }) => {
               )}
             >
               <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-[var(--radius-card)] lg:hidden">
+                <ImageLoading />
                 <Image src={p.src} alt={p.alt} fill sizes="100vw" className="object-cover" />
               </div>
               <p className="flex items-center gap-3 font-mono text-xs tracking-[0.18em] text-accent uppercase">

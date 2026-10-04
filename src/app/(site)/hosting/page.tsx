@@ -7,9 +7,9 @@ import { breadcrumbJsonLd, buildMetadata, faqJsonLd, JsonLd } from '@/features/s
 import { getSiteSettings } from '@/features/site'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Web hosting, VPS & business email',
+  title: 'Web hosting & managed cloud VPS',
   description:
-    'Fast NVMe web hosting, managed cloud VPS and business email with daily backups, free SSL, free migration and local support. Pay in KES via M-Pesa.',
+    'Fast NVMe web hosting, managed cloud VPS with daily backups, free SSL, free migration and local support. Pay in KES via M-Pesa.',
   path: '/hosting',
   eyebrow: 'Hosting',
 })
@@ -32,7 +32,7 @@ const FAQS = [
   {
     question: 'Will you move my existing website?',
     answer:
-      'Yes, free on every plan. We handle files, databases, email and DNS so nothing goes offline.',
+      'Yes, free on every plan. We move your files, databases and DNS so nothing goes offline.',
   },
   {
     question: 'What is the difference between web hosting and a VPS?',
@@ -61,7 +61,7 @@ export default async function HostingPage() {
           position: 'center',
         }}
         crumbs={crumbs}
-        eyebrow="Hosting · Domains · Email"
+        eyebrow="Web hosting · Cloud VPS"
         title="Fast, secure hosting with people who pick up the phone."
         lead="NVMe servers, daily backups, free SSL and free migration — billed in shillings and payable by M-Pesa, with support from the engineers who run the servers."
       />
@@ -81,8 +81,7 @@ export default async function HostingPage() {
             <p className="text-label text-brand-400">Domains</p>
             <h2 className="mt-4 text-h1">Find your name.</h2>
             <p className="mt-4 max-w-md text-paper/70">
-              Register .co.ke, .ke, .com and more — with DNS, renewal reminders and email set up
-              properly.
+              Register .co.ke, .ke, .com and more — with DNS and renewal reminders set up properly.
             </p>
           </div>
           <DomainSearch />

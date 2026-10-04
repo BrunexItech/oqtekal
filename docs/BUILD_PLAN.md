@@ -101,7 +101,7 @@ The services are modelled as **pillar → service**. The structure is data, not 
 | **ERP**                                | Accounting, invoicing, HR & payroll, assets, manufacturing                                                  |
 | **Sports Management System**           |                                                                                                             |
 | **M-Pesa Integration**                 | A service-product: "Integrates with M-Pesa" lockup using the official logo, per Safaricom brand rules       |
-| _(optional)_ **Stoka**                 | POS for dukas. Include if you want it public                                                                |
+| **POS & CRM**                          | Point of sale with built-in customer records and loyalty                                                    |
 
 Each product page uses one template with the same sections:
 
@@ -396,7 +396,7 @@ Each phase ends with a checkpoint where you review on staging before the next ph
 These items aren't blocking. Placeholders are used until they arrive, and the launch checklist tracks them.
 
 1. **Team (3 people):** Full names, roles, a 2–3 sentence bio each, portraits, and LinkedIn/X/GitHub links. For portraits, use the same background and lighting for all three; a phone camera near a window works.
-2. **Products:** For each one, its logo (if any), 3–5 real screenshots, and a one-line pitch. Also tell me whether Stoka should be listed.
+2. **Products:** For each one, its logo (if any), 3–5 real screenshots, and a one-line pitch.
 3. **Contact:** Email, phone/WhatsApp number, office address (or "Nairobi, Kenya" only), and business hours.
 4. **Social accounts:** Links for every platform you use.
 5. **Proof:**

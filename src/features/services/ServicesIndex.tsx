@@ -22,7 +22,7 @@ export const ServicesIndex = ({
             <h3>
               <Link
                 href={`/services/${p.slug}`}
-                className="font-display text-[clamp(1.6rem,1.2rem+1.6vw,2.6rem)] leading-[1.05] font-semibold tracking-tight transition-colors hover:text-accent"
+                className="font-display text-[clamp(1.45rem,1.2rem+1vw,2.1rem)] leading-[1.05] font-semibold tracking-tight transition-colors hover:text-accent"
               >
                 {p.title}
                 <ArrowUpRight className="ml-2 inline size-6 -translate-y-1 align-middle opacity-40 transition-all duration-300 group-hover:opacity-100" />

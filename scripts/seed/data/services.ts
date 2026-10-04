@@ -399,7 +399,7 @@ export const pillars: SeedPillar[] = [
   {
     title: 'Cloud & Hosting',
     slug: 'cloud-and-hosting',
-    summary: 'Fast, secure hosting, domains, business email and cloud infrastructure.',
+    summary: 'Fast, secure hosting and managed cloud infrastructure.',
     intro:
       'Your website and systems are only as good as the infrastructure under them. We host, monitor and maintain them on fast, secure servers — with local support that answers the phone.',
     services: [
@@ -431,38 +431,6 @@ export const pillars: SeedPillar[] = [
           {
             question: 'Can I pay with M-Pesa?',
             answer: 'Yes. You can pay monthly or yearly via M-Pesa, card or bank transfer.',
-          },
-        ],
-      },
-      {
-        title: 'Domains & business email',
-        summary: '.co.ke and .com domains, plus professional email on your own domain.',
-        intro:
-          'Look professional with email at your own domain. We register and manage your .co.ke, .ke and .com domains, set up DNS correctly, and configure email that actually reaches the inbox.',
-        deliverables: [
-          {
-            title: 'Domain registration',
-            text: '.co.ke, .ke, .com and more, with auto-renewal reminders.',
-          },
-          {
-            title: 'Business email',
-            text: 'Mailboxes on your domain with webmail and phone apps.',
-          },
-          {
-            title: 'Deliverability setup',
-            text: 'SPF, DKIM and DMARC configured so your emails avoid spam folders.',
-          },
-        ],
-        outcomes: ['A professional image', 'Emails that land in inboxes', 'No surprise expiries'],
-        technologies: ['DNS', 'SPF / DKIM / DMARC', 'Google Workspace', 'Zoho Mail'],
-        faqs: [
-          {
-            question: 'Can you transfer my domain from another provider?',
-            answer: 'Yes, we handle the transfer and DNS so your website and email keep working.',
-          },
-          {
-            question: 'Do you set up Google Workspace?',
-            answer: 'Yes, as well as Zoho Mail and our own hosted mailboxes.',
           },
         ],
       },

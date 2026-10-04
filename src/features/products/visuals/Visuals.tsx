@@ -421,7 +421,10 @@ export const PaymentsVisual = () => (
 
 /* ------------------------------------------------------------------ Point of sale */
 export const PosVisual = () => (
-  <Frame title="stoka.app/till" nav={['Till', 'Products', 'Stock', 'Debt book', 'Sales', 'Labels']}>
+  <Frame
+    title="pos.oqtekal.app/till"
+    nav={['Till', 'Products', 'Stock', 'Customers', 'Sales', 'Loyalty']}
+  >
     <div className="flex h-full gap-[0.8em]">
       <div className="grid min-w-0 flex-1 grid-cols-4 content-start gap-[0.5em]">
         {[
@@ -532,7 +535,7 @@ export const HealthVisual = () => (
   </Frame>
 )
 
-/* ------------------------------------------------------------------ SACCO & microfinance */
+/* ------------------------------------------------------------------ SACCO */
 export const SaccoVisual = () => (
   <Frame
     title="sacco.oqtekal.app/overview"

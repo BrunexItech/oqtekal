@@ -13,7 +13,7 @@ export const PRODUCT_VISUALS = [
   { label: 'Payments / M-Pesa', value: 'payments' },
   { label: 'Point of sale', value: 'pos' },
   { label: 'Health / clinic', value: 'health' },
-  { label: 'SACCO / microfinance', value: 'sacco' },
+  { label: 'SACCO', value: 'sacco' },
   { label: 'Online store', value: 'store' },
 ] as const
 

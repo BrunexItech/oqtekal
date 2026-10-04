@@ -64,7 +64,7 @@ export default async function AboutPage() {
                   <p
                     className={
                       i === 0
-                        ? 'font-display text-[clamp(1.3rem,1.1rem+0.9vw,1.85rem)] leading-snug font-medium tracking-tight'
+                        ? 'font-display text-[clamp(1.2rem,1.05rem+0.6vw,1.6rem)] leading-snug font-medium tracking-tight'
                         : 'text-lg leading-relaxed text-muted'
                     }
                   >

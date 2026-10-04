@@ -7,6 +7,7 @@ import { keepTogether } from '@/lib/site'
 import { Container } from '../primitives/Container'
 import { Eyebrow } from '../primitives/Eyebrow'
 import { Breadcrumbs, type Crumb } from './Breadcrumbs'
+import { ImageLoading } from './Spinner'
 
 export type HeaderImage = { src: string; alt: string; position?: string; caption?: ReactNode }
 
@@ -42,6 +43,7 @@ export const PageHeader = ({
   if (variant === 'cinematic' && image) {
     return (
       <header className={cn('relative isolate overflow-hidden bg-ink text-paper', className)}>
+        <ImageLoading tone="dark" className="-z-20" />
         <Image
           src={image.src}
           alt={image.alt}
@@ -55,14 +57,14 @@ export const PageHeader = ({
           aria-hidden
           className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(7_10_18/0.92)_0%,rgb(7_10_18/0.72)_45%,rgb(7_10_18/0.25)_100%),linear-gradient(0deg,rgb(7_10_18/0.85)_0%,transparent_45%)]"
         />
-        <Container className="flex min-h-[min(78svh,46rem)] flex-col pt-8 pb-14 md:pt-10 md:pb-20">
+        <Container className="flex min-h-[min(60svh,35rem)] flex-col pt-8 pb-14 md:pt-10 md:pb-20">
           {crumbs?.length ? (
             <Breadcrumbs
               items={crumbs}
               className="[&_*]:text-paper/70 [&_[aria-current]]:text-paper"
             />
           ) : null}
-          <div className="mt-auto max-w-3xl pt-24">
+          <div className="mt-auto max-w-3xl pt-16">
             {eyebrow ? <Eyebrow className="mb-6 text-paper/70">{eyebrow}</Eyebrow> : null}
             <Title title={title} />
             {lead ? <div className="mt-6 max-w-2xl text-lead text-paper/75">{lead}</div> : null}
@@ -94,6 +96,7 @@ export const PageHeader = ({
             </div>
             <div className="relative">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-panel)] shadow-[var(--shadow-float)]">
+                <ImageLoading />
                 <Image
                   src={image.src}
                   alt={image.alt}

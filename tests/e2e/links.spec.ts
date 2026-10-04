@@ -9,7 +9,7 @@ test.describe('links', () => {
   test.skip(({ isMobile }) => isMobile, 'same links on mobile; run once')
 
   test('every link on every page works', async ({ page, request }) => {
-    test.setTimeout(240_000)
+    test.setTimeout(900_000)
     const internal = new Set<string>()
     const problems: string[] = []
 

@@ -16,5 +16,11 @@ export default defineConfig({
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
+    // Tablet: layout checks only (the page suite), to keep runs fast.
+    {
+      name: 'tablet',
+      use: { ...devices['iPad (gen 7)'], browserName: 'chromium' },
+      testMatch: /pages\.spec/,
+    },
   ],
 })

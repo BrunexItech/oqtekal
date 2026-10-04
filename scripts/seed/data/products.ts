@@ -387,50 +387,53 @@ export const products: SeedProduct[] = [
     ],
   },
   {
-    name: 'Stoka POS',
-    slug: 'stoka-pos',
-    tagline: 'The till, stock book and debt book for every duka.',
+    name: 'POS & CRM',
+    slug: 'pos-crm',
+    tagline: 'Sell faster. Know every customer.',
     summary:
-      'A fast, offline-first point of sale with barcode scanning, labels, M-Pesa checkout and a debt book — built for Kenyan shops.',
+      'A fast, offline-first point of sale with M-Pesa checkout, stock control and a built-in CRM for customer records, credit and loyalty.',
     category: 'Retail',
     availability: 'live',
     visual: 'pos',
-    contextCaption: 'Shorter queues, accurate stock and no more lost debts.',
+    contextCaption: 'Shorter queues, accurate stock and customers who come back.',
     problem:
-      'Small shops lose money to stock that is never counted, credit that is never written down and long queues at the till. Generic POS systems are too expensive and stop working when the internet drops.',
+      'Shops lose money to stock that is never counted, credit that is never written down and customers they never hear from again. Generic POS systems are expensive and stop working when the internet drops.',
     features: [
       {
         title: 'Fast checkout',
-        text: 'Scan, total and take M-Pesa or cash in seconds — even offline.',
+        text: 'Scan, total and take M-Pesa, card or cash in seconds — even offline.',
       },
       {
-        title: 'Barcode labels',
-        text: 'Print your own barcode labels for products that do not have one.',
-      },
-      { title: 'Stock control', text: 'Know exactly what is on the shelf, with low-stock alerts.' },
-      {
-        title: 'Debt book',
-        text: 'Record credit sales and send polite SMS reminders to customers.',
+        title: 'Stock control',
+        text: 'Know exactly what is on the shelf, with low-stock alerts and barcode labels.',
       },
       {
-        title: 'Daily reports',
-        text: 'Sales, margins and best-sellers on your phone every evening.',
+        title: 'Customer records',
+        text: 'Every customer, their purchases and their balance in one place.',
       },
       {
-        title: 'Several branches',
-        text: 'Every shop on one account, with transfers between them.',
+        title: 'Credit & reminders',
+        text: 'Record credit sales and send polite SMS reminders automatically.',
+      },
+      {
+        title: 'Loyalty & offers',
+        text: 'Reward repeat customers and send targeted SMS or WhatsApp offers.',
+      },
+      {
+        title: 'Reports & branches',
+        text: 'Daily sales, margins and best-sellers across every branch.',
       },
     ],
     audiences: [
-      { title: 'Dukas & mini-marts', text: 'Simple, fast and affordable.' },
+      { title: 'Shops & mini-marts', text: 'Simple, fast and affordable.' },
       { title: 'Supermarkets', text: 'Several tills and branches.' },
-      { title: 'Pharmacies & hardware', text: 'Thousands of items, tracked.' },
+      { title: 'Pharmacies, hardware & salons', text: 'Products, services and regulars.' },
     ],
-    integrations: ['M-Pesa', 'Barcode scanners', 'Label printers', 'SMS'],
+    integrations: ['M-Pesa', 'Card terminals', 'Barcode scanners & printers', 'SMS & WhatsApp'],
     highlights: [
       { value: 'Offline', label: 'keeps selling without internet' },
       { value: 'Seconds', label: 'per checkout' },
-      { value: '0', label: 'forgotten debts' },
+      { value: 'Every', label: 'customer remembered' },
     ],
     faqs: [
       {
@@ -439,22 +442,23 @@ export const products: SeedProduct[] = [
       },
       {
         question: 'What hardware do I need?',
-        answer: 'An Android phone or tablet is enough; scanners and printers are optional.',
+        answer:
+          'An Android phone, tablet or PC is enough; scanners, printers and cash drawers are optional.',
       },
     ],
   },
   {
-    name: 'SACCO & Microfinance',
-    slug: 'sacco-microfinance',
+    name: 'SACCO Management System',
+    slug: 'sacco-management',
     tagline: 'Members, savings and loans — managed with confidence.',
     summary:
-      'Member records, savings, loans, guarantors and dividends, with M-Pesa deposits and automatic reminders. Built to order on our finance platform.',
-    category: 'Financial services',
+      'Member records, savings, loans, guarantors and dividends, with M-Pesa deposits, automatic reminders and board-ready reports.',
+    category: 'SACCOs',
     availability: 'custom',
     visual: 'sacco',
-    contextCaption: 'Every shilling saved and lent, accounted for.',
+    contextCaption: 'Every member contribution and loan, accounted for.',
     problem:
-      'SACCOs and microfinance institutions juggle spreadsheets for savings, paper for guarantors and manual follow-up for arrears — slow for members and risky for the board.',
+      'SACCOs juggle spreadsheets for savings, paper forms for guarantors and manual follow-up for arrears — slow for members, risky for the board and hard to audit.',
     features: [
       {
         title: 'Member portal',
@@ -465,24 +469,27 @@ export const products: SeedProduct[] = [
         text: 'Applications, guarantor approval, appraisal and disbursement.',
       },
       {
-        title: 'M-Pesa deposits',
+        title: 'M-Pesa contributions',
         text: 'Savings and repayments matched to the right member instantly.',
       },
       {
         title: 'Arrears follow-up',
         text: 'Automatic SMS reminders and portfolio-at-risk tracking.',
       },
-      { title: 'Dividends & interest', text: 'Calculated accurately at year end.' },
-      { title: 'Board reports', text: 'Regulatory and management reports on demand.' },
+      {
+        title: 'Dividends & interest',
+        text: 'Calculated accurately at year end, ready for the AGM.',
+      },
+      { title: 'Board & audit reports', text: 'Management and regulatory reports on demand.' },
     ],
     audiences: [
-      { title: 'SACCOs', text: 'Deposit-taking and non-deposit-taking.' },
-      { title: 'Microfinance', text: 'Group and individual lending.' },
+      { title: 'Community & employer SACCOs', text: 'Contributions and loans.' },
+      { title: 'Deposit-taking SACCOs', text: 'Full savings and credit operations.' },
       { title: 'Chamas & investment groups', text: 'Contributions and payouts.' },
     ],
     integrations: ['M-Pesa', 'SMS', 'Bank files', 'Accounting'],
     highlights: [
-      { value: 'Instant', label: 'deposit matching' },
+      { value: 'Instant', label: 'contribution matching' },
       { value: 'Live', label: 'portfolio at risk' },
       { value: '24/7', label: 'member statements' },
     ],
@@ -490,7 +497,7 @@ export const products: SeedProduct[] = [
       {
         question: 'What does "built to order" mean?',
         answer:
-          'We assemble it for you from our proven finance, M-Pesa and messaging modules, configured to your by-laws and products.',
+          'We configure it for your SACCO from our proven finance, M-Pesa and messaging modules, following your by-laws and loan products.',
       },
       {
         question: 'Can we migrate existing member data?',
@@ -569,7 +576,10 @@ export const products: SeedProduct[] = [
       { title: 'M-Pesa & card checkout', text: 'STK Push and cards, confirmed automatically.' },
       { title: 'Order management', text: 'Every order from paid to packed to delivered.' },
       { title: 'Delivery tracking', text: 'Riders, zones and SMS updates for customers.' },
-      { title: 'Stock sync', text: 'Shop and online stock kept in step (works with Stoka POS).' },
+      {
+        title: 'Stock sync',
+        text: 'Shop and online stock kept in step (works with our POS & CRM).',
+      },
       { title: 'Abandoned-cart recovery', text: 'Automatic SMS or WhatsApp nudges.' },
     ],
     audiences: [
@@ -577,7 +587,7 @@ export const products: SeedProduct[] = [
       { title: 'Brands', text: 'Sell direct to customers.' },
       { title: 'Wholesalers', text: 'Ordering portals for resellers.' },
     ],
-    integrations: ['M-Pesa', 'Cards', 'SMS & WhatsApp', 'Stoka POS'],
+    integrations: ['M-Pesa', 'Cards', 'SMS & WhatsApp', 'POS & CRM'],
     highlights: [
       { value: 'Mobile', label: 'first storefront' },
       { value: 'Auto', label: 'payment confirmation' },

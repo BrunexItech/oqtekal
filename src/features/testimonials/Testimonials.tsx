@@ -33,7 +33,7 @@ export const Testimonials = ({ items }: { items: Testimonial[] }) => {
             exit={reduce ? undefined : { opacity: 0, y: -8 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
-            <blockquote className="max-w-4xl font-display text-[clamp(1.4rem,1.05rem+1.5vw,2.4rem)] leading-[1.25] font-medium tracking-tight">
+            <blockquote className="max-w-4xl font-display text-[clamp(1.25rem,1.05rem+0.9vw,1.85rem)] leading-[1.25] font-medium tracking-tight">
               {t.quote}
             </blockquote>
             <figcaption className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1">

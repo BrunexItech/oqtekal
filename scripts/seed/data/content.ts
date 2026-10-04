@@ -148,7 +148,6 @@ export const hostingPlans = [
     specs: [
       { label: 'Websites', value: '1' },
       { label: 'NVMe storage', value: '10 GB' },
-      { label: 'Email accounts', value: '5' },
       { label: 'Bandwidth', value: 'Unmetered' },
     ],
     features: [
@@ -168,16 +167,9 @@ export const hostingPlans = [
     specs: [
       { label: 'Websites', value: '5' },
       { label: 'NVMe storage', value: '50 GB' },
-      { label: 'Email accounts', value: '25' },
       { label: 'Bandwidth', value: 'Unmetered' },
     ],
-    features: [
-      'Everything in Starter',
-      'Free .co.ke domain (1st year)',
-      'Staging site',
-      'Malware scanning',
-      'Priority support',
-    ],
+    features: ['Everything in Starter', 'Staging site', 'Malware scanning', 'Priority support'],
     featured: true,
   },
   {
@@ -189,7 +181,6 @@ export const hostingPlans = [
     specs: [
       { label: 'Websites', value: 'Unlimited' },
       { label: 'NVMe storage', value: '150 GB' },
-      { label: 'Email accounts', value: 'Unlimited' },
       { label: 'Bandwidth', value: 'Unmetered' },
     ],
     features: [
@@ -254,20 +245,6 @@ export const hostingPlans = [
       'Monthly health report',
       'Named engineer',
     ],
-    featured: false,
-  },
-  {
-    name: 'Business Email',
-    category: 'email',
-    tagline: 'Professional email on your own domain.',
-    priceMonthly: 250,
-    priceYearly: 2500,
-    specs: [
-      { label: 'Per mailbox', value: '1' },
-      { label: 'Storage', value: '25 GB' },
-      { label: 'Apps', value: 'Webmail, iOS, Android' },
-    ],
-    features: ['Spam & virus filtering', 'SPF, DKIM & DMARC setup', 'Calendar & contacts'],
     featured: false,
   },
 ]

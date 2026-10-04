@@ -81,8 +81,8 @@ export default async function ProductPage({ params }: Props) {
                 <span className="text-label text-muted">{product.category}</span>
                 <AvailabilityTag value={product.availability} />
               </div>
-              <h1 className="text-display-xl">{keepTogether(product.name)}</h1>
-              <p className="mt-5 font-display text-[clamp(1.35rem,1.1rem+1vw,2rem)] leading-snug font-medium tracking-tight">
+              <h1 className="text-display">{keepTogether(product.name)}</h1>
+              <p className="mt-5 font-display text-[clamp(1.15rem,1.05rem+0.5vw,1.45rem)] leading-snug font-medium tracking-tight">
                 {product.tagline}
               </p>
             </div>
@@ -125,7 +125,7 @@ export default async function ProductPage({ params }: Props) {
               aria-hidden
               className="absolute inset-0 rounded-[inherit] grid-lines opacity-50 [--grid-line:rgb(255_255_255/0.07)]"
             />
-            <div className="relative">
+            <div className="relative mx-auto max-w-5xl">
               <ProductMedia product={product} priority />
             </div>
           </div>
@@ -154,7 +154,7 @@ export default async function ProductPage({ params }: Props) {
       <Section spacing="tight">
         <Container className="grid gap-8 lg:grid-cols-[1fr_2fr]">
           <p className="text-label text-accent">The problem</p>
-          <p className="font-display text-[clamp(1.35rem,1.1rem+1.1vw,2.1rem)] leading-[1.3] font-medium tracking-tight">
+          <p className="font-display text-[clamp(1.2rem,1.05rem+0.7vw,1.65rem)] leading-[1.3] font-medium tracking-tight">
             {product.problem}
           </p>
         </Container>
@@ -163,14 +163,19 @@ export default async function ProductPage({ params }: Props) {
       {/* Real-world context */}
       {context?.url ? (
         <section className="relative isolate overflow-hidden bg-ink text-paper">
-          <CmsImage media={context} sizes="100vw" className="-z-20" />
+          <CmsImage
+            media={context}
+            sizes="100vw"
+            className="-z-20"
+            loading={{ tone: 'dark', className: '-z-20' }}
+          />
           <div
             aria-hidden
             className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(7_10_18/0.15)_0%,rgb(7_10_18/0.25)_50%,rgb(7_10_18/0.88)_100%)]"
           />
-          <Container className="flex min-h-[min(70svh,38rem)] flex-col justify-end py-14 md:py-20">
+          <Container className="flex min-h-[min(56svh,30rem)] flex-col justify-end py-14 md:py-20">
             <p className="text-label text-brand-400">{product.category}</p>
-            <p className="mt-4 max-w-3xl font-display text-[clamp(1.6rem,1.2rem+1.8vw,3rem)] leading-[1.1] font-semibold tracking-tight">
+            <p className="mt-4 max-w-3xl font-display text-[clamp(1.4rem,1.15rem+1.1vw,2.2rem)] leading-[1.1] font-semibold tracking-tight">
               {product.contextCaption ?? product.tagline}
             </p>
           </Container>
