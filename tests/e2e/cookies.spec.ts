@@ -38,6 +38,17 @@ test('cookie banner fits a small phone and does not cover the menu', async ({ pa
   const banner = page.getByRole('dialog', { name: /cookies on oqtekal/i })
   const box = await banner.boundingBox()
   expect(box && box.x >= 0 && box.x + box.width <= 360).toBeTruthy()
+  // It is a bar across the bottom of the screen, and the WhatsApp button sits above it.
+  expect(box && Math.round(box.y + box.height)).toBe(740)
+  // The button slides up above the bar; wait for it to settle.
+  const whatsapp = page.getByRole('link', { name: /chat with oqtekal on whatsapp/i })
+  await expect
+    .poll(async () => {
+      const wa = await whatsapp.boundingBox()
+      const bar = await banner.boundingBox()
+      return Boolean(wa && bar && wa.y + wa.height <= bar.y)
+    })
+    .toBe(true)
   await page.getByRole('button', { name: 'Open menu' }).click()
   await expect(page.getByRole('dialog', { name: 'Menu' })).toBeVisible()
 })

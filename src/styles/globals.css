@@ -644,3 +644,21 @@ html[data-intro='out'] .oq-intro {
     background-position: -200% 0;
   }
 }
+
+@keyframes tab-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes bar-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}

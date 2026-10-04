@@ -1,27 +1,17 @@
 'use client'
 
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
+
+import { useHeroRotation } from './HeroRotation'
 
 /**
- * Cycles the last word of the headline. All words are stacked in one grid cell so the line
- * keeps the width of the longest word (no layout shift); screen readers get the full list.
+ * The last word of the headline, driven by the shared hero clock. All words are stacked in one
+ * grid cell so the line keeps the width of the longest word (no layout shift); screen readers
+ * get the full list.
  */
-export const RotatingWord = ({
-  words,
-  interval = 2600,
-}: {
-  words: string[]
-  interval?: number
-}) => {
-  const reduce = useReducedMotion()
-  const [i, setI] = useState(0)
-
-  useEffect(() => {
-    if (reduce || words.length < 2) return
-    const t = setInterval(() => setI((v) => (v + 1) % words.length), interval)
-    return () => clearInterval(t)
-  }, [words.length, interval, reduce])
+export const RotatingWord = ({ words }: { words: string[] }) => {
+  const { index } = useHeroRotation()
+  const word = words[index % words.length] ?? words[0]
 
   return (
     <span className="relative inline-grid align-bottom">
@@ -37,14 +27,14 @@ export const RotatingWord = ({
       >
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
-            key={words[i]}
+            key={word}
             className="block whitespace-nowrap text-accent"
             initial={{ y: '100%', opacity: 0, filter: 'blur(6px)' }}
             animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
             exit={{ y: '-100%', opacity: 0, filter: 'blur(6px)' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            {words[i]}
+            {word}
           </motion.span>
         </AnimatePresence>
       </span>

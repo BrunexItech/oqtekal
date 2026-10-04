@@ -84,3 +84,25 @@ test('footer fits small phones', async ({ page, isMobile }) => {
   const box = await subscribe.boundingBox()
   expect(box && box.x + box.width).toBeLessThanOrEqual(360)
 })
+
+test('hero fits the phone screen and its showcase tabs work', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'mobile only')
+  await page.setViewportSize({ width: 360, height: 780 })
+  await page.goto('/')
+  for (const el of [
+    page.locator('h1'),
+    page.locator('main').getByRole('link', { name: 'Start a project' }).first(),
+  ]) {
+    const box = await el.boundingBox()
+    expect(
+      box && box.x >= 0 && box.x + box.width <= 360,
+      'hero content must stay inside the screen',
+    ).toBeTruthy()
+  }
+  const tabs = page.getByRole('group', { name: 'Products shown' })
+  await tabs.getByRole('button', { name: 'Schools' }).click()
+  await expect(tabs.getByRole('button', { name: 'Schools' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+})
