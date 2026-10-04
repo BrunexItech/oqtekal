@@ -14,7 +14,7 @@ import { ContactForm, type LeadType } from '@/features/contact'
 import { breadcrumbJsonLd, buildMetadata, JsonLd } from '@/features/seo'
 import { getSiteSettings } from '@/features/site'
 import { SocialLinks } from '@/features/social'
-import { formatWhatsapp, whatsappLink } from '@/lib/site'
+import { formatWhatsapp, sameNumber, whatsappLink } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Contact',
@@ -52,7 +52,9 @@ export default async function ContactPage({ searchParams }: Props) {
     {
       icon: <BrandIcon name="whatsapp" className="size-5" />,
       label: 'WhatsApp',
-      value: formatWhatsapp(settings.whatsapp),
+      value: sameNumber(settings.phone, settings.whatsapp)
+        ? 'Chat with an engineer'
+        : formatWhatsapp(settings.whatsapp),
       href: whatsappLink(settings.whatsapp, 'Hello Oqtekal, I would like to talk about a project.'),
     },
   ]

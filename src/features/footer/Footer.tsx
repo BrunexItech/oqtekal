@@ -2,9 +2,10 @@ import Link from 'next/link'
 
 import { Container } from '@/design-system'
 import { Logo, Symbol } from '@/features/brand'
+import { CookieSettingsLink } from '@/features/cookies'
 import type { NavData } from '@/features/navigation'
 import { SocialLinks } from '@/features/social'
-import { formatWhatsapp, whatsappLink } from '@/lib/site'
+import { formatWhatsapp, sameNumber, whatsappLink } from '@/lib/site'
 import type { SiteSetting } from '@/payload-types'
 
 import { NewsletterForm } from './NewsletterForm'
@@ -38,6 +39,7 @@ const Column = ({ title, links }: { title: string; links: { title: string; href:
 
 export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting }) => {
   const year = new Date().getFullYear()
+  const oneNumber = sameNumber(settings.phone, settings.whatsapp)
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-paper">
       <Symbol className="pointer-events-none absolute -right-[8%] -bottom-[18%] -z-10 size-[min(80vw,52rem)] text-white/[0.025]" />
@@ -75,18 +77,35 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
                   <a href={`tel:${settings.phone.replace(/\s/g, '')}`} className="hover:text-white">
                     {settings.phone}
                   </a>
+                  {oneNumber ? (
+                    <>
+                      <span aria-hidden className="mx-2 text-paper/30">
+                        ·
+                      </span>
+                      <a
+                        href={whatsappLink(settings.whatsapp)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-white"
+                      >
+                        WhatsApp
+                      </a>
+                    </>
+                  ) : null}
                 </li>
-                <li>
-                  <a
-                    href={whatsappLink(settings.whatsapp)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-white"
-                  >
-                    <span className="sr-only">WhatsApp </span>
-                    {formatWhatsapp(settings.whatsapp)}
-                  </a>
-                </li>
+                {oneNumber ? null : (
+                  <li>
+                    <a
+                      href={whatsappLink(settings.whatsapp)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white"
+                    >
+                      <span className="sr-only">WhatsApp </span>
+                      {formatWhatsapp(settings.whatsapp)}
+                    </a>
+                  </li>
+                )}
                 <li className="whitespace-pre-line text-paper/60">{settings.address}</li>
                 {settings.hours ? <li className="text-paper/60">{settings.hours}</li> : null}
               </ul>
@@ -118,6 +137,14 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
               <Link href="/legal/terms" className="hover:text-white">
                 Terms
               </Link>
+            </li>
+            <li>
+              <Link href="/legal/cookies" className="hover:text-white">
+                Cookies
+              </Link>
+            </li>
+            <li>
+              <CookieSettingsLink className="hover:text-white" />
             </li>
             <li>Engineered in Nairobi</li>
           </ul>

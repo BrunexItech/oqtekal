@@ -2,9 +2,10 @@ import '@/styles/globals.css'
 
 import type { Metadata, Viewport } from 'next'
 import { Archivo, Inter, JetBrains_Mono } from 'next/font/google'
-import Script from 'next/script'
+import { cookies } from 'next/headers'
 import { Suspense, type ReactNode } from 'react'
 
+import { CONSENT_COOKIE, CookieConsent, parseConsent } from '@/features/cookies'
 import { Footer } from '@/features/footer'
 import { IntroLoader } from '@/features/intro-loader'
 import { Header, getNavData } from '@/features/navigation'
@@ -65,6 +66,7 @@ const UMAMI_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
 
 export default async function SiteLayout({ children }: { children: ReactNode }) {
   const [nav, settings, draft] = await Promise.all([getNavData(), getSiteSettings(), isDraft()])
+  const consent = parseConsent((await cookies()).get(CONSENT_COOKIE)?.value)
 
   return (
     <html
@@ -90,9 +92,10 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
         <Footer nav={nav} settings={settings} />
         <WhatsAppButton number={settings.whatsapp} />
         <JsonLd data={organizationJsonLd(settings)} />
-        {UMAMI_SRC && UMAMI_ID ? (
-          <Script src={UMAMI_SRC} data-website-id={UMAMI_ID} strategy="afterInteractive" />
-        ) : null}
+        <CookieConsent
+          initial={consent}
+          analytics={UMAMI_SRC && UMAMI_ID ? { src: UMAMI_SRC, websiteId: UMAMI_ID } : null}
+        />
       </body>
     </html>
   )

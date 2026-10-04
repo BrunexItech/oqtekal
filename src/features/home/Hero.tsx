@@ -1,10 +1,11 @@
-import Image from 'next/image'
-
-import { ArrowRight, BrandIcon, ButtonLink, Container } from '@/design-system'
+import { ArrowRight, ButtonLink, Container } from '@/design-system'
 import type { HomePage, SiteSetting } from '@/payload-types'
 
 import { HeroSystem } from './HeroSystem'
 import { RotatingWord } from './RotatingWord'
+
+/** Who the products serve — shown under the hero buttons. */
+const AUDIENCES = ['Schools', 'Property', 'Retail', 'SACCOs', 'Healthcare', 'Enterprises']
 
 type Props = {
   hero: HomePage['hero']
@@ -51,24 +52,16 @@ export const Hero = ({ hero, stats, showStats }: Props) => {
             </ButtonLink>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted">
-            <span>Integrates with</span>
-            <span className="flex items-center rounded-lg bg-white px-2 py-1 ring-1 ring-line">
-              <Image
-                src="/brand/partners/mpesa.png"
-                alt="M-Pesa"
-                width={640}
-                height={234}
-                className="h-5 w-auto"
-              />
-            </span>
-            <span className="flex items-center gap-1.5 font-medium text-fg/80">
-              <BrandIcon name="whatsapp" colored className="size-[1.1rem]" /> WhatsApp
-            </span>
-            <span className="flex items-center gap-1.5 font-medium text-fg/80">
-              <BrandIcon name="cloudflare" colored className="size-[1.1rem]" /> Cloudflare
-            </span>
-            <span className="font-medium text-fg/80">KRA eTIMS</span>
+          <div className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm">
+            <span className="mr-2 text-muted">Cloud software for</span>
+            {AUDIENCES.map((a) => (
+              <span
+                key={a}
+                className="rounded-full border border-line bg-surface/70 px-3 py-1 font-medium text-fg/80 backdrop-blur"
+              >
+                {a}
+              </span>
+            ))}
           </div>
         </div>
 

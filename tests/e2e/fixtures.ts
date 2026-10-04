@@ -1,9 +1,15 @@
 import { test as base } from '@playwright/test'
 
-/** Skips the first-visit intro animation so tests interact with the page immediately. */
+/** Skips the first-visit intro and cookie banner so tests interact with the page immediately. */
 export const test = base.extend({
-  page: async ({ page }, use) => {
+  page: async ({ page, baseURL }, use) => {
     await page.addInitScript(() => sessionStorage.setItem('oq-intro', '1'))
+    // A returning visitor who already answered the cookie banner.
+    await page
+      .context()
+      .addCookies([
+        { name: 'oq_consent', value: 'essential', url: baseURL ?? 'http://localhost:3000' },
+      ])
     await use(page)
   },
 })
@@ -46,4 +52,5 @@ export const PAGES = [
   '/contact',
   '/legal/privacy',
   '/legal/terms',
+  '/legal/cookies',
 ]

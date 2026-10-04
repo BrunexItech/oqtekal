@@ -415,6 +415,38 @@ export const legal = {
       ],
     ],
   },
+  cookies: {
+    title: 'Cookie policy',
+    summary: 'Which cookies oqtekal.com uses, why, and how to change your choice.',
+    body: [
+      [
+        'p',
+        'Cookies are small files a website stores in your browser. We keep them to a minimum and give you a clear choice.',
+      ],
+      ['h2', 'Essential cookies'],
+      [
+        'p',
+        'These are required for the site to work and cannot be switched off: a cookie that remembers your cookie choice (oq_consent, kept for one year), and security cookies set by our network provider, Cloudflare, to protect the site and its forms from abuse.',
+      ],
+      ['h2', 'Preferences stored on your device'],
+      [
+        'p',
+        'Your light or dark theme choice is saved in your browser so the site looks the same on your next visit. It is never sent to us.',
+      ],
+      ['h2', 'Analytics (optional)'],
+      [
+        'p',
+        'If you choose "Accept all", we load privacy-friendly analytics to understand which pages are useful. It does not identify you personally and is never used for advertising. If you choose "Essential only", it is not loaded.',
+      ],
+      ['h2', 'Changing your choice'],
+      [
+        'p',
+        'Use "Cookie settings" at the bottom of any page to change your choice at any time. You can also clear cookies in your browser settings.',
+      ],
+      ['h2', 'Questions'],
+      ['p', 'Email hello@oqtekal.com and we will be glad to help.'],
+    ],
+  },
   terms: {
     title: 'Terms of use',
     summary: 'The terms that apply when you use oqtekal.com.',
@@ -446,7 +478,7 @@ export const legal = {
 
 export const settings = {
   email: 'hello@oqtekal.com',
-  phone: '+254 721 928 966',
+  phone: '+254 715 274 418',
   whatsapp: '254715274418',
   address: 'Hill Flats Suites\nState House Rd, Room 5\nP.O. Box 25081-00603\nNairobi',
   hours: 'Mon – Fri, 8:00 – 18:00 EAT',
@@ -463,12 +495,12 @@ export const settings = {
 
 export const home = {
   hero: {
-    eyebrow: 'Software engineering company · Nairobi',
+    eyebrow: 'SaaS & software engineering · Nairobi',
     heading: 'We engineer the software that runs',
-    rotatingWords: ['businesses.', 'schools.', 'payments.', 'property.', 'Africa.'].map((word) => ({
+    rotatingWords: ['businesses.', 'schools.', 'property.', 'SACCOs.', 'Africa.'].map((word) => ({
       word,
     })),
-    text: 'Custom systems, mobile apps, M-Pesa payments and cloud hosting — designed, built and run by one accountable team in Nairobi.',
+    text: 'Cloud software for schools, property, retail, SACCOs and enterprises — built, hosted and supported by one accountable team in Nairobi.',
     primaryLabel: 'Start a project',
     secondaryLabel: 'Explore products',
   },

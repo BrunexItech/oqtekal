@@ -1,7 +1,6 @@
 'use client'
 
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import Image from 'next/image'
 import { useEffect, useState, type ReactNode } from 'react'
 
 import { BrandIcon, Check } from '@/design-system'
@@ -9,18 +8,18 @@ import { Symbol } from '@/features/brand'
 import { cn } from '@/lib/cn'
 
 /* --------------------------------------------------------------------------------------------
- * "What we do", shown rather than told: a payment arriving and reconciling, a customer
+ * "What we do", shown rather than told: a customer workspace going live, a customer
  * conversation, a business metric and a production deploy — all wired to one Oqtekal core.
  * Purely decorative (aria-hidden); the hero text carries the meaning for assistive tech.
  * ------------------------------------------------------------------------------------------ */
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
-const PAYMENTS = [
-  { amount: 'KES 7,850', ref: 'Order #5512', from: 'Savanna Foods' },
-  { amount: 'KES 45,000', ref: 'Rent · Unit A3', from: 'Riverside Apts' },
-  { amount: 'KES 18,200', ref: 'Fees · ADM 1043', from: 'Kiambu High' },
-  { amount: 'KES 2,500', ref: 'Till 889201', from: 'Duka Express' },
+const WORKSPACES = [
+  { org: 'Kiambu High School', product: 'School Management', detail: '1,284 students', hue: 222 },
+  { org: 'Riverside Apartments', product: 'Property Management', detail: '24 units', hue: 172 },
+  { org: 'Savanna Foods', product: 'ERP Suite', detail: '3 branches', hue: 28 },
+  { org: 'Umoja SACCO', product: 'SACCO Management', detail: '3,412 members', hue: 265 },
 ]
 
 const CHATS = [
@@ -29,8 +28,8 @@ const CHATS = [
     q: 'Is my order ready for pickup?',
     a: 'Yes — collect from 2pm at Westlands.',
   },
-  { name: 'Brian O.', q: 'Can I pay rent via M-Pesa?', a: 'Paybill 522522, account A3. Done!' },
-  { name: 'Faith M.', q: 'Has my child’s fee cleared?', a: 'Received KES 18,200. Balance: 0.' },
+  { name: 'Brian O.', q: 'Is unit A3 still available?', a: 'It is — viewing booked for 4pm.' },
+  { name: 'Faith M.', q: 'Can I see the term report?', a: 'Sent — it is in the parent portal.' },
 ]
 
 /** Cycles an index every `ms` (paused for reduced motion). */
@@ -76,19 +75,21 @@ const Label = ({ children }: { children: ReactNode }) => (
 
 /* ---- the four moments -------------------------------------------------------------------- */
 
-const PaymentCard = ({ delay }: { delay: number }) => {
-  const i = useTicker(PAYMENTS.length, 3400)
-  const p = PAYMENTS[i]!
+const initialsOf = (name: string) =>
+  name
+    .split(' ')
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join('')
+
+/** A new customer going live on one of the products — the SaaS moment. */
+const WorkspaceCard = ({ delay }: { delay: number }) => {
+  const i = useTicker(WORKSPACES.length, 3400)
+  const w = WORKSPACES[i]!
   return (
     <Card delay={delay}>
       <div className="flex items-center justify-between gap-[0.6em]">
-        <Image
-          src="/brand/partners/mpesa.png"
-          alt=""
-          width={640}
-          height={234}
-          className="h-[1.35em] w-auto"
-        />
+        <Label>New workspace</Label>
         <span className="flex items-center gap-[0.35em] rounded-full bg-success/12 px-[0.6em] py-[0.2em] text-[0.62em] font-medium text-success">
           <span className="size-[0.45em] animate-[pulse-dot_2s_infinite] rounded-full bg-success" />
           Live
@@ -103,14 +104,24 @@ const PaymentCard = ({ delay }: { delay: number }) => {
           transition={{ duration: 0.45, ease: EASE }}
           className="mt-[0.7em]"
         >
-          <p className="font-display text-[1.45em] leading-none font-semibold tracking-tight">
-            {p.amount}
-          </p>
-          <p className="mt-[0.35em] text-[0.7em] text-muted">
-            {p.from} · {p.ref}
-          </p>
-          <p className="mt-[0.55em] flex items-center gap-[0.35em] text-[0.68em] font-medium text-success">
-            <Check className="size-[1.1em]" /> Reconciled automatically
+          <div className="flex items-center gap-[0.6em]">
+            <span
+              className="grid size-[2.2em] shrink-0 place-items-center rounded-[0.6em] text-[0.7em] font-semibold text-white"
+              style={{ background: `hsl(${w.hue} 68% 46%)` }}
+            >
+              {initialsOf(w.org)}
+            </span>
+            <div className="min-w-0">
+              <p className="truncate font-display text-[0.95em] leading-tight font-semibold tracking-tight">
+                {w.org}
+              </p>
+              <p className="truncate text-[0.68em] text-muted">
+                {w.product} · {w.detail}
+              </p>
+            </div>
+          </div>
+          <p className="mt-[0.7em] flex items-center gap-[0.35em] text-[0.68em] font-medium text-success">
+            <Check className="size-[1.1em]" /> Set up and running in minutes
           </p>
         </motion.div>
       </AnimatePresence>
@@ -184,10 +195,10 @@ const MetricCard = ({ delay }: { delay: number }) => {
     .join(' ')
   return (
     <Card delay={delay}>
-      <Label>Revenue · this month</Label>
+      <Label>Active users · this month</Label>
       <div className="mt-[0.4em] flex items-baseline gap-[0.5em]">
         <p className="font-display text-[1.45em] leading-none font-semibold tracking-tight">
-          KES 4.2M
+          12,480
         </p>
         <span className="text-[0.66em] font-medium text-success">▲ 18.4%</span>
       </div>
@@ -221,7 +232,7 @@ const MetricCard = ({ delay }: { delay: number }) => {
           transition={{ duration: 1.6, ease: EASE, delay: delay + 0.3 }}
         />
       </svg>
-      <p className="mt-[0.4em] text-[0.62em] text-subtle">ERP · finance dashboard</p>
+      <p className="mt-[0.4em] text-[0.62em] text-subtle">Usage dashboard · sample data</p>
     </Card>
   )
 }
@@ -340,7 +351,7 @@ export const HeroSystem = ({ className }: { className?: string }) => (
           <ChatCard delay={0.5} />
         </div>
         <div className="absolute top-0 right-0 w-[42%]">
-          <PaymentCard delay={0.35} />
+          <WorkspaceCard delay={0.35} />
         </div>
         <div className="absolute bottom-[2%] left-[1%] w-[43%]">
           <MetricCard delay={0.65} />
@@ -353,7 +364,7 @@ export const HeroSystem = ({ className }: { className?: string }) => (
 
     {/* Phones: the same moments as a tidy two-column grid. */}
     <div className="grid grid-cols-2 gap-3 text-[13px] md:hidden">
-      <PaymentCard delay={0.2} />
+      <WorkspaceCard delay={0.2} />
       <DeployCard delay={0.3} />
       <div className="col-span-2">
         <ChatCard delay={0.4} />

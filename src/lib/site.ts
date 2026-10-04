@@ -38,3 +38,9 @@ export const formatWhatsapp = (number: string): string => {
   const m = d.match(/^254(\d{3})(\d{3})(\d{3})$/)
   return m ? `+254 ${m[1]} ${m[2]} ${m[3]}` : `+${d}`
 }
+
+/** True when the call number and the WhatsApp number are the same line. */
+export const sameNumber = (phone: string, whatsapp: string): boolean => {
+  const digits = (v: string) => v.replace(/\D/g, '').replace(/^0/, '254')
+  return digits(phone) === digits(whatsapp)
+}
