@@ -2,6 +2,12 @@ import AxeBuilder from '@axe-core/playwright'
 
 import { expect, PAGES, test } from './fixtures'
 
+// Audit finished pages: with reduced motion the site skips its fade-ins, so contrast is never
+// measured halfway through an animation.
+test.beforeEach(async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+})
+
 for (const path of PAGES) {
   test(`${path} renders, has one h1, no horizontal scroll, and passes axe`, async ({ page }) => {
     const errors: string[] = []

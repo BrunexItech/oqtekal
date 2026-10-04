@@ -645,15 +645,6 @@ html[data-intro='out'] .oq-intro {
   }
 }
 
-@keyframes tab-fill {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
 @keyframes bar-in {
   from {
     transform: translateY(100%);

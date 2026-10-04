@@ -495,12 +495,12 @@ export const settings = {
 
 export const home = {
   hero: {
-    eyebrow: 'SaaS & software engineering · Nairobi',
+    eyebrow: 'Software engineering company · Nairobi',
     heading: 'We engineer the software that runs',
-    rotatingWords: ['businesses.', 'schools.', 'property.', 'SACCOs.', 'Africa.'].map((word) => ({
+    rotatingWords: ['businesses.', 'schools.', 'payments.', 'property.', 'Africa.'].map((word) => ({
       word,
     })),
-    text: 'Cloud software for schools, property, retail, SACCOs and enterprises — built, hosted and supported by one accountable team in Nairobi.',
+    text: 'Custom systems, mobile apps, M-Pesa payments and cloud hosting — designed, built and run by one accountable team in Nairobi.',
     primaryLabel: 'Start a project',
     secondaryLabel: 'Explore products',
   },
