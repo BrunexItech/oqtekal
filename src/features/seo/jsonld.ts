@@ -15,7 +15,13 @@ export const organizationJsonLd = (settings: SiteSetting) => ({
     '@type': 'PostalAddress',
     addressLocality: 'Nairobi',
     addressCountry: 'KE',
-    streetAddress: settings.address,
+    // Street lines only; the P.O. Box goes in its own field.
+    streetAddress: settings.address
+      .split('\n')
+      .map((l) => l.trim())
+      .filter((l) => l && !/^p\.?\s*o\.?\s*box/i.test(l) && !/^nairobi$/i.test(l))
+      .join(', '),
+    postOfficeBoxNumber: settings.address.match(/P\.?\s*O\.?\s*Box\s*([\w-]+)/i)?.[1],
   },
   sameAs: (settings.socials ?? []).map((s) => s.url),
 })

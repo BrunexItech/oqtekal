@@ -42,7 +42,7 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
     <footer className="relative isolate overflow-hidden bg-ink text-paper">
       <Symbol className="pointer-events-none absolute -right-[8%] -bottom-[18%] -z-10 size-[min(80vw,52rem)] text-white/[0.025]" />
 
-      <Container className="pt-20 pb-10 md:pt-28">
+      <Container className="pt-20 pb-28 sm:pb-10 md:pt-28">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_2fr] lg:gap-20">
           <div className="max-w-sm">
             <Logo variant="dark" tagline className="h-14 sm:h-16" />
@@ -93,7 +93,7 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
           </div>
         </div>
 
-        <div className="mt-16 grid gap-8 border-t border-white/10 pt-10 md:grid-cols-[1fr_auto] md:items-end">
+        <div className="mt-16 grid gap-8 border-t border-white/10 pt-10 md:grid-cols-[1fr_auto] md:items-end [&>*]:min-w-0">
           <div>
             <h2 className="font-display text-xl font-semibold tracking-tight">
               Field notes from our engineers

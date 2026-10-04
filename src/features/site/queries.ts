@@ -17,7 +17,7 @@ const DEFAULTS = {
   email: 'hello@oqtekal.com',
   phone: '+254 721 928 966',
   whatsapp: '254715274418',
-  address: 'Nairobi, Kenya',
+  address: 'Hill Flats Suites\nState House Rd, Room 5\nP.O. Box 25081-00603\nNairobi',
 }
 
 /** Company details with safe fallbacks, so an unfinished admin never breaks a page. */

@@ -65,3 +65,13 @@ test('product showcase tabs switch with the keyboard', async ({ page, isMobile }
   await page.keyboard.press('ArrowDown')
   await expect(tabs.getByRole('tab').nth(1)).toHaveAttribute('aria-selected', 'true')
 })
+
+test('footer fits small phones', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'mobile only')
+  await page.setViewportSize({ width: 360, height: 800 })
+  await page.goto('/contact')
+  const subscribe = page.locator('footer').getByRole('button', { name: /subscribe/i })
+  await subscribe.scrollIntoViewIfNeeded()
+  const box = await subscribe.boundingBox()
+  expect(box && box.x + box.width).toBeLessThanOrEqual(360)
+})

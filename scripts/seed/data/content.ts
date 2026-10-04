@@ -251,23 +251,6 @@ export const hostingPlans = [
 
 export const jobs = [
   {
-    title: 'Full-Stack Engineer (TypeScript / Python)',
-    location: 'Nairobi · Hybrid',
-    type: 'full-time',
-    summary:
-      'Build and improve the products and client systems that Kenyan organisations run on, from database to interface.',
-    responsibilities: [
-      'Design and build features across our products and client projects',
-      'Write clear, tested, maintainable code and review others’ work',
-      'Work directly with clients to understand real problems',
-    ],
-    requirements: [
-      '3+ years building production web applications',
-      'Strong TypeScript or Python, and solid SQL',
-      'Care for users, clarity and craft',
-    ],
-  },
-  {
     title: 'Engineering Intern',
     location: 'Nairobi · On-site',
     type: 'internship',
@@ -465,7 +448,7 @@ export const settings = {
   email: 'hello@oqtekal.com',
   phone: '+254 721 928 966',
   whatsapp: '254715274418',
-  address: 'Nairobi, Kenya',
+  address: 'Hill Flats Suites\nState House Rd, Room 5\nP.O. Box 25081-00603\nNairobi',
   hours: 'Mon – Fri, 8:00 – 18:00 EAT',
   // Only real, verified profiles belong here — add LinkedIn, X, etc. in the admin once they exist.
   socials: [{ platform: 'whatsapp', url: 'https://wa.me/254715274418' }],
