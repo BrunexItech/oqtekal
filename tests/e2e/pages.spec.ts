@@ -2,8 +2,23 @@ import AxeBuilder from '@axe-core/playwright'
 
 import { expect, PAGES, test } from './fixtures'
 
-// Audit finished pages: with reduced motion the site skips its fade-ins, so contrast is never
-// measured halfway through an animation.
+// Audit finished pages. Sections fade in as they load, and measuring contrast halfway through a
+// fade gives false failures, so wait until opacity has stopped changing everywhere.
+const settled = async (page: import('@playwright/test').Page) => {
+  const snapshot = () =>
+    page.evaluate(() =>
+      [...document.querySelectorAll('main *')].map((el) => getComputedStyle(el).opacity).join(),
+    )
+  let before = await snapshot()
+  await expect(async () => {
+    await page.waitForTimeout(250)
+    const after = await snapshot()
+    const stable = after === before
+    before = after
+    expect(stable, 'fade-ins still running').toBe(true)
+  }).toPass({ timeout: 10_000, intervals: [0] })
+}
+
 test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
 })
@@ -22,6 +37,7 @@ for (const path of PAGES) {
     )
     expect(overflow, 'page must not scroll horizontally').toBeLessThanOrEqual(1)
 
+    await settled(page)
     const axe = await new AxeBuilder({ page })
       .disableRules(['region'])
       // Product mock-ups are decorative illustrations (aria-hidden), not readable UI.
@@ -44,6 +60,7 @@ for (const path of ['/', '/services', '/products/tolkyn', '/hosting', '/contact'
     await page.addInitScript(() => localStorage.setItem('oq-theme', 'dark'))
     await page.goto(path)
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+    await settled(page)
     const axe = await new AxeBuilder({ page })
       .disableRules(['region'])
       .exclude('[data-decorative]')

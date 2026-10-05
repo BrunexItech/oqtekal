@@ -36,10 +36,15 @@ test('cookie banner fits a small phone and does not cover the menu', async ({ pa
   await page.setViewportSize({ width: 360, height: 740 })
   await page.goto('/')
   const banner = page.getByRole('dialog', { name: /cookies on oqtekal/i })
+  // It is a bar across the bottom of the screen (it slides in, so wait for it to land).
+  await expect
+    .poll(async () => {
+      const b = await banner.boundingBox()
+      return b && Math.round(b.y + b.height)
+    })
+    .toBe(740)
   const box = await banner.boundingBox()
   expect(box && box.x >= 0 && box.x + box.width <= 360).toBeTruthy()
-  // It is a bar across the bottom of the screen, and the WhatsApp button sits above it.
-  expect(box && Math.round(box.y + box.height)).toBe(740)
   // The button slides up above the bar; wait for it to settle.
   const whatsapp = page.getByRole('link', { name: /chat with oqtekal on whatsapp/i })
   await expect
