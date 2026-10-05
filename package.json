@@ -23,7 +23,8 @@
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run test:unit",
-    "admin:password": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/ops/set-admin-password.ts"
+    "admin:password": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/ops/set-admin-password.ts",
+    "brand:art": "tsx scripts/brand/current-field.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.90.2",

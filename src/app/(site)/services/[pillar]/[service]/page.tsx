@@ -71,8 +71,8 @@ export default async function ServicePage({ params }: Props) {
             <ButtonLink href="/contact" size="lg" icon={<ArrowRight className="size-4" />}>
               Discuss this service
             </ButtonLink>
-            <ButtonLink href="/work" size="lg" variant="secondary">
-              See our work
+            <ButtonLink href="/products" size="lg" variant="secondary">
+              See our products
             </ButtonLink>
           </>
         }

@@ -171,17 +171,19 @@ export const MobileMenu = ({
             { title: 'Hosting', href: '/hosting' },
             { title: 'Work', href: '/work' },
             { title: 'Insights', href: '/insights' },
-          ].map((l) => (
-            <li key={l.href}>
-              <Link
-                href={l.href}
-                onClick={onClose}
-                className="block py-4 font-display text-2xl font-semibold tracking-tight"
-              >
-                {l.title}
-              </Link>
-            </li>
-          ))}
+          ]
+            .filter((l) => l.href !== '/work' || nav.hasWork)
+            .map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  onClick={onClose}
+                  className="block py-4 font-display text-2xl font-semibold tracking-tight"
+                >
+                  {l.title}
+                </Link>
+              </li>
+            ))}
           <li>
             {groupButton('company', 'Company')}
             {group === 'company' ? (

@@ -1,4 +1,4 @@
-import { ArrowRight, BrandIcon, ButtonLink, Container } from '@/design-system'
+import { ArrowRight, ButtonLink, Container } from '@/design-system'
 import type { HomePage, SiteSetting } from '@/payload-types'
 
 import { HeroCurrent } from './HeroCurrent'
@@ -43,17 +43,6 @@ export const Hero = ({ hero, stats, showStats }: Props) => {
             <ButtonLink href="/products" size="lg" variant="secondary">
               {hero.secondaryLabel ?? 'Explore products'}
             </ButtonLink>
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted">
-            <span>Integrates with</span>
-            <span className="flex items-center gap-1.5 font-medium text-fg/80">
-              <BrandIcon name="whatsapp" colored className="size-[1.1rem]" /> WhatsApp
-            </span>
-            <span className="flex items-center gap-1.5 font-medium text-fg/80">
-              <BrandIcon name="cloudflare" colored className="size-[1.1rem]" /> Cloudflare
-            </span>
-            <span className="font-medium text-fg/80">KRA eTIMS</span>
           </div>
         </div>
 

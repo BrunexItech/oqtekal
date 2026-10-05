@@ -1,10 +1,14 @@
 import 'server-only'
 
+import type { Where } from 'payload'
 import { cache } from 'react'
 
 import { cachedQuery } from '@/lib/cache'
 import { getPayloadClient, isDraft, publishedOnly } from '@/lib/payload'
 import type { CaseStudy } from '@/payload-types'
+
+/** Sample entries stay in the admin as examples; the public site only shows real ones. */
+const realOnly = (draft: boolean): Where => (draft ? {} : { isPlaceholder: { not_equals: true } })
 
 const fetchStudies = async (
   featured: boolean,
@@ -18,7 +22,11 @@ const fetchStudies = async (
     limit,
     depth: 1,
     draft,
-    where: { ...publishedOnly(draft), ...(featured ? { featured: { equals: true } } : {}) },
+    where: {
+      ...publishedOnly(draft),
+      ...realOnly(draft),
+      ...(featured ? { featured: { equals: true } } : {}),
+    },
   })
   return res.docs
 }
@@ -30,7 +38,7 @@ const fetchStudy = async (slug: string, draft: boolean): Promise<CaseStudy | nul
     limit: 1,
     depth: 2,
     draft,
-    where: { slug: { equals: slug }, ...publishedOnly(draft) },
+    where: { slug: { equals: slug }, ...publishedOnly(draft), ...realOnly(draft) },
   })
   return res.docs[0] ?? null
 }

@@ -1,4 +1,5 @@
 export { AvailabilityTag, ProductCard } from './ProductCard'
+export { ProductIndex, type IndexItem } from './ProductIndex'
 export { ProductMedia } from './ProductMedia'
 export { ProductShowcase, type ShowcaseItem } from './ProductShowcase'
 export { getProduct, getProducts } from './queries'

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { Container } from '@/design-system'
-import { Logo, Symbol } from '@/features/brand'
+import { CurrentArt, Logo } from '@/features/brand'
 import { CookieSettingsLink } from '@/features/cookies'
 import type { NavData } from '@/features/navigation'
 import { SocialLinks } from '@/features/social'
@@ -42,7 +42,7 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
   const oneNumber = sameNumber(settings.phone, settings.whatsapp)
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-paper">
-      <Symbol className="pointer-events-none absolute -right-[8%] -bottom-[18%] -z-10 size-[min(80vw,52rem)] text-white/[0.025]" />
+      <CurrentArt className="-z-10 [mask-image:linear-gradient(90deg,transparent_10%,black_75%)] object-right-bottom opacity-30" />
 
       <Container className="pt-20 pb-28 sm:pb-10 md:pt-28">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_2fr] lg:gap-20">
@@ -64,7 +64,10 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
               title="Products"
               links={nav.products.map((p) => ({ title: p.name, href: p.href }))}
             />
-            <Column title="Company" links={company} />
+            <Column
+              title="Company"
+              links={company.filter((l) => l.href !== '/work' || nav.hasWork)}
+            />
             <div className="col-span-2 sm:col-span-3 lg:col-span-1">
               <h2 className="text-label text-paper/50">Contact</h2>
               <ul className="mt-5 space-y-3 text-[0.95rem] text-paper/80">
@@ -74,7 +77,10 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
                   </a>
                 </li>
                 <li>
-                  <a href={`tel:${settings.phone.replace(/\s/g, '')}`} className="hover:text-white">
+                  <a
+                    href={`tel:${settings.phone.replace(/\s/g, '')}`}
+                    className="whitespace-nowrap hover:text-white"
+                  >
                     {settings.phone}
                   </a>
                   {oneNumber ? (

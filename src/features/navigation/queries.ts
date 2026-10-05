@@ -9,7 +9,7 @@ import type { NavData } from './types'
 
 const fetchNav = async (): Promise<NavData> => {
   const payload = await getPayloadClient()
-  const [pillars, services, products] = await Promise.all([
+  const [pillars, services, products, work] = await Promise.all([
     payload.find({
       collection: 'pillars',
       sort: 'order',
@@ -33,6 +33,10 @@ const fetchNav = async (): Promise<NavData> => {
       where: { _status: { equals: 'published' } },
       select: { name: true, slug: true, tagline: true, category: true },
     }),
+    payload.count({
+      collection: 'case-studies',
+      where: { _status: { equals: 'published' }, isPlaceholder: { not_equals: true } },
+    }),
   ])
 
   return {
@@ -50,6 +54,7 @@ const fetchNav = async (): Promise<NavData> => {
       category: p.category,
       href: `/products/${p.slug}`,
     })),
+    hasWork: work.totalDocs > 0,
   }
 }
 

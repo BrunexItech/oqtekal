@@ -11,7 +11,6 @@ const STATIC = [
   '/services',
   '/products',
   '/hosting',
-  '/work',
   '/about',
   '/insights',
   '/careers',
@@ -47,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       collection: 'case-studies',
       limit: 200,
       depth: 0,
-      where: published,
+      where: { ...published, isPlaceholder: { not_equals: true } },
       select: { slug: true, updatedAt: true },
     }),
     payload.find({
@@ -80,6 +79,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...pillars.docs.map((d) => entry(`/services/${d.slug}`, d.updatedAt, 0.7)),
     ...services.docs.filter((d) => d.path).map((d) => entry(d.path!, d.updatedAt, 0.7)),
     ...products.docs.map((d) => entry(`/products/${d.slug}`, d.updatedAt, 0.8)),
+    // The Work page only exists once there is a real case study to show.
+    ...(studies.docs.length ? [entry('/work', undefined, 0.8)] : []),
     ...studies.docs.map((d) => entry(`/work/${d.slug}`, d.updatedAt)),
     ...posts.docs.map((d) => entry(`/insights/${d.slug}`, d.updatedAt)),
     ...pages.docs.map((d) => entry(`/legal/${d.slug}`, d.updatedAt, 0.3)),

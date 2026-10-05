@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 import { Container, PageHeader, Reveal, Section } from '@/design-system'
+import { CurrentArt } from '@/features/brand'
 import { CtaSection } from '@/features/cta'
 import { breadcrumbJsonLd, buildMetadata, JsonLd } from '@/features/seo'
 import { getSiteSettings } from '@/features/site'
@@ -20,21 +22,14 @@ export default async function WorkPage() {
     { name: 'Home', path: '/' },
     { name: 'Work', path: '/work' },
   ]
+  // No page until there is real work to show (samples are hidden from the public site).
+  if (!studies.length) notFound()
   const [first, ...rest] = studies
   return (
     <>
       <PageHeader
-        variant="split"
-        image={{
-          src: '/images/analytics.jpg',
-          alt: 'Performance analytics dashboard on a laptop',
-          caption: (
-            <p className="text-sm">
-              <span className="block font-semibold">Results you can measure</span>
-              <span className="text-muted">Faster payments, fewer errors, less admin.</span>
-            </p>
-          ),
-        }}
+        variant="art"
+        art={<CurrentArt className="object-[78%_center] lg:object-right" />}
         crumbs={crumbs}
         eyebrow="Case studies"
         title="Measured by results, not deliverables."

@@ -18,9 +18,13 @@ type Props = {
   lead?: ReactNode
   actions?: ReactNode
   aside?: ReactNode
-  /** `cinematic`: full-bleed photo behind the text. `split`: text beside a framed photo. */
-  variant?: 'default' | 'cinematic' | 'split'
+  /**
+   * `cinematic`: full-bleed photo behind the text. `split`: text beside a framed photo.
+   * `art`: the same dark stage as cinematic, with brand artwork (pass it as `art`) instead of a photo.
+   */
+  variant?: 'default' | 'cinematic' | 'split' | 'art'
   image?: HeaderImage
+  art?: ReactNode
   className?: string
 }
 
@@ -38,25 +42,36 @@ export const PageHeader = ({
   aside,
   variant = 'default',
   image,
+  art,
   className,
 }: Props) => {
-  if (variant === 'cinematic' && image) {
+  if ((variant === 'cinematic' && image) || (variant === 'art' && art)) {
     return (
       <header className={cn('relative isolate overflow-hidden bg-ink text-paper', className)}>
-        <ImageLoading tone="dark" className="-z-20" />
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="-z-20 animate-[slow-zoom_24s_ease-out_both] object-cover motion-reduce:animate-none"
-          style={{ objectPosition: image.position ?? 'center' }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(7_10_18/0.92)_0%,rgb(7_10_18/0.72)_45%,rgb(7_10_18/0.25)_100%),linear-gradient(0deg,rgb(7_10_18/0.85)_0%,transparent_45%)]"
-        />
+        {variant === 'cinematic' && image ? (
+          <>
+            <ImageLoading tone="dark" className="-z-20" />
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              priority
+              sizes="100vw"
+              className="-z-20 animate-[slow-zoom_24s_ease-out_both] object-cover motion-reduce:animate-none"
+              style={{ objectPosition: image.position ?? 'center' }}
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(7_10_18/0.92)_0%,rgb(7_10_18/0.72)_45%,rgb(7_10_18/0.25)_100%),linear-gradient(0deg,rgb(7_10_18/0.85)_0%,transparent_45%)]"
+            />
+          </>
+        ) : (
+          <div aria-hidden className="absolute inset-0 -z-10">
+            {art}
+            {/* Keeps the text side calm on narrow screens, where the artwork sits behind it. */}
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(11_15_25/0.86)_0%,rgb(11_15_25/0.55)_55%,transparent_100%)] lg:bg-[linear-gradient(90deg,rgb(11_15_25/0.7)_0%,transparent_55%)]" />
+          </div>
+        )}
         <Container className="flex min-h-[min(60svh,35rem)] flex-col pt-8 pb-14 md:pt-10 md:pb-20">
           {crumbs?.length ? (
             <Breadcrumbs

@@ -1,4 +1,4 @@
-import { BrandIcon, Container, Marquee, type BrandName } from '@/design-system'
+import { BrandIcon, Container, type BrandName } from '@/design-system'
 
 const STACK: { name: BrandName; label: string }[] = [
   { name: 'nextjs', label: 'Next.js' },
@@ -19,22 +19,19 @@ const STACK: { name: BrandName; label: string }[] = [
   { name: 'cloudflare', label: 'Cloudflare' },
 ]
 
-/** "Built with" strip of the mainstream technologies we use. */
+/** "Built with": the mainstream technologies we use, as one quiet, still line. */
 export const TechStrip = () => (
-  <section aria-label="Technologies we use" className="border-y border-line py-8">
-    <Container className="flex flex-col items-center gap-6 md:flex-row md:gap-10">
-      <p className="shrink-0 text-label text-muted">Built with proven technology</p>
-      <Marquee duration={45} className="w-full">
+  <section aria-label="Technologies we use" className="border-y border-line py-8 md:py-9">
+    <Container>
+      <p className="text-label text-muted">Built with proven technology</p>
+      <ul className="mt-5 flex flex-wrap gap-x-7 gap-y-3.5">
         {STACK.map((t) => (
-          <span
-            key={t.name}
-            className="mx-7 flex items-center gap-3 text-fg/80 transition-colors hover:text-fg"
-          >
-            <BrandIcon name={t.name} colored className="size-6" />
-            <span className="text-[0.95rem] font-medium whitespace-nowrap">{t.label}</span>
-          </span>
+          <li key={t.name} className="flex items-center gap-2.5 text-fg/80">
+            <BrandIcon name={t.name} colored className="size-5" />
+            <span className="text-[0.92rem] font-medium whitespace-nowrap">{t.label}</span>
+          </li>
         ))}
-      </Marquee>
+      </ul>
     </Container>
   </section>
 )

@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
 
-import { ArrowRight, ButtonLink, Container, PageHeader, Reveal, Section } from '@/design-system'
+import { ArrowRight, ButtonLink, Container, PageHeader, Section } from '@/design-system'
+import { CurrentArt } from '@/features/brand'
 import { CtaSection } from '@/features/cta'
-import { getProducts, ProductCard } from '@/features/products'
+import { CmsImage } from '@/features/media'
+import { AvailabilityTag, getProducts, ProductIndex, ProductMedia } from '@/features/products'
 import { breadcrumbJsonLd, buildMetadata, JsonLd } from '@/features/seo'
 import { getSiteSettings } from '@/features/site'
+import { asMedia } from '@/lib/media'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Products',
@@ -30,12 +33,8 @@ export default async function ProductsPage() {
   return (
     <>
       <PageHeader
-        variant="cinematic"
-        image={{
-          src: '/images/code-colorful.jpg',
-          alt: 'Source code on a laptop screen',
-          position: 'center',
-        }}
+        variant="art"
+        art={<CurrentArt className="object-[78%_center] lg:object-right" />}
         crumbs={crumbs}
         eyebrow={`${products.length} products`}
         title="Proven systems, ready to adapt."
@@ -49,13 +48,29 @@ export default async function ProductsPage() {
 
       <Section>
         <Container>
-          <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-            {products.map((p, i) => (
-              <Reveal key={p.id} delay={(i % 2) * 0.08} className="h-full">
-                <ProductCard product={p} priority={i < 2} />
-              </Reveal>
-            ))}
-          </div>
+          <ProductIndex
+            items={products.map((p, i) => {
+              const photo = asMedia(p.contextImage)
+              return {
+                slug: p.slug,
+                name: p.name,
+                tagline: p.tagline,
+                category: p.category,
+                tag: <AvailabilityTag value={p.availability} />,
+                media: photo ? (
+                  <CmsImage
+                    media={photo}
+                    sizes="(min-width: 1024px) 30rem, 1px"
+                    priority={i === 0}
+                  />
+                ) : (
+                  <div className="grid size-full place-items-center p-6">
+                    <ProductMedia product={p} />
+                  </div>
+                ),
+              }
+            })}
+          />
         </Container>
       </Section>
 

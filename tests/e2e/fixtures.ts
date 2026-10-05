@@ -43,8 +43,6 @@ export const PAGES = [
     'ecommerce',
   ].map((slug) => `/products/${slug}`),
   '/hosting',
-  '/work',
-  '/work/retail-group-unified-inbox',
   '/about',
   '/insights',
   '/insights/mpesa-stk-push-reliable-integration',

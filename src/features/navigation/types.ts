@@ -5,6 +5,8 @@ export type NavProduct = { name: string; href: string; tagline: string; category
 export type NavData = {
   pillars: NavPillar[]
   products: NavProduct[]
+  /** True once at least one real case study is published; the Work page is hidden until then. */
+  hasWork: boolean
 }
 
 export const COMPANY_LINKS = [

@@ -9,6 +9,7 @@ import {
   Section,
   SectionHeader,
 } from '@/design-system'
+import { CurrentArt } from '@/features/brand'
 import { CtaSection } from '@/features/cta'
 import { breadcrumbJsonLd, buildMetadata, JsonLd } from '@/features/seo'
 import { getPillarsWithServices, ServicesIndex } from '@/features/services'
@@ -44,17 +45,8 @@ export default async function ServicesPage() {
   return (
     <>
       <PageHeader
-        variant="split"
-        image={{
-          src: '/images/whiteboard.jpg',
-          alt: 'Two people mapping a product flow on a whiteboard',
-          caption: (
-            <p className="text-sm">
-              <span className="block font-semibold">Every project starts at a whiteboard</span>
-              <span className="text-muted">Clear scope and price before a line of code.</span>
-            </p>
-          ),
-        }}
+        variant="art"
+        art={<CurrentArt className="object-[78%_center] lg:object-right" />}
         crumbs={[
           { name: 'Home', path: '/' },
           { name: 'Services', path: '/services' },

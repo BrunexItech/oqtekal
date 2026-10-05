@@ -143,7 +143,7 @@ export const Header = ({ nav }: { nav: NavData }) => {
           <ul className="flex items-center gap-0.5">
             {trigger('services', 'Services', '/services')}
             {trigger('products', 'Products', '/products')}
-            {TOP_LINKS.map((l) => (
+            {TOP_LINKS.filter((l) => l.href !== '/work' || nav.hasWork).map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
