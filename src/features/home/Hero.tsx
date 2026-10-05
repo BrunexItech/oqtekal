@@ -1,7 +1,7 @@
 import { ArrowRight, BrandIcon, ButtonLink, Container } from '@/design-system'
 import type { HomePage, SiteSetting } from '@/payload-types'
 
-import { HeroSystem } from './HeroSystem'
+import { HeroCurrent } from './HeroCurrent'
 import { RotatingWord } from './RotatingWord'
 
 type Props = {
@@ -15,11 +15,7 @@ export const Hero = ({ hero, stats, showStats }: Props) => {
   const words = (hero.rotatingWords ?? []).map((w) => w.word).filter(Boolean)
   return (
     <section className="relative isolate overflow-hidden">
-      {/* Atmosphere: dotted engineering grid + slow brand aurora */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-[radial-gradient(var(--line-strong)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_75%_65%_at_70%_40%,black,transparent_75%)] [background-size:22px_22px] opacity-60"
-      />
+      {/* Atmosphere: a slow brand aurora behind the artwork */}
       <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-[-20%] right-[-10%] size-[46rem] animate-[aurora_18s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,rgb(6_77_251/0.18),transparent_60%)] blur-3xl motion-reduce:animate-none" />
         <div className="absolute top-[30%] right-[25%] size-[30rem] animate-[aurora_22s_ease-in-out_infinite_reverse] rounded-full bg-[radial-gradient(circle,rgb(47_168_255/0.14),transparent_60%)] blur-3xl motion-reduce:animate-none" />
@@ -61,7 +57,7 @@ export const Hero = ({ hero, stats, showStats }: Props) => {
           </div>
         </div>
 
-        <HeroSystem className="mx-auto w-full max-w-[40rem] lg:max-w-none" />
+        <HeroCurrent className="mx-auto aspect-[5/4] w-full max-w-[40rem] lg:aspect-auto lg:h-full lg:min-h-[34rem] lg:max-w-none" />
       </Container>
 
       {showStats && stats?.length ? (
