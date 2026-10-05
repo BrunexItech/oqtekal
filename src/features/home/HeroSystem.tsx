@@ -9,18 +9,18 @@ import { Symbol } from '@/features/brand'
 import { cn } from '@/lib/cn'
 
 /* --------------------------------------------------------------------------------------------
- * "What we do", shown rather than told: a payment arriving and reconciling, a customer
+ * "What we do", shown rather than told: a club registering on a live product, a customer
  * conversation, a business metric and a production deploy — all wired to one Oqtekal core.
  * Purely decorative (aria-hidden); the hero text carries the meaning for assistive tech.
  * ------------------------------------------------------------------------------------------ */
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
-const PAYMENTS = [
-  { amount: 'KES 7,850', ref: 'Order #5512', from: 'Savanna Foods' },
-  { amount: 'KES 45,000', ref: 'Rent · Unit A3', from: 'Riverside Apts' },
-  { amount: 'KES 18,200', ref: 'Fees · ADM 1043', from: 'Kiambu High' },
-  { amount: 'KES 2,500', ref: 'Till 889201', from: 'Duka Express' },
+const REGISTRATIONS = [
+  { club: 'Lakeside Rugby Club', sport: 'Rugby', county: 'Kisumu' },
+  { club: 'Rift Valley Athletics', sport: 'Athletics', county: 'Uasin Gishu' },
+  { club: 'Coast Netball Academy', sport: 'Netball', county: 'Mombasa' },
+  { club: 'Highlands Hockey Club', sport: 'Hockey', county: 'Nakuru' },
 ]
 
 const CHATS = [
@@ -29,7 +29,7 @@ const CHATS = [
     q: 'Is my order ready for pickup?',
     a: 'Yes — collect from 2pm at Westlands.',
   },
-  { name: 'Brian O.', q: 'Can I pay rent via M-Pesa?', a: 'Paybill 522522, account A3. Done!' },
+  { name: 'Brian O.', q: 'Is our club registration through?', a: 'Approved — certificate sent.' },
   { name: 'Faith M.', q: 'Has my child’s fee cleared?', a: 'Received KES 18,200. Balance: 0.' },
 ]
 
@@ -76,24 +76,26 @@ const Label = ({ children }: { children: ReactNode }) => (
 
 /* ---- the four moments -------------------------------------------------------------------- */
 
-const PaymentCard = ({ delay }: { delay: number }) => {
-  const i = useTicker(PAYMENTS.length, 3400)
-  const p = PAYMENTS[i]!
+const SportsCard = ({ delay }: { delay: number }) => {
+  const i = useTicker(REGISTRATIONS.length, 3400)
+  const r = REGISTRATIONS[i]!
   return (
     <Card delay={delay}>
       <div className="flex items-center justify-between gap-[0.6em]">
-        <Image
-          src="/brand/partners/mpesa.png"
-          alt=""
-          width={640}
-          height={234}
-          className="h-[1.35em] w-auto"
-        />
+        <Label>Sports management</Label>
         <span className="flex items-center gap-[0.35em] rounded-full bg-success/12 px-[0.6em] py-[0.2em] text-[0.62em] font-medium text-success">
           <span className="size-[0.45em] animate-[pulse-dot_2s_infinite] rounded-full bg-success" />
           Live
         </span>
       </div>
+      <Image
+        src="/images/sports-categories.jpg"
+        alt=""
+        width={856}
+        height={358}
+        sizes="(min-width: 768px) 22vw, 45vw"
+        className="mt-[0.65em] w-full rounded-[0.6em] ring-1 ring-line"
+      />
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={i}
@@ -101,16 +103,14 @@ const PaymentCard = ({ delay }: { delay: number }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.45, ease: EASE }}
-          className="mt-[0.7em]"
+          className="mt-[0.65em]"
         >
-          <p className="font-display text-[1.45em] leading-none font-semibold tracking-tight">
-            {p.amount}
+          <p className="truncate text-[0.82em] font-semibold tracking-tight">{r.club}</p>
+          <p className="mt-[0.25em] truncate text-[0.66em] text-muted">
+            {r.sport} · {r.county}
           </p>
-          <p className="mt-[0.35em] text-[0.7em] text-muted">
-            {p.from} · {p.ref}
-          </p>
-          <p className="mt-[0.55em] flex items-center gap-[0.35em] text-[0.68em] font-medium text-success">
-            <Check className="size-[1.1em]" /> Reconciled automatically
+          <p className="mt-[0.45em] flex items-center gap-[0.35em] text-[0.68em] font-medium text-success">
+            <Check className="size-[1.1em]" /> Registration approved
           </p>
         </motion.div>
       </AnimatePresence>
@@ -340,7 +340,7 @@ export const HeroSystem = ({ className }: { className?: string }) => (
           <ChatCard delay={0.5} />
         </div>
         <div className="absolute top-0 right-0 w-[42%]">
-          <PaymentCard delay={0.35} />
+          <SportsCard delay={0.35} />
         </div>
         <div className="absolute bottom-[2%] left-[1%] w-[43%]">
           <MetricCard delay={0.65} />
@@ -353,7 +353,7 @@ export const HeroSystem = ({ className }: { className?: string }) => (
 
     {/* Phones: the same moments as a tidy two-column grid. */}
     <div className="grid grid-cols-2 gap-3 text-[13px] md:hidden">
-      <PaymentCard delay={0.2} />
+      <SportsCard delay={0.2} />
       <DeployCard delay={0.3} />
       <div className="col-span-2">
         <ChatCard delay={0.4} />

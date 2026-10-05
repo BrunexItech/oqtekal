@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 import { ArrowRight, BrandIcon, ButtonLink, Container } from '@/design-system'
 import type { HomePage, SiteSetting } from '@/payload-types'
 
@@ -53,15 +51,6 @@ export const Hero = ({ hero, stats, showStats }: Props) => {
 
           <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted">
             <span>Integrates with</span>
-            <span className="flex items-center rounded-lg bg-white px-2 py-1 ring-1 ring-line">
-              <Image
-                src="/brand/partners/mpesa.png"
-                alt="M-Pesa"
-                width={640}
-                height={234}
-                className="h-5 w-auto"
-              />
-            </span>
             <span className="flex items-center gap-1.5 font-medium text-fg/80">
               <BrandIcon name="whatsapp" colored className="size-[1.1rem]" /> WhatsApp
             </span>
