@@ -94,6 +94,15 @@ for (const [i, p] of products.entries()) {
       contextImage: existsSync(path.join(ASSETS, 'products', `${p.slug}.jpg`))
         ? await upload(`products/${p.slug}.jpg`, `${p.name} in use — ${p.category.toLowerCase()}`)
         : undefined,
+      // A real screenshot (assets/products/<slug>-screen.jpg) replaces the built-in illustration.
+      screenshots: existsSync(path.join(ASSETS, 'products', `${p.slug}-screen.jpg`))
+        ? [
+            {
+              image: await upload(`products/${p.slug}-screen.jpg`, `${p.name} — product screen`),
+              caption: `${p.name} in action`,
+            },
+          ]
+        : undefined,
       order: (i + 1) * 10,
       featured: true,
       _status: 'published',
