@@ -497,10 +497,10 @@ export const home = {
   hero: {
     eyebrow: 'Software engineering company · Nairobi',
     heading: 'We engineer the software that runs',
-    rotatingWords: ['businesses.', 'schools.', 'payments.', 'property.', 'Africa.'].map((word) => ({
+    rotatingWords: ['business.', 'schools.', 'payments.', 'property.', 'Africa.'].map((word) => ({
       word,
     })),
-    text: 'Custom systems, mobile apps, M-Pesa payments and cloud hosting — designed, built and run by one accountable team in Nairobi.',
+    text: 'Custom systems, mobile apps, SaaS products and cloud hosting — designed, built and run by one accountable team in Nairobi.',
     primaryLabel: 'Start a project',
     secondaryLabel: 'Explore products',
   },
