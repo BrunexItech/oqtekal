@@ -70,6 +70,9 @@ export const Header = ({ nav }: { nav: NavData }) => {
     closeTimer.current = setTimeout(() => setOpen(null), 140)
   }, [])
 
+  // Over the home hero (always dark) the bar is transparent and light-on-dark until scrolled.
+  const overHero = pathname === '/' && !scrolled && !open
+
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
   const trigger = (id: PanelId, label: string, href: string) => (
@@ -122,6 +125,7 @@ export const Header = ({ nav }: { nav: NavData }) => {
   return (
     <header
       ref={headerRef}
+      data-theme={overHero ? 'dark' : undefined}
       className={cn(
         'sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300',
         scrolled || open

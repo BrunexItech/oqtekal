@@ -627,6 +627,16 @@ html[data-intro='out'] .oq-intro {
   }
 }
 
+@keyframes ribbon-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(-1.2deg);
+  }
+}
+
 @keyframes slow-zoom {
   from {
     transform: scale(1.08);

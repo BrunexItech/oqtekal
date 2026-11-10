@@ -7,6 +7,8 @@ import {
   ArrowRight as LArrowRight,
   ArrowUpRight as LArrowUpRight,
   Check as LCheck,
+  Cloud as LCloud,
+  CodeXml as LCodeXml,
   ChevronDown as LChevronDown,
   Mail as LMail,
   MapPin as LMapPin,
@@ -15,6 +17,7 @@ import {
   Moon as LMoon,
   Phone as LPhone,
   Plus as LPlus,
+  ShieldCheck as LShieldCheck,
   Clock as LClock,
   Sun as LSun,
   X as LX,
@@ -31,6 +34,8 @@ export const ArrowUpRight = withDefaults(LArrowUpRight)
 export const Check = withDefaults(LCheck)
 export const ChevronDown = withDefaults(LChevronDown)
 export const Clock = withDefaults(LClock)
+export const Cloud = withDefaults(LCloud)
+export const Code = withDefaults(LCodeXml)
 export const Close = withDefaults(LX)
 export const Mail = withDefaults(LMail)
 export const MapPin = withDefaults(LMapPin)
@@ -38,6 +43,7 @@ export const Menu = withDefaults(LMenu)
 export const Minus = withDefaults(LMinus)
 export const Moon = withDefaults(LMoon)
 export const Phone = withDefaults(LPhone)
+export const ShieldCheck = withDefaults(LShieldCheck)
 export const Plus = withDefaults(LPlus)
 export const Sun = withDefaults(LSun)
 

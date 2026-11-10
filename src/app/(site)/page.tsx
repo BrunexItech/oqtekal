@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { ArrowLink, Container, Reveal, Section, SectionHeader } from '@/design-system'
+import { getClients } from '@/features/clients'
 import { CtaSection } from '@/features/cta'
 import {
   Capabilities,
@@ -30,21 +31,29 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const [home, settings, products, pillars, work, testimonials, posts] = await Promise.all([
-    getHomePage(),
-    getSiteSettings(),
-    getProducts({ featured: true }),
-    getPillarsWithServices(),
-    getCaseStudies({ featured: true, limit: 3 }),
-    getTestimonials(),
-    getPosts({ limit: 3 }),
-  ])
+  const [home, settings, products, pillars, work, testimonials, posts, clients] = await Promise.all(
+    [
+      getHomePage(),
+      getSiteSettings(),
+      getProducts({ featured: true }),
+      getPillarsWithServices(),
+      getCaseStudies({ featured: true, limit: 3 }),
+      getTestimonials(),
+      getPosts({ limit: 3 }),
+      getClients(),
+    ],
+  )
 
   const [leadStudy, ...otherStudies] = work
 
   return (
     <>
-      <Hero hero={home.hero} stats={settings.stats} showStats={!settings.statsArePlaceholder} />
+      <Hero
+        hero={home.hero}
+        stats={settings.stats}
+        showStats={!settings.statsArePlaceholder}
+        clients={clients.filter((c) => !c.isPlaceholder)}
+      />
       <TechStrip />
 
       {/* Capabilities */}
