@@ -1,4 +1,5 @@
 import { BrandIcon, Container, Mail, Phone } from '@/design-system'
+import { Symbol } from '@/features/brand'
 import { ContactForm, type LeadType } from '@/features/contact'
 import type { Settings } from '@/features/site'
 import { formatWhatsapp, sameNumber, whatsappLink } from '@/lib/site'
@@ -26,6 +27,11 @@ export const CtaSection = ({
   <section className="py-6 md:py-10" aria-labelledby="cta-heading">
     <Container>
       <div className="relative isolate overflow-hidden rounded-[2rem] bg-ink px-5 py-12 text-paper sm:px-10 md:rounded-[2.5rem] md:px-14 md:py-16 lg:px-16 lg:py-20">
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 grid-lines [mask-image:radial-gradient(ellipse_at_top_left,black,transparent_70%)] opacity-60 [--grid-line:rgb(255_255_255/0.05)]"
+        />
+        <Symbol className="absolute -top-24 -left-24 -z-10 size-[28rem] text-brand-600/15" />
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
           <div className="flex flex-col">
             {eyebrow ? <p className="text-label text-brand-400">{eyebrow}</p> : null}

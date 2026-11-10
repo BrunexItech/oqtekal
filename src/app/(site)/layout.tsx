@@ -7,6 +7,7 @@ import { Suspense, type ReactNode } from 'react'
 
 import { CONSENT_COOKIE, CookieConsent, parseConsent } from '@/features/cookies'
 import { Footer } from '@/features/footer'
+import { IntroLoader } from '@/features/intro-loader'
 import { Header, getNavData } from '@/features/navigation'
 import { NavProgress } from '@/features/nav-progress'
 import { PreviewBar } from '@/features/preview'
@@ -78,6 +79,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
         <ThemeScript />
       </head>
       <body>
+        <IntroLoader />
         <Suspense fallback={null}>
           <NavProgress />
         </Suspense>

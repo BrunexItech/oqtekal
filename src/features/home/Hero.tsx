@@ -1,75 +1,71 @@
-import Image from 'next/image'
-
-import { ArrowRight, ButtonLink, Container, ImageLoading } from '@/design-system'
+import { ArrowRight, ButtonLink, Container } from '@/design-system'
 import type { HomePage, SiteSetting } from '@/payload-types'
+
+import { HeroCurrent } from './HeroCurrent'
+import { RotatingWord } from './RotatingWord'
 
 type Props = {
   hero: HomePage['hero']
   stats: SiteSetting['stats']
   /** Company numbers are only shown once they are real (unticked "samples" in the admin). */
   showStats: boolean
-  /** Plain facts shown under the buttons, e.g. "10 products". */
-  facts: string[]
 }
 
-/** Home hero: what we do, for whom, and how to start — beside one real photograph. */
-export const Hero = ({ hero, stats, showStats, facts }: Props) => (
-  <section className="border-b border-line">
-    <Container className="grid items-center gap-12 py-14 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-24">
-      <div>
-        <p className="text-label text-accent">
-          {hero.eyebrow ?? 'Software engineering company · Nairobi'}
-        </p>
-        <h1 className="mt-5 max-w-[16ch] text-display-xl">{hero.heading}</h1>
-        <p className="mt-6 max-w-[34rem] text-lead text-muted">{hero.text}</p>
+export const Hero = ({ hero, stats, showStats }: Props) => {
+  const words = (hero.rotatingWords ?? []).map((w) => w.word).filter(Boolean)
+  return (
+    <section className="relative isolate overflow-hidden">
+      {/* Atmosphere: a slow brand aurora behind the artwork */}
+      <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-[-20%] right-[-10%] size-[46rem] animate-[aurora_18s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,rgb(6_77_251/0.18),transparent_60%)] blur-3xl motion-reduce:animate-none" />
+        <div className="absolute top-[30%] right-[25%] size-[30rem] animate-[aurora_22s_ease-in-out_infinite_reverse] rounded-full bg-[radial-gradient(circle,rgb(47_168_255/0.14),transparent_60%)] blur-3xl motion-reduce:animate-none" />
+      </div>
 
-        <div className="mt-9 flex flex-col gap-3 xs:flex-row">
-          <ButtonLink href="/contact" size="lg" icon={<ArrowRight className="size-4" />}>
-            {hero.primaryLabel ?? 'Start a project'}
-          </ButtonLink>
-          <ButtonLink href="/products" size="lg" variant="secondary">
-            {hero.secondaryLabel ?? 'Explore products'}
-          </ButtonLink>
+      <Container className="grid items-center gap-12 pt-10 pb-16 md:pt-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pt-16 lg:pb-24">
+        <div className="animate-[hero-in_1s_cubic-bezier(0.22,1,0.36,1)_both]">
+          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 py-1.5 pr-3.5 pl-2 text-[0.8rem] text-muted backdrop-blur">
+            <span className="grid size-5 place-items-center rounded-full bg-success/15">
+              <span className="size-2 animate-[pulse-dot_2s_infinite] rounded-full bg-success" />
+            </span>
+            {hero.eyebrow ?? 'Software engineering company · Nairobi'}
+          </p>
+
+          <h1 className="mt-7 max-w-[15ch] text-display-xl">
+            {hero.heading} {words.length ? <RotatingWord words={words} /> : null}
+          </h1>
+
+          <p className="mt-7 max-w-[34rem] text-lead text-muted">{hero.text}</p>
+
+          <div className="mt-9 flex flex-col gap-3 xs:flex-row">
+            <ButtonLink href="/contact" size="lg" icon={<ArrowRight className="size-4" />}>
+              {hero.primaryLabel ?? 'Start a project'}
+            </ButtonLink>
+            <ButtonLink href="/products" size="lg" variant="secondary">
+              {hero.secondaryLabel ?? 'Explore products'}
+            </ButtonLink>
+          </div>
         </div>
 
-        {facts.length ? (
-          <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-            {facts.map((f) => (
-              <li key={f} className="flex items-center gap-2">
-                <span aria-hidden className="size-1.5 rounded-full bg-accent" />
-                {f}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-      </div>
-
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-panel)] bg-surface-2">
-        <ImageLoading />
-        <Image
-          src="/images/code-macbook.jpg"
-          alt="Source code open on a laptop"
-          fill
-          priority
-          sizes="(min-width: 1024px) 45vw, 100vw"
-          className="object-cover"
-        />
-      </div>
-    </Container>
-
-    {showStats && stats?.length ? (
-      <Container>
-        <dl className="grid grid-cols-2 border-t border-line md:grid-cols-4">
-          {stats.map((s, i) => (
-            <div key={s.id ?? i} className="flex flex-col gap-1 py-7 pr-4">
-              <dt className="order-2 text-sm text-muted">{s.label}</dt>
-              <dd className="order-1 font-display text-3xl font-semibold tracking-tight">
-                {s.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <HeroCurrent className="mx-auto aspect-[5/4] w-full max-w-[40rem] lg:aspect-auto lg:h-full lg:min-h-[34rem] lg:max-w-none" />
       </Container>
-    ) : null}
-  </section>
-)
+
+      {showStats && stats?.length ? (
+        <Container>
+          <dl className="grid grid-cols-2 border-t border-line md:grid-cols-4">
+            {stats.map((s, i) => (
+              <div
+                key={s.id ?? i}
+                className="flex flex-col gap-1 border-line py-7 pr-4 md:border-l md:pl-6 md:first:border-l-0 md:first:pl-0 max-md:[&:nth-child(even)]:pl-5 max-md:[&:nth-child(n+3)]:border-t max-md:[&:nth-child(odd)]:border-r"
+              >
+                <dt className="order-2 text-sm text-muted">{s.label}</dt>
+                <dd className="order-1 font-display text-3xl font-semibold tracking-tight md:text-4xl">
+                  {s.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Container>
+      ) : null}
+    </section>
+  )
+}

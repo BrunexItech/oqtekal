@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { ArrowRight, ButtonLink, Container, PageHeader, Section } from '@/design-system'
+import { CurrentArt } from '@/features/brand'
 import { CtaSection } from '@/features/cta'
 import { CmsImage } from '@/features/media'
 import { AvailabilityTag, getProducts, ProductIndex, ProductMedia } from '@/features/products'
@@ -32,6 +33,8 @@ export default async function ProductsPage() {
   return (
     <>
       <PageHeader
+        variant="art"
+        art={<CurrentArt className="object-[78%_center] lg:object-right" />}
         crumbs={crumbs}
         eyebrow={`${products.length} products`}
         title="Proven systems, ready to adapt."
