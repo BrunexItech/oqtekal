@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { Container } from '@/design-system'
-import { CurrentArt, Logo } from '@/features/brand'
+import { Logo } from '@/features/brand'
 import { CookieSettingsLink } from '@/features/cookies'
 import type { NavData } from '@/features/navigation'
 import { SocialLinks } from '@/features/social'
@@ -42,8 +42,6 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
   const oneNumber = sameNumber(settings.phone, settings.whatsapp)
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-paper">
-      <CurrentArt className="-z-10 [mask-image:linear-gradient(90deg,transparent_10%,black_75%)] object-right-bottom opacity-30" />
-
       <Container className="pt-20 pb-28 sm:pb-10 md:pt-28">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_2fr] lg:gap-20">
           <div className="max-w-sm">
@@ -83,35 +81,24 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
                   >
                     {settings.phone}
                   </a>
-                  {oneNumber ? (
-                    <>
-                      <span aria-hidden className="mx-2 text-paper/30">
-                        ·
-                      </span>
-                      <a
-                        href={whatsappLink(settings.whatsapp)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-white"
-                      >
-                        WhatsApp
-                      </a>
-                    </>
-                  ) : null}
                 </li>
-                {oneNumber ? null : (
-                  <li>
-                    <a
-                      href={whatsappLink(settings.whatsapp)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-white"
-                    >
-                      <span className="sr-only">WhatsApp </span>
-                      {formatWhatsapp(settings.whatsapp)}
-                    </a>
-                  </li>
-                )}
+                <li>
+                  <a
+                    href={whatsappLink(settings.whatsapp)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white"
+                  >
+                    {oneNumber ? (
+                      'Chat on WhatsApp'
+                    ) : (
+                      <>
+                        <span className="sr-only">WhatsApp </span>
+                        {formatWhatsapp(settings.whatsapp)}
+                      </>
+                    )}
+                  </a>
+                </li>
                 <li className="whitespace-pre-line text-paper/60">{settings.address}</li>
                 {settings.hours ? <li className="text-paper/60">{settings.hours}</li> : null}
               </ul>

@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { Container, PageHeader, Reveal, Section } from '@/design-system'
-import { CurrentArt } from '@/features/brand'
 import { CtaSection } from '@/features/cta'
 import { breadcrumbJsonLd, buildMetadata, JsonLd } from '@/features/seo'
 import { getSiteSettings } from '@/features/site'
@@ -28,8 +27,6 @@ export default async function WorkPage() {
   return (
     <>
       <PageHeader
-        variant="art"
-        art={<CurrentArt className="object-[78%_center] lg:object-right" />}
         crumbs={crumbs}
         eyebrow="Case studies"
         title="Measured by results, not deliverables."

@@ -1,8 +1,7 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
-import { Symbol } from '@/features/brand'
 import { CmsImage } from '@/features/media'
-import { cn } from '@/lib/cn'
 import { asMedia } from '@/lib/media'
 import type { Post } from '@/payload-types'
 import { keepTogether } from '@/lib/site'
@@ -15,12 +14,13 @@ export const CATEGORY_LABEL: Record<Post['category'], string> = {
   company: 'Company',
 }
 
-const GRADIENTS: Record<Post['category'], string> = {
-  engineering: 'from-[#0b0f19] via-[#14246e] to-[#064dfb]',
-  product: 'from-[#064dfb] via-[#2b6bff] to-[#2fa8ff]',
-  payments: 'from-[#0c3b2a] via-[#12805c] to-[#3fbf8f]',
-  cloud: 'from-[#14246e] via-[#064dfb] to-[#2fa8ff]',
-  company: 'from-[#0b0f19] via-[#1f2533] to-[#4f5561]',
+/** Photo used when an article has no cover of its own. */
+const FALLBACK_PHOTO: Record<Post['category'], { src: string; alt: string }> = {
+  engineering: { src: '/images/code-macbook.jpg', alt: 'Source code on a laptop' },
+  product: { src: '/images/wireframe.jpg', alt: 'Wireframe sketches on paper' },
+  payments: { src: '/images/phone-cash.jpg', alt: 'A phone payment beside banknotes' },
+  cloud: { src: '/images/server-rack.jpg', alt: 'Servers in a data centre rack' },
+  company: { src: '/images/whiteboard.jpg', alt: 'A product flow sketched on a whiteboard' },
 }
 
 export const formatDate = (iso: string) =>
@@ -40,17 +40,16 @@ export const PostCover = ({
 }) => {
   const cover = asMedia(post.cover)
   if (cover) return <CmsImage media={cover} sizes={sizes} priority={priority} />
+  const photo = FALLBACK_PHOTO[post.category]
   return (
-    <div className={cn('absolute inset-0 bg-gradient-to-br', GRADIENTS[post.category])}>
-      <div
-        aria-hidden
-        className="absolute inset-0 grid-lines [--grid-line:rgb(255_255_255/0.07)]"
-      />
-      <Symbol className="absolute -right-[8%] -bottom-[18%] size-[70%] text-white/12" />
-      <span className="absolute top-6 left-6 text-label text-white/80">
-        {CATEGORY_LABEL[post.category]}
-      </span>
-    </div>
+    <Image
+      src={photo.src}
+      alt={photo.alt}
+      fill
+      sizes={sizes}
+      priority={priority}
+      className="object-cover"
+    />
   )
 }
 

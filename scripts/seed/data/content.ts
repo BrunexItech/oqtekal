@@ -495,10 +495,10 @@ export const settings = {
 
 export const home = {
   hero: {
-    eyebrow: 'Innovative software solutions for a smarter tomorrow',
-    heading: 'Build. Innovate.',
-    rotatingWords: [{ word: 'Transform.' }],
-    text: 'We design, build and scale software and SaaS products that power businesses, people and progress.',
+    eyebrow: 'Software engineering company · Nairobi',
+    heading: 'Software that runs your organisation.',
+    rotatingWords: [],
+    text: 'We design, build and support custom systems, mobile apps and ready-made SaaS products for schools, businesses and institutions across Kenya.',
     primaryLabel: 'Start a project',
     secondaryLabel: 'Explore products',
   },
