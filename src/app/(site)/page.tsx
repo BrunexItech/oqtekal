@@ -54,9 +54,8 @@ export default async function HomePage() {
             eyebrow={home.servicesIntro?.eyebrow}
             heading={home.servicesIntro?.heading ?? 'Services'}
             text={home.servicesIntro?.text}
-            action={<ArrowLink href="/services">All services</ArrowLink>}
           />
-          <Reveal className="mt-14 md:mt-16">
+          <Reveal className="mt-10 md:mt-12">
             <Capabilities pillars={pillars} />
           </Reveal>
         </Container>
