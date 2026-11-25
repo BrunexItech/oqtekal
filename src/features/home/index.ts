@@ -1,3 +1,4 @@
+export { AiAutomation } from './AiAutomation'
 export { Capabilities } from './Capabilities'
 export { Hero } from './Hero'
 export { NairobiBand } from './NairobiBand'

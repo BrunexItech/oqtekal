@@ -166,7 +166,7 @@ export const PropertyVisual = () => {
                   className={cn(
                     'grid aspect-square place-items-center rounded-[0.35em] text-[0.5em] font-semibold',
                     s === 'paid' && 'bg-accent/15 text-accent',
-                    s === 'late' && 'bg-[#f5a524]/20 text-[#b97300] dark:text-[#f5b84a]',
+                    s === 'late' && 'bg-[#f5a524]/20 text-[#b97300]',
                     s === 'vacant' && 'border border-dashed border-line-strong text-subtle',
                   )}
                 >
@@ -393,7 +393,7 @@ export const PaymentsVisual = () => (
         </div>
       </div>
       <div className="flex w-[27%] shrink-0 items-center justify-center">
-        <div className="flex aspect-[9/18] w-full flex-col rounded-[1.4em] border-[0.35em] border-ink bg-surface p-[0.7em] shadow-[var(--shadow-card)] dark:border-[#2a3142]">
+        <div className="flex aspect-[9/18] w-full flex-col rounded-[1.4em] border-[0.35em] border-ink bg-surface p-[0.7em] shadow-[var(--shadow-card)]">
           <div className="mx-auto mb-[0.8em] h-[0.35em] w-[35%] rounded-full bg-line-strong" />
           <div className="rounded-[0.7em] bg-surface-2 p-[0.7em] text-center">
             {/* eslint-disable-next-line @next/next/no-img-element -- decorative mock-up */}

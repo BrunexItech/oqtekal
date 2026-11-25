@@ -16,11 +16,11 @@ export const CATEGORY_LABEL: Record<Post['category'], string> = {
 }
 
 const GRADIENTS: Record<Post['category'], string> = {
-  engineering: 'from-[#0b0f19] via-[#14246e] to-[#064dfb]',
-  product: 'from-[#064dfb] via-[#2b6bff] to-[#2fa8ff]',
+  engineering: 'from-[#0c0b16] via-[#241a66] to-[#5b4cff]',
+  product: 'from-[#5b4cff] via-[#6e5cff] to-[#8b7cff]',
   payments: 'from-[#0c3b2a] via-[#12805c] to-[#3fbf8f]',
-  cloud: 'from-[#14246e] via-[#064dfb] to-[#2fa8ff]',
-  company: 'from-[#0b0f19] via-[#1f2533] to-[#4f5561]',
+  cloud: 'from-[#241a66] via-[#5b4cff] to-[#8b7cff]',
+  company: 'from-[#0c0b16] via-[#211f33] to-[#5b5d72]',
 }
 
 export const formatDate = (iso: string) =>

@@ -1556,6 +1556,10 @@ export interface SiteSetting {
   id: number;
   email: string;
   /**
+   * Shown on the Privacy Policy and Data Deletion Instructions pages.
+   */
+  privacyEmail: string;
+  /**
    * Shown as written, e.g. +254 700 000 000
    */
   phone: string;
@@ -1566,6 +1570,11 @@ export interface SiteSetting {
   address: string;
   hours?: string | null;
   mapUrl?: string | null;
+  /**
+   * The company that owns this site, exactly as registered. Shown in the footer and legal pages.
+   */
+  legalName: string;
+  companyNumber: string;
   socials?:
     | {
         platform: 'linkedin' | 'x' | 'facebook' | 'instagram' | 'youtube' | 'tiktok' | 'github' | 'whatsapp';
@@ -1709,11 +1718,14 @@ export interface AboutPageSelect<T extends boolean = true> {
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
   email?: T;
+  privacyEmail?: T;
   phone?: T;
   whatsapp?: T;
   address?: T;
   hours?: T;
   mapUrl?: T;
+  legalName?: T;
+  companyNumber?: T;
   socials?:
     | T
     | {

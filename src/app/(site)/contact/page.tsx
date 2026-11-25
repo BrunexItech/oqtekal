@@ -57,6 +57,12 @@ export default async function ContactPage({ searchParams }: Props) {
         : formatWhatsapp(settings.whatsapp),
       href: whatsappLink(settings.whatsapp, 'Hello Oqtekal, I would like to talk about a project.'),
     },
+    {
+      icon: <Mail className="size-5" />,
+      label: 'Privacy & data requests',
+      value: settings.privacyEmail,
+      href: `mailto:${settings.privacyEmail}`,
+    },
   ]
 
   return (
@@ -134,6 +140,9 @@ export default async function ContactPage({ searchParams }: Props) {
                 </div>
               ) : null}
             </dl>
+            <p className="text-sm text-subtle">
+              {settings.legalName} · Company No. {settings.companyNumber}
+            </p>
             <SocialLinks socials={settings.socials} />
           </aside>
 

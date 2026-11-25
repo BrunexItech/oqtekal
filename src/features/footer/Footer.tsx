@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { Container } from '@/design-system'
-import { CurrentArt, Logo } from '@/features/brand'
+import { Logo } from '@/features/brand'
 import { CookieSettingsLink } from '@/features/cookies'
 import type { NavData } from '@/features/navigation'
 import { SocialLinks } from '@/features/social'
@@ -42,8 +42,6 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
   const oneNumber = sameNumber(settings.phone, settings.whatsapp)
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-paper">
-      <CurrentArt className="-z-10 [mask-image:linear-gradient(90deg,transparent_10%,black_75%)] object-right-bottom opacity-30" />
-
       <Container className="pt-20 pb-28 sm:pb-10 md:pt-28">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_2fr] lg:gap-20">
           <div className="max-w-sm">
@@ -131,8 +129,30 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
           <NewsletterForm />
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-paper/50 md:flex-row md:items-center md:justify-between">
-          <p>© {year} Oqtekal. All rights reserved.</p>
+        <div className="mt-14 border-t border-white/10 pt-8 text-sm text-paper/55">
+          <p>
+            Oqtekal is a trading name of{' '}
+            <span className="text-paper/85">
+              {settings.legalName} (Company No. {settings.companyNumber})
+            </span>
+          </p>
+          <p className="mt-1.5 whitespace-pre-line">Registered office: {settings.address}</p>
+          <p className="mt-1.5">
+            Phone:{' '}
+            <a href={`tel:${settings.phone.replace(/\s/g, '')}`} className="hover:text-white">
+              {settings.phone}
+            </a>{' '}
+            · Email:{' '}
+            <a href={`mailto:${settings.email}`} className="hover:text-white">
+              {settings.email}
+            </a>
+          </p>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-paper/50 md:flex-row md:items-center md:justify-between">
+          <p>
+            © {year} {settings.legalName}. All rights reserved.
+          </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             <li>
               <Link href="/legal/privacy" className="hover:text-white">
@@ -147,6 +167,11 @@ export const Footer = ({ nav, settings }: { nav: NavData; settings: SiteSetting 
             <li>
               <Link href="/legal/cookies" className="hover:text-white">
                 Cookies
+              </Link>
+            </li>
+            <li>
+              <Link href="/legal/data-deletion" className="hover:text-white">
+                Data Deletion
               </Link>
             </li>
             <li>

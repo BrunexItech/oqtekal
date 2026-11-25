@@ -92,7 +92,7 @@ export const NavProgress = () => {
         style={{ opacity: state === 'idle' ? 0 : 1, transition: 'opacity 300ms ease' }}
       >
         <div
-          className="h-full origin-left bg-gradient-to-r from-brand-400 via-brand-600 to-brand-400 shadow-[0_0_10px_rgb(47_168_255/0.7)]"
+          className="h-full origin-left bg-gradient-to-r from-brand-400 via-brand-600 to-brand-400 shadow-[0_0_10px_rgb(139_124_255/0.7)]"
           style={{
             transform: `scaleX(${state === 'idle' ? 0 : state === 'loading' ? 0.85 : 1})`,
             transition:

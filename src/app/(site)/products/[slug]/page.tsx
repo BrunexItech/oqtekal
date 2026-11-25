@@ -160,6 +160,31 @@ export default async function ProductPage({ params }: Props) {
         </Container>
       </Section>
 
+      {/* Meta platform connections (Tolkyn connects WhatsApp, Facebook and Instagram accounts) */}
+      {product.slug === 'tolkyn' ? (
+        <Section spacing="tight">
+          <Container>
+            <div className="rounded-[var(--radius-panel)] border border-line bg-surface-2/60 p-7 md:p-9">
+              <p className="text-label text-accent">Connecting WhatsApp, Facebook & Instagram</p>
+              <p className="mt-4 max-w-3xl text-muted">
+                Tolkyn is a shared inbox that connects a business&rsquo;s WhatsApp Business number,
+                Facebook Page (Messenger) and Instagram professional account, so its team can read
+                and reply to customer messages in one place. Businesses connect their own accounts
+                through Meta&rsquo;s official login, and can disconnect at any time.
+              </p>
+              <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+                <Link href="/legal/privacy" className="text-accent hover:underline">
+                  Privacy Policy
+                </Link>
+                <Link href="/legal/data-deletion" className="text-accent hover:underline">
+                  Data Deletion Instructions
+                </Link>
+              </p>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
       {/* Real-world context */}
       {context?.url ? (
         <section className="relative isolate overflow-hidden bg-ink text-paper">

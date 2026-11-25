@@ -6,7 +6,6 @@ import { useCallback, useEffect, useId, useRef, useState } from 'react'
 
 import { ArrowRight, ArrowUpRight, ButtonLink, ChevronDown } from '@/design-system'
 import { LogoLink } from '@/features/brand'
-import { ThemeToggle } from '@/features/theme'
 import { cn } from '@/lib/cn'
 
 import { MobileMenu } from './MobileMenu'
@@ -162,7 +161,6 @@ export const Header = ({ nav }: { nav: NavData }) => {
         </nav>
 
         <div className="flex items-center gap-1.5">
-          <ThemeToggle />
           <span className="hidden sm:block">
             <ButtonLink
               href="/contact"

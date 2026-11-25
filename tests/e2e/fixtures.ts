@@ -51,4 +51,5 @@ export const PAGES = [
   '/legal/privacy',
   '/legal/terms',
   '/legal/cookies',
+  '/legal/data-deletion',
 ]

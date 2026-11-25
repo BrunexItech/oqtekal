@@ -25,7 +25,7 @@ export const Capabilities = ({ pillars }: { pillars: PillarWithServices[] }) => 
             />
             <span
               aria-hidden
-              className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(11_15_25/0.05)_30%,rgb(11_15_25/0.85)_100%)]"
+              className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(12_11_22/0.05)_30%,rgb(12_11_22/0.85)_100%)]"
             />
             <ArrowUpRight className="absolute top-4 right-4 size-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <span className="font-display text-[1.05rem] leading-snug font-semibold tracking-tight sm:text-lg">

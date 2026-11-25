@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
 import { Check, Container, PageHeader, Section, SectionHeader } from '@/design-system'
-import { CurrentArt } from '@/features/brand'
 import { getOpenJobs } from '@/features/careers'
 import { ContactForm } from '@/features/contact'
 import { breadcrumbJsonLd, buildMetadata, JsonLd } from '@/features/seo'
@@ -37,8 +36,11 @@ export default async function CareersPage() {
   return (
     <>
       <PageHeader
-        variant="art"
-        art={<CurrentArt className="object-[78%_center] lg:object-right" />}
+        variant="cinematic"
+        image={{
+          src: '/images/papers-hands.jpg',
+          alt: 'Mapping a business process on a wall of paper',
+        }}
         crumbs={crumbs}
         eyebrow="Careers"
         title="Build the software organisations run on."

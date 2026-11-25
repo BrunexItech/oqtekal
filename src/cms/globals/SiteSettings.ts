@@ -28,7 +28,23 @@ export const SiteSettings: GlobalConfig = {
         {
           label: 'Contact',
           fields: [
-            { name: 'email', type: 'email', required: true, defaultValue: 'hello@oqtekal.com' },
+            {
+              name: 'email',
+              label: 'General email',
+              type: 'email',
+              required: true,
+              defaultValue: 'info@oqtekal.com',
+            },
+            {
+              name: 'privacyEmail',
+              label: 'Privacy / data requests email',
+              type: 'email',
+              required: true,
+              defaultValue: 'privacy@oqtekal.com',
+              admin: {
+                description: 'Shown on the Privacy Policy and Data Deletion Instructions pages.',
+              },
+            },
             {
               type: 'row',
               fields: [
@@ -52,6 +68,29 @@ export const SiteSettings: GlobalConfig = {
             { name: 'address', type: 'textarea', required: true, defaultValue: 'Nairobi, Kenya' },
             { name: 'hours', type: 'text', defaultValue: 'Mon – Fri, 8:00 – 18:00 EAT' },
             { name: 'mapUrl', label: 'Google Maps link', type: 'text' },
+          ],
+        },
+        {
+          label: 'Legal entity',
+          fields: [
+            {
+              name: 'legalName',
+              label: 'Registered company name',
+              type: 'text',
+              required: true,
+              defaultValue: 'OQTEKAL EAST AFRICA LIMITED',
+              admin: {
+                description:
+                  'The company that owns this site, exactly as registered. Shown in the footer and legal pages.',
+              },
+            },
+            {
+              name: 'companyNumber',
+              label: 'Company registration number',
+              type: 'text',
+              required: true,
+              defaultValue: 'PVT-Y2UP85P',
+            },
           ],
         },
         {

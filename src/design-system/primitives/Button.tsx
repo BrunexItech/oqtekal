@@ -10,7 +10,8 @@ const base =
   'group/btn relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium tracking-tight transition-[background-color,color,box-shadow,transform] duration-200 ease-out-expo active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50'
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-brand-600 text-white shadow-[0_8px_24px_-10px_rgb(6_77_251/0.7)] hover:bg-brand-700',
+  primary:
+    'bg-brand-600 text-white shadow-[0_8px_24px_-10px_rgb(91_76_255/0.7)] hover:bg-brand-700',
   secondary: 'border border-line-strong bg-surface text-fg hover:border-fg/40',
   ghost: 'text-fg hover:bg-surface-2',
   inverse: 'bg-paper text-ink hover:bg-white',

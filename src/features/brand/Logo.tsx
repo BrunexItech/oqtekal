@@ -36,8 +36,7 @@ export const Logo = ({
   if (variant === 'dark') return <span className={cn('block', className)}>{img('-dark-bg', '')}</span>
   return (
     <span className={cn('block', className)}>
-      {img('', 'dark:hidden')}
-      {img('-dark-bg', 'hidden dark:block')}
+      {img('', '')}
     </span>
   )
 }

@@ -11,7 +11,7 @@ export const Frame = ({
   title,
   nav,
   active = 0,
-  accent = '#064DFB',
+  accent = '#5B4CFF',
   children,
   className,
 }: {
@@ -106,7 +106,7 @@ export const Pill = ({
       'inline-flex items-center rounded-full px-[0.6em] py-[0.15em] text-[0.58em] font-medium whitespace-nowrap',
       tone === 'neutral' && 'bg-surface-2 text-muted',
       tone === 'ok' && 'bg-success/12 text-success',
-      tone === 'warn' && 'bg-[#f5a524]/15 text-[#b97300] dark:text-[#f5b84a]',
+      tone === 'warn' && 'bg-[#f5a524]/15 text-[#b97300]',
       tone === 'bad' && 'bg-danger/12 text-danger',
       tone === 'accent' && 'bg-accent-soft text-accent',
     )}

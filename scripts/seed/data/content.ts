@@ -383,6 +383,10 @@ export const posts = [
   },
 ]
 
+const LEGAL_NAME = 'OQTEKAL EAST AFRICA LIMITED'
+const COMPANY_NO = 'PVT-Y2UP85P'
+const REGISTERED_OFFICE = 'P.O. Box 22645-00400, Tom Mboya St, Nairobi CBD, Kenya'
+
 export const legal = {
   privacy: {
     title: 'Privacy policy',
@@ -391,7 +395,11 @@ export const legal = {
     body: [
       [
         'p',
-        'This policy explains how Oqtekal (“we”) handles personal data collected through oqtekal.com and our services. We process personal data in accordance with the Kenya Data Protection Act, 2019.',
+        `This policy is issued by ${LEGAL_NAME} (Company No. ${COMPANY_NO}), registered office ${REGISTERED_OFFICE} ("we", "us", "Oqtekal"), the data controller for oqtekal.com and our services. Contact: privacy@oqtekal.com.`,
+      ],
+      [
+        'p',
+        'We process personal data in accordance with the Kenya Data Protection Act, 2019, and, where our products connect to Meta Platforms, in accordance with the Meta Platform Terms.',
       ],
       ['h2', 'What we collect'],
       [
@@ -403,10 +411,45 @@ export const legal = {
         'p',
         'We use your details only to respond to your enquiry, provide our services, and — if you subscribe — send our newsletter. We never sell personal data.',
       ],
+      ['h2', 'Data from Meta Platforms (Facebook, Instagram, WhatsApp)'],
+      [
+        'p',
+        'Some of our products, including Tolkyn, connect to Meta Platforms on behalf of the businesses that use them. We only access a Meta account after its owner connects it to our service through Meta’s official login. Depending on what is connected, we may access:',
+      ],
+      [
+        'ul',
+        [
+          'WhatsApp Business: customer phone numbers, names and message content',
+          'Facebook Pages and Instagram professional accounts: messages, comments and public profile information (name, profile ID)',
+          'Content we publish on the account owner’s behalf (posts, images and captions)',
+          'Ad accounts: campaign settings and performance data',
+          'Facebook Login: name, email address and profile ID',
+        ],
+      ],
+      [
+        'p',
+        'We use this data only to send and receive customer messages, run our shared inbox (Tolkyn), publish content, manage and report on ads, and let users sign in. We use it for nothing else.',
+      ],
+      [
+        'p',
+        'When a business connects its own Meta accounts to our products, that business is the data controller for the data in those accounts, and Oqtekal processes it only on that business’s instructions, as its data processor.',
+      ],
+      [
+        'p',
+        'We do not sell Meta data, do not use it to build advertising profiles, and do not share it except with service providers needed to run the service (our hosting and infrastructure providers) or where required by law.',
+      ],
+      [
+        'p',
+        'Retention: Meta data is kept only while the account stays connected. It is deleted within 30 days of the account being disconnected or a deletion request being received, unless the law requires us to keep it longer. See our Data Deletion Instructions for how to disconnect an account or request deletion.',
+      ],
+      [
+        'p',
+        'Security: all data is encrypted in transit (HTTPS/TLS), access tokens are stored securely, and access is limited to authorised staff.',
+      ],
       ['h2', 'Your rights'],
       [
         'p',
-        'You may request access to, correction of, or deletion of your personal data at any time by emailing hello@oqtekal.com.',
+        'You may request access to, correction of, or deletion of your personal data at any time by emailing privacy@oqtekal.com, or by following our Data Deletion Instructions.',
       ],
       ['h2', 'Retention & security'],
       [
@@ -428,11 +471,6 @@ export const legal = {
         'p',
         'These are required for the site to work and cannot be switched off: a cookie that remembers your cookie choice (oq_consent, kept for one year), and security cookies set by our network provider, Cloudflare, to protect the site and its forms from abuse.',
       ],
-      ['h2', 'Preferences stored on your device'],
-      [
-        'p',
-        'Your light or dark theme choice is saved in your browser so the site looks the same on your next visit. It is never sent to us.',
-      ],
       ['h2', 'Analytics (optional)'],
       [
         'p',
@@ -444,7 +482,7 @@ export const legal = {
         'Use "Cookie settings" at the bottom of any page to change your choice at any time. You can also clear cookies in your browser settings.',
       ],
       ['h2', 'Questions'],
-      ['p', 'Email hello@oqtekal.com and we will be glad to help.'],
+      ['p', 'Email privacy@oqtekal.com and we will be glad to help.'],
     ],
   },
   terms: {
@@ -453,7 +491,7 @@ export const legal = {
     body: [
       [
         'p',
-        'By using oqtekal.com you agree to these terms. If you do not agree, please do not use the site.',
+        `oqtekal.com and the services described on it are provided by ${LEGAL_NAME} (Company No. ${COMPANY_NO}), registered office ${REGISTERED_OFFICE}. By using oqtekal.com you agree to these terms. If you do not agree, please do not use the site.`,
       ],
       ['h2', 'Content'],
       [
@@ -465,6 +503,11 @@ export const legal = {
         'p',
         'The Oqtekal name, logo and site content are our property. Third-party names and logos belong to their respective owners.',
       ],
+      ['h2', 'Connecting Facebook, Instagram or WhatsApp'],
+      [
+        'p',
+        'Features that connect to Facebook, Instagram or WhatsApp are also subject to Meta’s terms and policies. You must have the authority to connect any account you link to our services.',
+      ],
       ['h2', 'Liability'],
       [
         'p',
@@ -472,15 +515,55 @@ export const legal = {
       ],
       ['h2', 'Governing law'],
       ['p', 'These terms are governed by the laws of Kenya.'],
+      ['h2', 'Contact'],
+      ['p', 'Questions about these terms can be sent to info@oqtekal.com.'],
+    ],
+  },
+  'data-deletion': {
+    title: 'Data deletion instructions',
+    summary:
+      'How to disconnect your Facebook, Instagram or WhatsApp account from Oqtekal, or ask us to delete your data.',
+    body: [
+      [
+        'p',
+        'If you have connected a Facebook, Instagram or WhatsApp account to an Oqtekal product (such as Tolkyn), you can remove that connection yourself at any time, or ask us to delete your data.',
+      ],
+      ['h2', 'A. Remove our app’s access yourself'],
+      [
+        'p',
+        'Facebook: Settings & Privacy → Settings → Business Integrations (or Apps and Websites) → select the Oqtekal app → Remove.',
+      ],
+      [
+        'p',
+        'Instagram: Settings → Website permissions → Apps and websites → select the Oqtekal app → Remove.',
+      ],
+      ['p', 'WhatsApp Business: contact us to disconnect your number.'],
+      ['h2', 'B. Ask us to delete your data'],
+      [
+        'p',
+        'Email privacy@oqtekal.com with the subject "Data Deletion Request" and include the Facebook/Instagram account name or WhatsApp number used.',
+      ],
+      [
+        'p',
+        'We confirm receipt within 72 hours and delete your data within 30 days, then email you a confirmation.',
+      ],
+      ['h2', 'C. Questions'],
+      [
+        'p',
+        `Email privacy@oqtekal.com, call or WhatsApp +254 715 274 418, or write to us at ${REGISTERED_OFFICE}.`,
+      ],
     ],
   },
 }
 
 export const settings = {
-  email: 'hello@oqtekal.com',
+  email: 'info@oqtekal.com',
+  privacyEmail: 'privacy@oqtekal.com',
+  legalName: LEGAL_NAME,
+  companyNumber: COMPANY_NO,
   phone: '+254 715 274 418',
   whatsapp: '254715274418',
-  address: 'Hill Flats Suites\nState House Rd, Room 5\nP.O. Box 25081-00603\nNairobi',
+  address: REGISTERED_OFFICE,
   hours: 'Mon – Fri, 8:00 – 18:00 EAT',
   // Only real, verified profiles belong here — add LinkedIn, X, etc. in the admin once they exist.
   socials: [{ platform: 'whatsapp', url: 'https://wa.me/254715274418' }],
@@ -589,6 +672,7 @@ export const about = {
     'Oqtekal began with a simple observation: most organisations do not need more software — they need software that fits how they work, connects to the tools they already use, and keeps working long after launch.',
     'So we built a company around engineering properly. We ask more questions before we write code, we ship in small, visible steps, and we stay to support what we build. Our products — from Tolkyn to our ERP, school and property systems — grew out of real client problems, and every one of them integrates with M-Pesa from day one.',
     'Today we offer everything software-related under one roof: custom development, mobile apps, business systems, payments and integrations, data and automation, hosting and support. One team, accountable end to end.',
+    `Oqtekal is operated by ${LEGAL_NAME}, a private limited company registered in Kenya on 21 February 2020 (Company No. ${COMPANY_NO}).`,
   ],
   values: [
     {

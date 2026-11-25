@@ -98,12 +98,7 @@ export const BrandIcon = ({
       role={title ? 'img' : undefined}
       aria-hidden={title ? undefined : true}
       aria-label={title}
-      className={cn(
-        'size-5',
-        brand ? 'fill-[var(--brand)]' : 'fill-current',
-        brand && lum < 0.12 && 'dark:fill-[color-mix(in_oklab,var(--brand),white_55%)]',
-        className,
-      )}
+      className={cn('size-5', brand ? 'fill-[var(--brand)]' : 'fill-current', className)}
       style={brand ? ({ '--brand': `#${g.hex}` } as React.CSSProperties) : undefined}
     >
       <path d={g.path} />

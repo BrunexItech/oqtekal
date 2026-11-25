@@ -78,7 +78,7 @@ export const CookieConsent = ({ initial, analytics }: Props) => {
           aria-modal="false"
           aria-labelledby="cookie-title"
           aria-describedby="cookie-text"
-          className="fixed inset-x-0 bottom-0 z-[60] animate-[bar-in_0.5s_cubic-bezier(0.22,1,0.36,1)] border-t border-line bg-surface/97 shadow-[0_-12px_40px_-20px_rgb(11_15_25/0.35)] backdrop-blur"
+          className="fixed inset-x-0 bottom-0 z-[60] animate-[bar-in_0.5s_cubic-bezier(0.22,1,0.36,1)] border-t border-line bg-surface/97 shadow-[0_-12px_40px_-20px_rgb(12_11_22/0.35)] backdrop-blur"
         >
           <Container className="flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between md:gap-10 md:py-5">
             <div className="max-w-3xl">

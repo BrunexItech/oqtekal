@@ -54,18 +54,3 @@ test('unknown pages return a branded 404', async ({ page }) => {
   expect(res?.status()).toBe(404)
   await expect(page.getByRole('heading', { level: 1 })).toContainText('does not exist')
 })
-
-for (const path of ['/', '/services', '/products/tolkyn', '/hosting', '/contact']) {
-  test(`${path} passes axe in dark mode`, async ({ page }) => {
-    await page.addInitScript(() => localStorage.setItem('oq-theme', 'dark'))
-    await page.goto(path)
-    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-    await settled(page)
-    const axe = await new AxeBuilder({ page })
-      .disableRules(['region'])
-      .exclude('[data-decorative]')
-      .analyze()
-    const serious = axe.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical')
-    expect(serious.map((v) => `${v.id}: ${v.nodes[0]?.target}`)).toEqual([])
-  })
-}

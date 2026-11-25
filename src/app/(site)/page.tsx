@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { ArrowLink, Container, Reveal, Section, SectionHeader } from '@/design-system'
 import { CtaSection } from '@/features/cta'
 import {
+  AiAutomation,
   Capabilities,
   getHomePage,
   Hero,
@@ -44,7 +45,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero hero={home.hero} stats={settings.stats} showStats={!settings.statsArePlaceholder} />
+      <Hero hero={home.hero} />
       <TechStrip />
 
       {/* Capabilities */}
@@ -87,6 +88,8 @@ export default async function HomePage() {
           </Reveal>
         </Container>
       </Section>
+
+      <AiAutomation />
 
       {home.reasons?.length ? <WhyOqtekal intro={home.whyIntro} reasons={home.reasons} /> : null}
 

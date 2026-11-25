@@ -39,17 +39,17 @@ export const products: SeedProduct[] = [
     contextCaption: 'Every customer conversation answered — from one shared inbox.',
     tagline: 'Every customer conversation, in one inbox.',
     summary:
-      'WhatsApp, SMS, email and phone calls in a single shared inbox, with campaigns, a phone book and CRM built in.',
+      'WhatsApp, Facebook Messenger, Instagram DMs, SMS, email and phone calls in a single shared inbox, with campaigns, a phone book and CRM built in.',
     category: 'Communications',
     availability: 'live',
     visual: 'comms',
     externalUrl: 'https://tolkyn.co.ke',
     problem:
-      'Customer conversations are scattered across personal WhatsApp numbers, SMS tools, email and missed calls. Messages go unanswered, staff leave with customer history on their phones, and nobody knows how quickly the business really responds.',
+      'Customer conversations are scattered across personal WhatsApp numbers, Facebook and Instagram, SMS tools, email and missed calls. Messages go unanswered, staff leave with customer history on their phones, and nobody knows how quickly the business really responds.',
     features: [
       {
-        title: 'Shared WhatsApp inbox',
-        text: 'Your whole team answers from one business number, with assignment, notes and history.',
+        title: 'Shared WhatsApp, Facebook & Instagram inbox',
+        text: 'Your whole team answers WhatsApp Business, Facebook Page and Instagram messages from one place, with assignment, notes and history. You connect your own accounts through Meta’s official login, and can disconnect at any time.',
       },
       {
         title: 'Bulk SMS & email campaigns',
@@ -77,9 +77,18 @@ export const products: SeedProduct[] = [
       { title: 'Schools & institutions', text: 'Parent communication at scale.' },
       { title: 'Service businesses', text: 'Bookings, reminders and follow-ups.' },
     ],
-    integrations: ['WhatsApp Business', 'SMS', 'Email', 'SIP telephony', 'M-Pesa', 'REST API'],
+    integrations: [
+      'WhatsApp Business',
+      'Facebook Page',
+      'Instagram professional account',
+      'SMS',
+      'Email',
+      'SIP telephony',
+      'M-Pesa',
+      'REST API',
+    ],
     highlights: [
-      { value: '5', label: 'channels in one inbox' },
+      { value: '7', label: 'channels in one inbox' },
       { value: '1', label: 'shared business number' },
       { value: '0', label: 'conversations lost when staff change' },
     ],
@@ -92,6 +101,16 @@ export const products: SeedProduct[] = [
       {
         question: 'How many staff can use it?',
         answer: 'As many as your package allows; each person gets their own login and permissions.',
+      },
+      {
+        question: 'How do we connect our Facebook, Instagram or WhatsApp account?',
+        answer:
+          'You connect your own accounts through Meta’s official login — we never ask for your password. You stay in control and can disconnect any account at any time, either from your Meta settings or by asking us. See our Privacy Policy and Data Deletion Instructions for details.',
+      },
+      {
+        question: 'Who owns the data in our connected accounts?',
+        answer:
+          'You do. Your business remains the data controller for your Meta accounts; Oqtekal only processes messages on your instructions, to run your shared inbox.',
       },
     ],
   },

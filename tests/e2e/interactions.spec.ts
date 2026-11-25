@@ -1,13 +1,5 @@
 import { expect, test } from './fixtures'
 
-test('theme toggle switches and remembers dark mode', async ({ page }) => {
-  await page.goto('/')
-  await page.getByRole('button', { name: /switch to dark mode/i }).click()
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-  await page.reload()
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-})
-
 test('contact form shows validation errors without sending', async ({ page }) => {
   await page.goto('/contact')
   await page.getByRole('button', { name: /send message/i }).click()

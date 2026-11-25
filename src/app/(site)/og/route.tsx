@@ -22,8 +22,8 @@ export async function GET(request: NextRequest) {
         flexDirection: 'column',
         justifyContent: 'space-between',
         padding: '72px 80px',
-        background: '#0b0f19',
-        color: '#f7f6f2',
+        background: '#0c0b16',
+        color: '#f2f1fa',
         fontFamily: 'Archivo',
         position: 'relative',
       }}
@@ -36,9 +36,9 @@ export async function GET(request: NextRequest) {
       >
         <defs>
           <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#2FA8FF" />
-            <stop offset="0.55" stopColor="#064DFB" />
-            <stop offset="1" stopColor="#14246E" />
+            <stop offset="0" stopColor="#8B7CFF" />
+            <stop offset="0.55" stopColor="#5B4CFF" />
+            <stop offset="1" stopColor="#241A66" />
           </linearGradient>
         </defs>
         <path transform={SYMBOL_TRANSFORM} d={SYMBOL_PATH} fill="url(#g)" fillRule="evenodd" />
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       <div
         style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 30, letterSpacing: 6 }}
       >
-        <span style={{ color: '#2fa8ff' }}>OQTEKAL</span>
+        <span style={{ color: '#8b7cff' }}>OQTEKAL</span>
         <span style={{ color: '#7b818d' }}>/</span>
         <span
           style={{ color: '#a3a8b3', letterSpacing: 3, textTransform: 'uppercase', fontSize: 24 }}

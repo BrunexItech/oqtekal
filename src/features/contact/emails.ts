@@ -16,7 +16,7 @@ const escape = (s: string) =>
 
 const shell = (
   body: string,
-) => `<!doctype html><html><body style="margin:0;background:#f7f6f2;font-family:Inter,Segoe UI,Arial,sans-serif;color:#0b0f19">
+) => `<!doctype html><html><body style="margin:0;background:#f8f8fc;font-family:Inter,Segoe UI,Arial,sans-serif;color:#0e0d1a">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:32px 16px">
 <table role="presentation" width="100%" style="max-width:560px;background:#ffffff;border-radius:16px;border:1px solid #e2e0d9">
 <tr><td style="padding:28px 32px 8px"><strong style="font-size:18px;letter-spacing:-0.01em">Oqtekal</strong></td></tr>

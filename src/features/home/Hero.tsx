@@ -1,71 +1,54 @@
-import { ArrowRight, ButtonLink, Container } from '@/design-system'
-import type { HomePage, SiteSetting } from '@/payload-types'
+import Image from 'next/image'
 
-import { HeroCurrent } from './HeroCurrent'
+import { ArrowRight, ButtonLink, Container } from '@/design-system'
+import type { HomePage } from '@/payload-types'
+
 import { RotatingWord } from './RotatingWord'
 
 type Props = {
   hero: HomePage['hero']
-  stats: SiteSetting['stats']
-  /** Company numbers are only shown once they are real (unticked "samples" in the admin). */
-  showStats: boolean
 }
 
-export const Hero = ({ hero, stats, showStats }: Props) => {
+/**
+ * Home hero: a real data-centre photograph, dark and quiet on the left where the headline sits,
+ * lit in brand violet and amber on the right — filling exactly one screen, so the headline and
+ * both actions are visible the moment the page opens, nothing more to read.
+ */
+export const Hero = ({ hero }: Props) => {
   const words = (hero.rotatingWords ?? []).map((w) => w.word).filter(Boolean)
   return (
-    <section className="relative isolate overflow-hidden">
-      {/* Atmosphere: a slow brand aurora behind the artwork */}
-      <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-[-20%] right-[-10%] size-[46rem] animate-[aurora_18s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,rgb(6_77_251/0.18),transparent_60%)] blur-3xl motion-reduce:animate-none" />
-        <div className="absolute top-[30%] right-[25%] size-[30rem] animate-[aurora_22s_ease-in-out_infinite_reverse] rounded-full bg-[radial-gradient(circle,rgb(47_168_255/0.14),transparent_60%)] blur-3xl motion-reduce:animate-none" />
-      </div>
+    <section className="relative isolate flex h-[calc(100svh-4.25rem)] items-center overflow-hidden md:h-[calc(100svh-4.75rem)]">
+      <Image
+        src="/images/hero-datacenter.jpg"
+        alt="A data centre corridor lit in violet and amber"
+        fill
+        priority
+        sizes="100vw"
+        className="absolute inset-0 -z-20 object-cover"
+      />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgb(12_11_22/0.5)_0%,rgb(12_11_22/0.18)_38%,transparent_60%)]" />
 
-      <Container className="grid items-center gap-12 pt-10 pb-16 md:pt-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pt-16 lg:pb-24">
-        <div className="animate-[hero-in_1s_cubic-bezier(0.22,1,0.36,1)_both]">
-          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 py-1.5 pr-3.5 pl-2 text-[0.8rem] text-muted backdrop-blur">
-            <span className="grid size-5 place-items-center rounded-full bg-success/15">
-              <span className="size-2 animate-[pulse-dot_2s_infinite] rounded-full bg-success" />
-            </span>
-            {hero.eyebrow ?? 'Software engineering company · Nairobi'}
-          </p>
-
-          <h1 className="mt-7 max-w-[15ch] text-display-xl">
+      <Container className="relative">
+        <div className="max-w-xl animate-[hero-in_1s_cubic-bezier(0.22,1,0.36,1)_both] text-paper">
+          <h1 className="max-w-[15ch] text-display text-paper">
             {hero.heading} {words.length ? <RotatingWord words={words} /> : null}
           </h1>
 
-          <p className="mt-7 max-w-[34rem] text-lead text-muted">{hero.text}</p>
-
-          <div className="mt-9 flex flex-col gap-3 xs:flex-row">
+          <div className="mt-8 flex flex-col gap-3 xs:flex-row">
             <ButtonLink href="/contact" size="lg" icon={<ArrowRight className="size-4" />}>
               {hero.primaryLabel ?? 'Start a project'}
             </ButtonLink>
-            <ButtonLink href="/products" size="lg" variant="secondary">
+            <ButtonLink
+              href="/products"
+              size="lg"
+              variant="secondary"
+              className="border-transparent! bg-white! text-ink! hover:bg-white/90!"
+            >
               {hero.secondaryLabel ?? 'Explore products'}
             </ButtonLink>
           </div>
         </div>
-
-        <HeroCurrent className="mx-auto aspect-[5/4] w-full max-w-[40rem] lg:aspect-auto lg:h-full lg:min-h-[34rem] lg:max-w-none" />
       </Container>
-
-      {showStats && stats?.length ? (
-        <Container>
-          <dl className="grid grid-cols-2 border-t border-line md:grid-cols-4">
-            {stats.map((s, i) => (
-              <div
-                key={s.id ?? i}
-                className="flex flex-col gap-1 border-line py-7 pr-4 md:border-l md:pl-6 md:first:border-l-0 md:first:pl-0 max-md:[&:nth-child(even)]:pl-5 max-md:[&:nth-child(n+3)]:border-t max-md:[&:nth-child(odd)]:border-r"
-              >
-                <dt className="order-2 text-sm text-muted">{s.label}</dt>
-                <dd className="order-1 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-                  {s.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </Container>
-      ) : null}
     </section>
   )
 }

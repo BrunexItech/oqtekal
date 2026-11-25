@@ -19,7 +19,7 @@ export default function Error({
       <p className="text-label text-danger">Something went wrong</p>
       <h1 className="max-w-2xl text-h1">We hit an unexpected problem loading this page.</h1>
       <p className="max-w-xl text-muted">
-        Please try again. If it keeps happening, email hello@oqtekal.com and we will fix it fast.
+        Please try again. If it keeps happening, email info@oqtekal.com and we will fix it fast.
       </p>
       <Button onClick={reset}>Try again</Button>
     </Container>

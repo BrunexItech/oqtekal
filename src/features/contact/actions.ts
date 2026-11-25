@@ -11,7 +11,7 @@ import { autoReplyEmail, notifyEmail } from './emails'
 import { fieldErrors, leadSchema, subscribeSchema, type FormState } from './schema'
 
 const GENERIC_ERROR =
-  'Something went wrong on our side. Please try again, or email hello@oqtekal.com.'
+  'Something went wrong on our side. Please try again, or email info@oqtekal.com.'
 
 export async function submitLead(_prev: FormState, formData: FormData): Promise<FormState> {
   // Honeypot: real people never fill this hidden field.

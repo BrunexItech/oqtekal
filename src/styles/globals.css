@@ -1,9 +1,6 @@
 @import 'tailwindcss';
 @import '../design-system/tokens/tokens.css';
 
-/* Dark mode follows <html data-theme="dark">, set before paint by the theme script. */
-@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
-
 /* ---------------------------------------------------------------------------
    Tailwind theme: semantic colours map onto the CSS variables in tokens.css,
    so every utility (bg-surface, text-muted…) switches with the theme.

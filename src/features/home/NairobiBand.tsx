@@ -1,13 +1,21 @@
-import { Container } from '@/design-system'
-import { CurrentArt } from '@/features/brand'
+import Image from 'next/image'
 
-/** Statement band on the brand artwork: where we build, and the ambition. */
+import { Container, ImageLoading } from '@/design-system'
+
+/** Statement band on a real photo of the city: where we build, and the ambition. */
 export const NairobiBand = () => (
   <section className="relative isolate overflow-hidden bg-ink text-paper">
-    <CurrentArt className="-z-20 object-[80%_center] lg:object-right" />
+    <ImageLoading tone="dark" className="-z-20" />
+    <Image
+      src="/images/nairobi-night.jpg"
+      alt="Nairobi skyline at night"
+      fill
+      sizes="100vw"
+      className="-z-20 object-cover object-[80%_center] lg:object-right"
+    />
     <div
       aria-hidden
-      className="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgb(11_15_25/0.92)_0%,rgb(11_15_25/0.35)_55%,transparent_100%)]"
+      className="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgb(12_11_22/0.92)_0%,rgb(12_11_22/0.45)_55%,rgb(12_11_22/0.2)_100%)]"
     />
     <Container className="flex min-h-[min(64svh,36rem)] flex-col justify-end py-16 md:py-24">
       <p className="text-label text-brand-400">Nairobi · Kenya</p>

@@ -48,6 +48,11 @@ export default async function InsightsPage({ searchParams }: Props) {
   return (
     <>
       <PageHeader
+        variant="cinematic"
+        image={{
+          src: '/images/wireframe.jpg',
+          alt: 'Hand-drawn website wireframes on grid paper',
+        }}
         crumbs={crumbs}
         eyebrow="Insights"
         title="Notes from the engineering floor."
